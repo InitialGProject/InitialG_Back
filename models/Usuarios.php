@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\filters\auth\HttpBearerAuth;
 
 /**
  * This is the model class for table "usuarios".
@@ -25,8 +26,54 @@ use Yii;
  * @property Torneos[] $torneos
  * @property Videos[] $videos
  */
-class Usuarios extends \yii\db\ActiveRecord
+class Usuarios extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
+    //Añadimos implements...
+
+    public static function findByUsername($username)
+    {
+        return static::findOne(['usuario' => $username]);
+    }
+
+    public static function findIdentity($id)
+    {
+        return static::findOne($id);
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function behaviors()
+    {
+        $behaviors = parent::behaviors();
+        $behaviors['authenticator'] = [
+            'class' => HttpBearerAuth::className(),
+            'except' => ['options', 'authenticate'],
+        ];
+        return $behaviors;
+    }
+
+    public function getAuthKey()
+    {
+    }
+
+    public function validateAuthKey($authKey)
+    {
+    }
+
+    public static function findIdentityByAccessToken($token, $type = null)
+    {
+        return self::findOne(['token' => $token]);
+    }
+
+    // Comprueba que el password que se le pasa es correcto
+    public function validatePassword($password)
+    {
+        return $this->password === md5($password); // Si se utiliza otra función de encriptación distinta a md5, habrá que cambiar esta línea
+    }
+
     /**
      * {@inheritdoc}
      */

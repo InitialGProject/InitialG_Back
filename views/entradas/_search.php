@@ -1,5 +1,7 @@
 <?php
 
+use app\models\Categorias;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -15,25 +17,20 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'id') ?>
-
-    <?= $form->field($model, 'usuario_id') ?>
-
-    <?= $form->field($model, 'juego_id') ?>
-
     <?= $form->field($model, 'titulo') ?>
 
-    <?= $form->field($model, 'creado') ?>
+    <?php
+    //Utilizamos asArray para que sea más óptimo el acceso, al devolver una lista de arrays 
+    $options = ArrayHelper::map(Categorias::find()->asArray()->all(), 'id', 'categoria');
+    echo $form->field($model, 'categorias_id')->dropDownList($options, ['prompt' => 'Seleccione una Categoria']);
+    ?>
 
-    <?php // echo $form->field($model, 'contenido') ?>
-
-    <?php // echo $form->field($model, 'categorias_id') ?>
-
-    <?php // echo $form->field($model, 'estado') ?>
+    <?php // echo $form->field($model, 'usuarios_id') 
+    ?>
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton(Yii::t('app', 'Reset'), ['class' => 'btn btn-outline-secondary']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Buscar'), ['class' => 'btn btn-primary']) ?>
+        <?= Html::resetButton(Yii::t('app', 'Cancelar'), ['class' => 'btn btn-outline-secondary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Entradas */
 
-$this->title = Yii::t('app', 'Create Entradas');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Entradas'), 'url' => ['index']];
+$this->title = Yii::t('app', 'Crear Entrada');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Entradas'), 'url' => ['/site/index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="entradas-create">

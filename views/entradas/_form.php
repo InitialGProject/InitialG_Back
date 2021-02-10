@@ -1,5 +1,8 @@
 <?php
 
+use app\models\Categorias;
+use app\models\Entradas;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -12,22 +15,26 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'usuario_id')->textInput() ?>
-
-    <?= $form->field($model, 'juego_id')->textInput() ?>
-
     <?= $form->field($model, 'titulo')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'creado')->textInput() ?>
 
+    <?php
+    //Utilizamos asArray para que sea más óptimo el acceso, al devolver una lista de arrays 
+    $options = ArrayHelper::map(Categorias::find()->asArray()->all(), 'id', 'categoria');
+    echo $form->field($model, 'categorias')->dropDownList($options, ['prompt' => 'Seleccione una Categoria']);
+    ?>
+
     <?= $form->field($model, 'contenido')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'categorias_id')->textInput() ?>
-
-    <?= $form->field($model, 'estado')->textInput(['maxlength' => true]) ?>
+    <?php
+    //Utilizamos asArray para que sea más óptimo el acceso, al devolver una lista de arrays 
+    $options = ArrayHelper::map(Entradas::find()->asArray()->all(), 'id', 'estado');
+    echo $form->field($model, 'estado')->dropDownList($options, ['prompt' => 'Seleccione un Estado ( A = Aceptado - D = Denegado )']);
+    ?>
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Actualizar'), ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

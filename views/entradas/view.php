@@ -6,8 +6,8 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Entradas */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Entradas'), 'url' => ['index']];
+$this->title = $model->usuario->nombre . ' - ' . $model->creado;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Entradas'), 'url' => ['/site/index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
@@ -15,28 +15,33 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
+    <?php
+    if (Yii::$app->user->isGuest) {
+    } else { ?>
+    <?= Html::a(Yii::t('app', 'Actualizar'), [
+            'update', 'id' => $model->id,
+            'usuarios_nombre' => $model->usuario->nombre,
+            'fecha_hora' => $model->creado
+        ], ['class' => 'btn btn-primary']);
+    } ?>
+
+    <?php
+    if (Yii::$app->user->isGuest) {
+    } else { ?>
+    <?= Html::a(Yii::t('app', 'Borrar'), ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
                 'method' => 'post',
             ],
-        ]) ?>
-    </p>
+        ]);
+    } ?>
 
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            'usuario_id',
-            'juego_id',
-            'titulo',
-            'creado',
-            'contenido:ntext',
-            'categorias_id',
-            'estado',
+            'texto:ntext',
+            'Categoria' => $model->categorias->categoria,
         ],
     ]) ?>
 

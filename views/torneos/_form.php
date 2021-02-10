@@ -1,5 +1,7 @@
 <?php
 
+use app\models\Categorias;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -12,15 +14,13 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'categorias_id')->textInput() ?>
-
-    <?= $form->field($model, 'usuario_id')->textInput() ?>
-
     <?= $form->field($model, 'titulo')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'imagen')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'descripcion')->textarea(['rows' => 6]) ?>
+    <?php
+    //Utilizamos asArray para que sea más óptimo el acceso, al devolver una lista de arrays 
+    $options = ArrayHelper::map(Categorias::find()->asArray()->all(), 'id', 'categoria');
+    echo $form->field($model, 'categorias_id')->dropDownList($options, ['prompt' => 'Seleccione una Categoria']);
+    ?>
 
     <?= $form->field($model, 'fechaInicio')->textInput() ?>
 
@@ -29,7 +29,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'entrada_id')->textInput() ?>
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Crear'), ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

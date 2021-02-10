@@ -3,19 +3,20 @@
 use yii\helpers\Html;
 use yii\widgets\ListView;
 
+$dataProvider->pagination = array('pageSize' => 5);
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\TorneosSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Torneos');
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Torneos'),  'url' => ['/site/torneos']];
 ?>
 <div class="torneos-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Torneos'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Crear nuevo Torneo'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -24,9 +25,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'itemOptions' => ['class' => 'item'],
         'itemView' => function ($model, $key, $index, $widget) {
-            return Html::a(Html::encode($model->id), ['view', 'id' => $model->id]);
+            return $this->render('_torneo', ['model' => $model]);
+            // return Html::a(Html::encode($model->id), ['view', 'id' => $model->id]);
         },
     ]) ?>
-
-
 </div>
