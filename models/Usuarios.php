@@ -3,7 +3,6 @@
 namespace app\models;
 
 use Yii;
-use yii\filters\auth\HttpBearerAuth;
 
 /**
  * This is the model class for table "usuarios".
@@ -32,7 +31,7 @@ class Usuarios extends \yii\db\ActiveRecord implements \yii\web\IdentityInterfac
 
     public static function findByUsername($username)
     {
-        return static::findOne(['usuario' => $username]);
+        return static::findOne(['nombre' => $username]);
     }
 
     public static function findIdentity($id)
@@ -45,16 +44,6 @@ class Usuarios extends \yii\db\ActiveRecord implements \yii\web\IdentityInterfac
         return $this->id;
     }
 
-    public function behaviors()
-    {
-        $behaviors = parent::behaviors();
-        $behaviors['authenticator'] = [
-            'class' => HttpBearerAuth::className(),
-            'except' => ['options', 'authenticate'],
-        ];
-        return $behaviors;
-    }
-
     public function getAuthKey()
     {
     }
@@ -62,10 +51,8 @@ class Usuarios extends \yii\db\ActiveRecord implements \yii\web\IdentityInterfac
     public function validateAuthKey($authKey)
     {
     }
-
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        return self::findOne(['token' => $token]);
     }
 
     // Comprueba que el password que se le pasa es correcto
@@ -92,7 +79,7 @@ class Usuarios extends \yii\db\ActiveRecord implements \yii\web\IdentityInterfac
             [['correo', 'avatar'], 'string'],
             [['edad', 'tipo', 'suscripcion'], 'integer'],
             [['nombre'], 'string', 'max' => 50],
-            [['password'], 'string', 'max' => 10],
+            [['password'], 'string', 'max' => 500],
             [['genero', 'estado'], 'string', 'max' => 1],
         ];
     }
