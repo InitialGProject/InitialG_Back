@@ -9,7 +9,7 @@ $dataProvider->pagination = array('pageSize' => 5);
 /* @var $searchModel app\models\EntradasSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Entradas'),  'url' => ['/site/index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Entradas'),  'url' => ['/entradas/index']];
 ?>
 <div class="entradas-index">
 

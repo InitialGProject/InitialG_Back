@@ -74,6 +74,7 @@ class LoginForm extends Model
     {
         if ($this->_user === false) {
             $this->_user = Usuarios::findByUsername($this->username);
+            $this->_user = Administradores::findByUsername($this->username);
         }
 
         return $this->_user;
