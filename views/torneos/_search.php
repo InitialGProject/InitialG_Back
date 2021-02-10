@@ -22,7 +22,7 @@ use yii\widgets\ActiveForm;
     <?php
     //Utilizamos asArray para que sea más óptimo el acceso, al devolver una lista de arrays 
     $options = ArrayHelper::map(Categorias::find()->asArray()->all(), 'id', 'categoria');
-    echo $form->field($model, 'categorias_id')->dropDownList($options, ['prompt' => 'Seleccione una Categoria']);
+    echo $form->field($model, 'categorias')->dropDownList($options, ['prompt' => 'Seleccione una Categoria']);
     ?>
 
     <?= $form->field($model, 'fechaInicio') ?>

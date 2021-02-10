@@ -19,17 +19,15 @@ use yii\widgets\ActiveForm;
     <?php
     //Utilizamos asArray para que sea más óptimo el acceso, al devolver una lista de arrays 
     $options = ArrayHelper::map(Categorias::find()->asArray()->all(), 'id', 'categoria');
-    echo $form->field($model, 'categorias_id')->dropDownList($options, ['prompt' => 'Seleccione una Categoria']);
+    echo $form->field($model, 'categorias')->dropDownList($options, ['prompt' => 'Seleccione una Categoria']);
     ?>
 
     <?= $form->field($model, 'fechaInicio')->textInput() ?>
 
     <?= $form->field($model, 'fechaFin')->textInput() ?>
 
-    <?= $form->field($model, 'entrada_id')->textInput() ?>
-
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Crear'), ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Actualizar'), ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

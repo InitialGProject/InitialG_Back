@@ -106,4 +106,19 @@ class Torneos extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Usuarios::className(), ['id' => 'usuario_id']);
     }
+
+    public function getCreador()
+    {
+        return $this->usuario->nombre;
+    }
+
+    public function getCategoria()
+    {
+        return $this->categorias->categoria;
+    }
+
+    public function fields()
+    {
+        return array_merge(parent::fields(), ['creador', 'Categoria']);
+    }
 }
