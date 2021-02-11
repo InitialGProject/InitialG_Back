@@ -19,7 +19,6 @@ class LoginForm extends Model
 
     private $_user = false;
 
-
     /**
      * @return array the validation rules.
      */
@@ -48,8 +47,9 @@ class LoginForm extends Model
             $user = $this->getUser();
 
             if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError($attribute, 'Incorrect username or password.');
-            }
+                $this->addError($attribute, 'Usuario o password incorrecto');
+            } else if ($user->estado != "A")
+                $this->addError($attribute, 'Usuario inactivo o no confirmado');
         }
     }
 
@@ -74,7 +74,6 @@ class LoginForm extends Model
     {
         if ($this->_user === false) {
             $this->_user = Usuarios::findByUsername($this->username);
-            $this->_user = Administradores::findByUsername($this->username);
         }
 
         return $this->_user;

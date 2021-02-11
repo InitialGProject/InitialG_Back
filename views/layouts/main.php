@@ -45,11 +45,10 @@ AppAsset::register($this);
                 (['label' => 'Juegos', 'url' => ['/juegos/index']]),
                 (['label' => 'Torneos', 'url' => ['/torneos/index']]),
                 (['label' => 'Foro', 'url' => ['/entradas/index']]),
-                !Yii::$app->user->isGuest ? (['label' => 'Crear Entrada', 'url' => ['/entradas/create']]) : (''),
                 Yii::$app->user->isGuest ? (['label' => 'Login', 'url' => ['/site/login']]) : ('<li>'
                     . Html::beginForm(['/site/logout'], 'post')
                     . Html::submitButton(
-                        'Logout (' . Yii::$app->user->identity->nombre . ')',
+                        'Logout (' . Yii::$app->user->identity->nombre . ' - ' . Yii::$app->user->identity->TipoUser . ')',
                         ['class' => 'btn btn-link logout']
                     )
                     . Html::endForm()

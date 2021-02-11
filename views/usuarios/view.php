@@ -39,6 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'estado',
             'suscripcion',
             'avatar:ntext',
+            'TipoUser'
         ],
     ]) ?>
 

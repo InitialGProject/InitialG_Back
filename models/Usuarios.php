@@ -79,7 +79,7 @@ class Usuarios extends \yii\db\ActiveRecord implements \yii\web\IdentityInterfac
             [['correo', 'avatar'], 'string'],
             [['edad', 'tipo', 'suscripcion'], 'integer'],
             [['nombre'], 'string', 'max' => 50],
-            [['password'], 'string', 'max' => 500],
+            [['password'], 'string'],
             [['genero', 'estado'], 'string', 'max' => 1],
         ];
     }
@@ -161,5 +161,34 @@ class Usuarios extends \yii\db\ActiveRecord implements \yii\web\IdentityInterfac
     public function getVideos()
     {
         return $this->hasMany(Videos::className(), ['usuarios_id' => 'id']);
+    }
+
+    public function getTipoUser()
+    {
+        switch ($this->suscripcion) {
+            case '1':
+                return "Registrado";
+                break;
+            case '2':
+                return  "Basico";
+                break;
+            case '3':
+                return  "Gamer";
+                break;
+            case '4':
+                return "Empresa";
+                break;
+            case '5':
+                return  "Admin";
+                break;
+            default:
+                return "Invitado";
+                break;
+        }
+    }
+
+    public function fields()
+    {
+        return array_merge(parent::fields(), ['TipoUser']);
     }
 }
