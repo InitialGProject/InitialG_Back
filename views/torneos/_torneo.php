@@ -16,9 +16,8 @@ use yii\helpers\Html;
 
         <?php
         if (Yii::$app->user->isGuest) {
-        } else { ?>
-        <?=
-            Html::a(
+        } else if (Yii::$app->user->identity->TipoUser == 'Gamer' || Yii::$app->user->identity->TipoUser == 'Empresa' || Yii::$app->user->identity->TipoUser == 'Admin') {
+            echo Html::a(
                 'Editar',
                 [
                     'torneos/update', 'id' => $model->id,
@@ -27,17 +26,21 @@ use yii\helpers\Html;
                 ],
                 ['class' => 'btn btn-primary']
             );
-        } ?>
+        }  ?>
 
-        <?= Html::a(
-            'Ver',
-            [
-                'torneos/view', 'id' => $model->id,
-                'usuarios_nombre' => $model->usuario->nombre,
-                'fecha_hora' => $model->fechaInicio
-            ],
-            ['class' => 'btn btn-primary']
-        ) ?>
+        <?php
+        if (Yii::$app->user->isGuest) {
+        } else {
+            echo Html::a(
+                'Ver',
+                [
+                    'torneos/view', 'id' => $model->id,
+                    'usuarios_nombre' => $model->usuario->nombre,
+                    'fecha_hora' => $model->fechaInicio
+                ],
+                ['class' => 'btn btn-primary']
+            );
+        } ?>
 
         <?php
         /*
