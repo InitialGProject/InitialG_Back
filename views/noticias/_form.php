@@ -16,13 +16,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'entradas_id')->textInput() ?>
 
-    <?= $form->field($model, 'titulo')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'titulo')->textarea(['rows' => 2]) ?>
 
-    <?= $form->field($model, 'descripcion')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'descripcion')->textarea(['rows' => 4]) ?>
 
     <?= $form->field($model, 'texto')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'imagen')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'imagen')->textarea(['rows' => 2]) ?>
 
     <?= $form->field($model, 'fecha')->textInput() ?>
 

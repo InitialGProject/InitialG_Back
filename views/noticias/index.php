@@ -15,7 +15,12 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Noticias'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?php
+        // Botón Crear
+        if (Yii::$app->user->isGuest) {
+        } else if (Yii::$app->user->identity->TipoUser == 'Gamer' || Yii::$app->user->identity->TipoUser == 'Empresa' || Yii::$app->user->identity->TipoUser == 'Admin') {
+            echo Html::a(Yii::t('app', 'Crear Noticia'), ['/noticias/create'], ['class' => 'btn btn-success']);
+        } ?>
     </p>
 
     <?php echo $this->render('_search', ['model' => $searchModel]); ?>

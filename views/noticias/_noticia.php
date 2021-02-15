@@ -46,17 +46,8 @@ use yii\helpers\Html;
     //   echo "<div class='row' style= margin:5px; padding:20px;>"
     //     . "<p>" . $noticia->fecha . ' ' . $noticia->contenido . "</p></div>";
     // }
+    ?>
 
-    if (Yii::$app->user->isGuest) {
-    } else { ?>
-    <?=
-      Html::a(
-        'Añadir Noticia',
-        [
-          'noticias/create', 'id' => $model->id,
-        ],
-      );
-    } ?>
 
   </div>
 
