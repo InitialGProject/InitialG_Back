@@ -38,7 +38,7 @@ class Torneos extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['categorias_id', 'usuario_id', 'titulo', 'imagen', 'descripcion', 'fechaInicio', 'fechaFin', 'entrada_id'], 'required'],
+            [['categorias_id', 'titulo', 'imagen', 'descripcion', 'fechaInicio', 'fechaFin'], 'required'],
             [['categorias_id', 'usuario_id', 'entrada_id'], 'integer'],
             [['imagen', 'descripcion'], 'string'],
             [['fechaInicio', 'fechaFin'], 'safe'],
