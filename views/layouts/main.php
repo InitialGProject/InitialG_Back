@@ -52,7 +52,8 @@ AppAsset::register($this);
                         ['class' => 'btn btn-link logout']
                     )
                     . Html::endForm()
-                    . '</li>')
+                    . '</li>'),
+                Yii::$app->user->isGuest ? (['label' => 'Registro', 'url' => ['/usuarios/create']]) : ('<li></li>')
             ],
         ]);
         NavBar::end();

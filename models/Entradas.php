@@ -59,11 +59,11 @@ class Entradas extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'usuario_id' => Yii::t('app', 'Usuario ID'),
-            'juego_id' => Yii::t('app', 'Juego ID'),
+            'juego_id' => Yii::t('app', 'Juego Relacionado'),
             'titulo' => Yii::t('app', 'Titulo'),
-            'creado' => Yii::t('app', 'Creado'),
+            'creado' => Yii::t('app', 'Fecha y Hora de Publicacion'),
             'contenido' => Yii::t('app', 'Contenido'),
-            'categorias_id' => Yii::t('app', 'Categorias ID'),
+            'categorias_id' => Yii::t('app', 'Categorias'),
             'estado' => Yii::t('app', 'Estado'),
         ];
     }
@@ -126,5 +126,25 @@ class Entradas extends \yii\db\ActiveRecord
     public function getTorneos()
     {
         return $this->hasMany(Torneos::className(), ['entrada_id' => 'id']);
+    }
+
+    public function getJuegoRelacionado()
+    {
+        return $this->juego->titulo;
+    }
+
+    public function getCreador()
+    {
+        return $this->usuario->nombre;
+    }
+
+    public function getCategoria()
+    {
+        return $this->categorias->categoria;
+    }
+
+    public function fields()
+    {
+        return array_merge(parent::fields(), ['creador', 'Categoria', 'JuegoRelacionado']);
     }
 }

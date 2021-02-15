@@ -56,13 +56,13 @@ class Torneos extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'categorias_id' => Yii::t('app', 'Categorias ID'),
+            'categorias_id' => Yii::t('app', 'Categorias'),
             'usuario_id' => Yii::t('app', 'Usuario ID'),
             'titulo' => Yii::t('app', 'Titulo'),
-            'imagen' => Yii::t('app', 'Imagen'),
+            'imagen' => Yii::t('app', 'Url de la Imagen'),
             'descripcion' => Yii::t('app', 'Descripcion'),
-            'fechaInicio' => Yii::t('app', 'Fecha Inicio'),
-            'fechaFin' => Yii::t('app', 'Fecha Fin'),
+            'fechaInicio' => Yii::t('app', 'Inicio del Torneo'),
+            'fechaFin' => Yii::t('app', 'Fin del Torneo'),
             'entrada_id' => Yii::t('app', 'Entrada ID'),
         ];
     }

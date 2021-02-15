@@ -6,9 +6,12 @@ use yii\helpers\Html;
 
 <div class=row style='background:#ddd;margin:5px;padding:5px;'>
 
-  <b><?= $model->usuario->nombre ?> - <?= $model->creado ?><br><br></b>
+  <b><?= $model->titulo ?><br><br></b>
 
-  <?= $model->titulo ?><br><br>
+  Creado por: <?= $model->usuario->nombre ?><br><br>
+
+  Publicado en el: <?= $model->creado ?><br><br>
+
   Categoría: <small><?= $model->categorias->categoria ?> </small>
   <br><br>
   <div style='color:blue;font-size:0.8em'>

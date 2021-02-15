@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ListView;
 
-$dataProvider->pagination = array('pageSize' => 5);
+$dataProvider->pagination = array('pageSize' => 2);
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\TorneosSearch */

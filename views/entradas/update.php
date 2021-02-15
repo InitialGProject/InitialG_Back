@@ -8,7 +8,7 @@ use yii\helpers\Html;
 $this->title = Yii::t('app', 'Actualizar Entrada: {name}', [
     'name' => $model->usuario->nombre . ' - ' . $model->creado,
 ]);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Entradas'), 'url' => ['/site/index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Entradas'), 'url' => ['/entradas/index']];
 $this->params['breadcrumbs'][] = [
     'label' => $model->usuario->nombre . ' - ' . $model->creado,
     'url' => [
