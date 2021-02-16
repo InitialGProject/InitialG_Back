@@ -20,7 +20,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'creado')->textInput() ?>
 
     <?php
-    //Utilizamos asArray para que sea más óptimo el acceso, al devolver una lista de arrays 
+    //Utilizamos asArray para que sea más óptimo el acceso, al devolver una lista de arrays
     $options = ArrayHelper::map(Categorias::find()->asArray()->all(), 'id', 'categoria');
     echo $form->field($model, 'categorias_id')->dropDownList($options, ['prompt' => 'Seleccione una Categoria']);
     ?>
@@ -28,10 +28,15 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'contenido')->textarea(['rows' => 6]) ?>
 
     <?php
-    //Utilizamos asArray para que sea más óptimo el acceso, al devolver una lista de arrays 
-    $options = ArrayHelper::map(Entradas::find()->asArray()->all(), 'id', 'estado');
-    echo $form->field($model, 'estado')->dropDownList($options, ['prompt' => 'Seleccione un Estado ( A = Aceptado - D = Denegado )']);
-    ?>
+    if (Yii::$app->user->identity->TipoUser == 'Admin') {
+        echo $form->field($model, 'estado')->dropdownList(
+            [
+                'A' => 'A',
+                'D' => 'D'
+            ],
+            ['prompt' => 'Seleccione un Estado ( A = Aceptado - D = Denegado )']
+        );
+    } ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Actualizar'), ['class' => 'btn btn-success']) ?>

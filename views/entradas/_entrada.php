@@ -14,7 +14,7 @@ use yii\helpers\Html;
 
   Categoría: <small><?= $model->categorias->categoria ?> </small>
   <br><br>
-  <div style='color:blue;font-size:0.8em'>
+  <div style='font-size:1.5rem; text-align:justify'>
 
     <?php
     if (Yii::$app->user->isGuest) {
@@ -47,7 +47,7 @@ use yii\helpers\Html;
 
     foreach ($model->comentarios as $comentario) {
       echo "<div class='row' style= margin:5px; padding:20px;>"
-        . "<p>" . $comentario->creado . ' ' . $comentario->contenido . "</p></div>";
+        . "<p>" . 'Publicado por <b>' . $comentario->usuario->nombre . '</b> en el <b>' . $comentario->creado . '</b><p style="color:red">' . $comentario->contenido . "</p></p></div>";
     }
 
     if (Yii::$app->user->isGuest) {
@@ -58,6 +58,7 @@ use yii\helpers\Html;
         [
           'comentarios/create', 'id' => $model->id,
         ],
+        ['class' => 'btn btn-primary']
       );
     } ?>
 

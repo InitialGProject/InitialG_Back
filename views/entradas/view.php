@@ -48,6 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'JuegoRelacionado',
             'Categoria',
             'creador',
+            'Estado',
         ],
     ]) ?>
 

@@ -5,12 +5,12 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Entradas */
 
-$this->title = Yii::t('app', 'Actualizar Entrada: {name}', [
-    'name' => $model->usuario->nombre . ' - ' . $model->creado,
+$this->title = Yii::t('app', 'Actualizar: {name}', [
+    'name' => $model->titulo
 ]);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Entradas'), 'url' => ['/entradas/index']];
 $this->params['breadcrumbs'][] = [
-    'label' => $model->usuario->nombre . ' - ' . $model->creado,
+    'label' => $model->titulo,
     'url' => [
         'view', 'id' => $model->id,
         'usuarios_nombre' => $model->usuario->nombre,

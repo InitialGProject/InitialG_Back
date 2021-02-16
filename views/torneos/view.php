@@ -46,6 +46,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'fechaInicio',
             'fechaFin',
             'imagen',
+            'Numparticipantes',
+            'Estado',
             'Categoria',
             'creador',
         ],
