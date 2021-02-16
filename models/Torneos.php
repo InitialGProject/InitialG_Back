@@ -38,7 +38,7 @@ class Torneos extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['categorias_id', 'titulo', 'imagen', 'descripcion', 'fechaInicio', 'fechaFin', 'estado'], 'required'],
+            [['categorias_id', 'titulo', 'imagen', 'descripcion', 'fechaInicio', 'fechaFin'], 'required'],
             [['categorias_id', 'usuario_id', 'entrada_id', 'participantes_id'], 'integer'],
             [['imagen', 'descripcion', 'estado'], 'string'],
             [['fechaInicio', 'fechaFin'], 'safe'],
@@ -58,7 +58,7 @@ class Torneos extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'categorias_id' => Yii::t('app', 'Categorias'),
-            'usuario_id' => Yii::t('app', 'Usuario ID'),
+            'usuario_id' => Yii::t('app', 'Nombre de Usuario'),
             'titulo' => Yii::t('app', 'Titulo'),
             'imagen' => Yii::t('app', 'Url de la Imagen'),
             'descripcion' => Yii::t('app', 'Descripcion'),
@@ -67,7 +67,7 @@ class Torneos extends \yii\db\ActiveRecord
             'Numparticipantes' => Yii::t('app', 'Numero de Participantes'),
             'fechaInicio' => Yii::t('app', 'Inicio del Torneo'),
             'fechaFin' => Yii::t('app', 'Fin del Torneo'),
-            'entrada_id' => Yii::t('app', 'Estado de la Entrada Relacionada'),
+            'entrada_id' => Yii::t('app', 'Entradas del Foro'),
             'participantes_id' => Yii::t('app', 'Numero de Participantes'),
         ];
     }

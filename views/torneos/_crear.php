@@ -1,6 +1,8 @@
 <?php
 
 use app\models\Categorias;
+use app\models\Entradas;
+use app\models\Usuarios;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
@@ -28,6 +30,18 @@ use yii\widgets\ActiveForm;
     //Utilizamos asArray para que sea más óptimo el acceso, al devolver una lista de arrays 
     $options = ArrayHelper::map(Categorias::find()->asArray()->all(), 'id', 'categoria');
     echo $form->field($model, 'categorias_id')->dropDownList($options, ['prompt' => 'Seleccione una Categoria']);
+    ?>
+
+    <?php
+    //Utilizamos asArray para que sea más óptimo el acceso, al devolver una lista de arrays 
+    $options = ArrayHelper::map(Entradas::find()->asArray()->all(), 'id', 'titulo');
+    echo $form->field($model, 'entrada_id')->dropDownList($options, ['prompt' => 'Seleccione una Entrada']);
+    ?>
+
+    <?php
+    //Utilizamos asArray para que sea más óptimo el acceso, al devolver una lista de arrays 
+    $options = ArrayHelper::map(Usuarios::find()->asArray()->all(), 'id', 'nombre');
+    echo $form->field($model, 'usuario_id')->dropDownList($options, ['prompt' => 'Seleccione un Nombre']);
     ?>
 
     <div class="form-group">

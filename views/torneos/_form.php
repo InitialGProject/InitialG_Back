@@ -36,9 +36,9 @@ use yii\widgets\ActiveForm;
 
     <?php
     //Utilizamos asArray para que sea más óptimo el acceso, al devolver una lista de arrays 
-    if (Yii::$app->user->identity->TipoUser == 'Admin') {
-        $options = ArrayHelper::map(Entradas::find()->asArray()->all(), 'id', 'estado');
-        echo $form->field($model, 'entrada_id')->dropDownList($options, ['prompt' => 'Seleccione un Estado ( A = Aceptado - D = Denegado )']);
+    if (Yii::$app->user->identity->TipoUser == 'Gamer' || Yii::$app->user->identity->TipoUser == 'Empresa' || Yii::$app->user->identity->TipoUser == 'Admin') {
+        $options = ArrayHelper::map(Entradas::find()->asArray()->all(), 'id', 'titulo');
+        echo $form->field($model, 'entrada_id')->dropDownList($options, ['prompt' => 'Seleccione una Entrada']);
     }
     ?>
 
