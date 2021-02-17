@@ -58,6 +58,7 @@ class Noticias extends \yii\db\ActiveRecord
             'texto' => Yii::t('app', 'Texto'),
             'imagen' => Yii::t('app', 'Imagen'),
             'fecha' => Yii::t('app', 'Fecha'),
+            'nombreautor' => Yii::t('app', 'Nombre del autor'),
         ];
     }
 
@@ -79,5 +80,34 @@ class Noticias extends \yii\db\ActiveRecord
     public function getEntradas()
     {
         return $this->hasOne(Entradas::className(), ['id' => 'entradas_id']);
+    }
+
+    public function getEstado()
+    {
+        $estado = $this->entradas->estado;
+
+        if ($estado == 'A') {
+            $estado = 'Aceptado';
+        } else {
+            $estado = 'Denegado';
+        }
+
+        return $estado;
+    }
+
+    public function getNombreAutor()
+    {
+        $mostrado = $this->autor->nombre;
+        if ($this->getEstado() == 'Aceptado') {
+            $mostrado;
+        } else {
+            $mostrado = "Undefined";
+        }
+        return $mostrado;
+    }
+
+    public function fields()
+    {
+        return array_merge(parent::fields(), ['Estado', 'nombreautor']);
     }
 }

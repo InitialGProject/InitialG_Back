@@ -15,11 +15,11 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'id') ?>
-
-    <?= $form->field($model, 'autor_id') ?>
-
-    <?= $form->field($model, 'entradas_id') ?>
+    <!-- 
+    $form->field($model, 'id')
+    $form->field($model, 'autor_id')
+    $form->field($model, 'entradas_id') 
+    -->
 
     <?= $form->field($model, 'titulo') ?>
 
@@ -27,7 +27,9 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'texto') ?>
 
-    <?php // echo $form->field($model, 'imagen') ?>
+    <?= $form->field($model, 'imagen') ?>
+
+    <!-- CHtml::image(Yii::app()->request->baseUrl.'/banner/'.$model->image,"image",array("width"=>200)); -->
 
     <?php // echo $form->field($model, 'fecha') ?>
 
