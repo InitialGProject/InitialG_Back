@@ -1,6 +1,8 @@
 <?php
 
 namespace app\models;
+use yii\helpers\ArrayHelper;
+
 
 use Yii;
 
@@ -85,5 +87,10 @@ class Categorias extends \yii\db\ActiveRecord
     public function getVideos()
     {
         return $this->hasMany(Videos::className(), ['categoria_id' => 'id']);
+    }
+
+    public static function lookup($condition=''){
+        return ArrayHelper::map(
+            self::find()->where($condition)->all(),'id','categoria');
     }
 }

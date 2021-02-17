@@ -52,7 +52,7 @@ class Juegos extends \yii\db\ActiveRecord
             'titulo' => Yii::t('app', 'Titulo'),
             'descipcion' => Yii::t('app', 'Descipcion'),
             'imagen' => Yii::t('app', 'Imagen'),
-            'categoria_id' => Yii::t('app', 'Categoria ID'),
+            'categoria_id' => Yii::t('app', 'Categoria'),
             'tipo' => Yii::t('app', 'Tipo'),
             'ruta' => Yii::t('app', 'Ruta'),
         ];
@@ -77,4 +77,5 @@ class Juegos extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Categorias::className(), ['id' => 'categoria_id']);
     }
+
 }
