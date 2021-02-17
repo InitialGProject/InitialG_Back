@@ -43,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 
-    </p>;
+    </p>
 
     <?php } else{
         echo("No tienes acceso a este sitio");

@@ -19,9 +19,13 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Torneos'),  'url' =>
         <?php
         // Botón Crear
         if (Yii::$app->user->isGuest) {
-        } else if (Yii::$app->user->identity->TipoUser == 'Gamer' || Yii::$app->user->identity->TipoUser == 'Empresa' || Yii::$app->user->identity->TipoUser == 'Admin') {
-            echo Html::a(Yii::t('app', 'Crear nuevo Torneo'), ['/torneos/create'], ['class' => 'btn btn-success']);
-        } ?>
+            echo("No tienes acceso a este sitio");
+        } else {  
+            if (Yii::$app->user->identity->TipoUser == 'Gamer' || 
+            Yii::$app->user->identity->TipoUser == 'Empresa' || 
+            Yii::$app->user->identity->TipoUser == 'Admin'){
+                echo Html::a(Yii::t('app', 'Crear nuevo Torneo'), ['/torneos/create'], ['class' => 'btn btn-success']);
+            } ?>
     </p>
 
     <?php echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -34,4 +38,5 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Torneos'),  'url' =>
             // return Html::a(Html::encode($model->id), ['view', 'id' => $model->id]);
         },
     ]) ?>
+    <?php }?> 
 </div>

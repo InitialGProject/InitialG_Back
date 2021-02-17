@@ -13,30 +13,40 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
+    <?php // echo $this->render('_search', ['model' => $searchModel])
+    if (Yii::$app->user->isGuest) {        
+        echo("No tienes acceso a este sitio");
+    } else { 
+        if (Yii::$app->user->identity->TipoUser == 'Admin'){?>
+       
+       <p>
         <?= Html::a(Yii::t('app', 'Create Usuarios'), ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+        </p>
 
+        <?= GridView::widget([
+            'dataProvider' => $dataProvider,
+            'columns' => [
+                'nombre',
+                'correo:ntext',
+                //'edad',
+                'password',
+                //'tipo',
+                //'genero',
+                'estado',
+                'suscripcion',
+                //'avatar:ntext',
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+                ['class' => 'yii\grid\ActionColumn'],
+            ],
+        ]); ?>
 
-            'id',
-            'nombre',
-            'correo:ntext',
-            'edad',
-            'password',
-            //'tipo',
-            //'genero',
-            //'estado',
-            //'suscripcion',
-            //'avatar:ntext',
+        </p>
 
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
+        <?php 
+        } else{
+        echo("No tienes acceso a este sitio");
+    }
+} ?>
 
 
 </div>
