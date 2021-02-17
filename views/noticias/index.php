@@ -8,18 +8,17 @@ use yii\widgets\ListView;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('app', 'Noticias');
-//$this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="noticias-index">
 
+    <h1><?= Html::encode($this->title) ?></h1>
 
     <?php // echo $this->render('_search', ['model' => $searchModel])
     if (Yii::$app->user->isGuest) {        
         echo("No tienes acceso a este sitio");
     } else { 
         ?>
-        <h1><?= Html::encode($this->title) ?></h1>
         <?php
         if (Yii::$app->user->identity->TipoUser == 'Admin'){?>
        

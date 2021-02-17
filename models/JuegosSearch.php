@@ -17,7 +17,7 @@ class JuegosSearch extends Juegos
     public function rules()
     {
         return [
-            [['id', 'categoria_id', 'sugerencia_id'], 'integer'],
+            [['id', 'categoria_id'], 'integer'],
             [['titulo', 'descipcion', 'imagen', 'tipo', 'ruta', 'creador'], 'safe'],
         ];
     }
@@ -60,7 +60,6 @@ class JuegosSearch extends Juegos
         $query->andFilterWhere([
             'id' => $this->id,
             'categoria_id' => $this->categoria_id,
-            'sugerencia_id' => $this->sugerencia_id,
         ]);
 
         $query->andFilterWhere(['like', 'titulo', $this->titulo])

@@ -54,26 +54,6 @@ class Sugerencias extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[Entradas]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getEntradas()
-    {
-        return $this->hasMany(Entradas::className(), ['sugerencia_id' => 'id']);
-    }
-
-    /**
-     * Gets query for [[Juegos]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getJuegos()
-    {
-        return $this->hasMany(Juegos::className(), ['sugerencia_id' => 'id']);
-    }
-
-    /**
      * Gets query for [[Autor]].
      *
      * @return \yii\db\ActiveQuery
@@ -81,35 +61,5 @@ class Sugerencias extends \yii\db\ActiveRecord
     public function getAutor()
     {
         return $this->hasOne(Usuarios::className(), ['id' => 'autor_id']);
-    }
-
-    /**
-     * Gets query for [[Torneos]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getTorneos()
-    {
-        return $this->hasMany(Torneos::className(), ['sugerencia_id' => 'id']);
-    }
-
-    /**
-     * Gets query for [[Usuarios]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getUsuarios()
-    {
-        return $this->hasMany(Usuarios::className(), ['sugerencia_id' => 'id']);
-    }
-
-    /**
-     * Gets query for [[Videos]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getVideos()
-    {
-        return $this->hasMany(Videos::className(), ['sugerencia_id' => 'id']);
     }
 }

@@ -8,6 +8,8 @@ $dataProvider->pagination = array('pageSize' => 2);
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\TorneosSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
+
+$this->title = Yii::t('app', 'Torneos');
 ?>
 
 <div class="torneos-index">
