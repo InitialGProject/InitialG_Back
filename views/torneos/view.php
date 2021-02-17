@@ -43,7 +43,11 @@ $this->title = $model->titulo;
             'descripcion:ntext',
             'fechaInicio',
             'fechaFin',
-            'imagen',
+            [
+                'attribute' => 'imagen del Torneo',
+                'value' =>  Html::a(Html::img(Yii::$app->request->baseUrl . $model->imagen, ['alt' => 'imagen del torneo', 'class' => 'thing', 'height' => '100px', 'width' => '100px'])),
+                'format' => ['raw'],
+            ],
             'Numparticipantes',
             'Estado',
             'Categoria',
