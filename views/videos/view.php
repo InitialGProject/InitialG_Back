@@ -7,10 +7,9 @@ use yii\widgets\DetailView;
 /* @var $model app\models\Videos */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Videos'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
+
 <div class="videos-view">
 
     <h1><?= Html::encode($this->title) ?></h1>

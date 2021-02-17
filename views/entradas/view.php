@@ -7,10 +7,9 @@ use yii\widgets\DetailView;
 /* @var $model app\models\Entradas */
 
 $this->title = $model->titulo;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Entradas'), 'url' => ['/entradas/index']];
-$this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
+
 <div class="entradas-view">
 
     <h1><?= Html::encode($this->title) ?></h1>

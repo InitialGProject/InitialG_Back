@@ -7,10 +7,9 @@ use yii\widgets\DetailView;
 /* @var $model app\models\Comentarios */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Comentarios'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
+
 <div class="comentarios-view">
 
     <h1><?= Html::encode($this->title) ?></h1>

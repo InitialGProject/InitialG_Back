@@ -6,9 +6,8 @@ use yii\helpers\Html;
 /* @var $model app\models\Juegos */
 
 $this->title = Yii::t('app', 'Create Juegos');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Juegos'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
 ?>
+
 <div class="juegos-create">
 
     <h1><?= Html::encode($this->title) ?></h1>

@@ -7,46 +7,47 @@ use yii\grid\GridView;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('app', 'Usuarios');
-$this->params['breadcrumbs'][] = $this->title;
 ?>
+
 <div class="usuarios-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?php // echo $this->render('_search', ['model' => $searchModel])
-    if (Yii::$app->user->isGuest) {        
-        echo("No tienes acceso a este sitio");
-    } else { 
-        if (Yii::$app->user->identity->TipoUser == 'Admin'){?>
-       
-       <p>
-        <?= Html::a(Yii::t('app', 'Create Usuarios'), ['create'], ['class' => 'btn btn-success']) ?>
-        </p>
+    if (Yii::$app->user->isGuest) {
+        echo ("No tienes acceso a este sitio");
+    } else {
+        if (Yii::$app->user->identity->TipoUser == 'Admin') { ?>
 
-        <?= GridView::widget([
-            'dataProvider' => $dataProvider,
-            'columns' => [
-                'nombre',
-                'correo:ntext',
-                //'edad',
-                'password',
-                //'tipo',
-                //'genero',
-                'estado',
-                'suscripcion',
-                //'avatar:ntext',
+            <p>
+                <?= Html::a(Yii::t('app', 'Create Usuarios'), ['create'], ['class' => 'btn btn-success']) ?>
+            </p>
 
-                ['class' => 'yii\grid\ActionColumn'],
-            ],
-        ]); ?>
+            <?= GridView::widget([
+                'dataProvider' => $dataProvider,
+                'summary' => '',
+                'columns' => [
+                    'nombre',
+                    'correo:ntext',
+                    //'edad',
+                    'password',
+                    //'tipo',
+                    //'genero',
+                    'estado',
+                    'suscripcion',
+                    //'avatar:ntext',
 
-        </p>
+                    ['class' => 'yii\grid\ActionColumn'],
+                ],
+            ]); ?>
 
-        <?php 
-        } else{
-        echo("No tienes acceso a este sitio");
-    }
-} ?>
+            </p>
+
+    <?php
+        } else {
+            echo ("No tienes acceso a este sitio");
+        }
+    } ?>
 
 
 </div>
