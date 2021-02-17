@@ -21,6 +21,12 @@
         "2amigos/yii2-ckeditor-widget": "^2.1",
         "kartik-v/yii2-datecontrol": "^1.9"
     },
+    "autoload": {
+        "psr-4": {
+            "dosamigos\\ckeditor\\": "src",
+            "kartik\\datecontrol\\": "src"
+        }
+    },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
         "yiisoft/yii2-gii": "~2.1.0",
