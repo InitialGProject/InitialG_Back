@@ -9,7 +9,6 @@ $dataProvider->pagination = array('pageSize' => 2);
 /* @var $searchModel app\models\TorneosSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Torneos'),  'url' => ['/torneos/index']];
 ?>
 <div class="torneos-index">
 

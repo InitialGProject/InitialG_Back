@@ -9,12 +9,18 @@ $dataProvider->pagination = array('pageSize' => 2);
 /* @var $searchModel app\models\EntradasSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Entradas'),  'url' => ['/entradas/index']];
+//$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Entradas'),  'url' => ['/entradas/index']];
 ?>
 <div class="entradas-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-
+    <?php // echo $this->render('_search', ['model' => $searchModel])
+    if (Yii::$app->user->isGuest) {        
+        echo("No tienes acceso a este sitio");
+    } else { 
+        if (Yii::$app->user->identity->TipoUser == 'Admin'){?>
+       
+       <p>
     <?php echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= ListView::widget([
@@ -25,5 +31,13 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Entradas'),  'url' =
             //return Html::a(Html::encode($model->id), ['view', 'id' => $model->id]);
         },
     ]) ?>
+
+    </p>
+
+    <?php } else{
+        echo("No tienes acceso a este sitio");
+    }
+
+} ?>
 
 </div>
