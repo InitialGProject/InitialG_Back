@@ -11,6 +11,7 @@ $dataProvider->pagination = array('pageSize' => 2);
 
 //$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Entradas'),  'url' => ['/entradas/index']];
 ?>
+
 <div class="entradas-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
@@ -26,6 +27,7 @@ $dataProvider->pagination = array('pageSize' => 2);
     <?= ListView::widget([
         'dataProvider' => $dataProvider,
         'itemOptions' => ['class' => 'item'],
+        'summary' => '',
         'itemView' => function ($model, $key, $index, $widget) {
             return $this->render('_entrada', ['model' => $model]);
             //return Html::a(Html::encode($model->id), ['view', 'id' => $model->id]);

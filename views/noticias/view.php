@@ -7,10 +7,9 @@ use yii\widgets\DetailView;
 /* @var $model app\models\Noticias */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Noticias'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
+
 <div class="noticias-view">
 
     <h1><?= Html::encode($this->title) ?></h1>

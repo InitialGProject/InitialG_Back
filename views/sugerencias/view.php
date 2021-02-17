@@ -7,10 +7,9 @@ use yii\widgets\DetailView;
 /* @var $model app\models\Sugerencias */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Sugerencias'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
+
 <div class="sugerencias-view">
 
     <h1><?= Html::encode($this->title) ?></h1>

@@ -7,8 +7,8 @@ use yii\grid\GridView;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('app', 'Categorias');
-$this->params['breadcrumbs'][] = $this->title;
 ?>
+
 <div class="categorias-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
@@ -20,6 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
+        'summary' => '',
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 

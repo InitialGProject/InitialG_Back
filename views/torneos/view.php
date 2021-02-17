@@ -7,8 +7,6 @@ use yii\widgets\DetailView;
 /* @var $model app\models\Torneos */
 
 $this->title = $model->titulo;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Torneos'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
 

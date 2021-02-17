@@ -6,9 +6,8 @@ use yii\helpers\Html;
 /* @var $model app\models\Comentarios */
 
 $this->title = Yii::t('app', 'Create Comentarios');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Comentarios'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
 ?>
+
 <div class="comentarios-create">
 
     <h1><?= Html::encode($this->title) ?></h1>

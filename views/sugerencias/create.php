@@ -6,9 +6,8 @@ use yii\helpers\Html;
 /* @var $model app\models\Sugerencias */
 
 $this->title = Yii::t('app', 'Create Sugerencias');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Sugerencias'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
 ?>
+
 <div class="sugerencias-create">
 
     <h1><?= Html::encode($this->title) ?></h1>

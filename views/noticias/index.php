@@ -10,6 +10,7 @@ use yii\widgets\ListView;
 $this->title = Yii::t('app', 'Noticias');
 //$this->params['breadcrumbs'][] = $this->title;
 ?>
+
 <div class="noticias-index">
 
 
@@ -36,6 +37,7 @@ $this->title = Yii::t('app', 'Noticias');
     <?= ListView::widget([
         'dataProvider' => $dataProvider,
         'itemOptions' => ['class' => 'item'],
+        'summary' => '',
         'itemView' => function ($model, $key, $index, $widget) {
             // return Html::a(Html::encode($model->titulo), ['view', 'titulo' => $model->titulo]);
             return $this->render('_noticia', ['model' => $model]);

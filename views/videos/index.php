@@ -8,8 +8,8 @@ use yii\grid\GridView;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('app', 'Videos');
-$this->params['breadcrumbs'][] = $this->title;
 ?>
+
 <div class="videos-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
@@ -28,6 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'summary' => '',
         'columns' => [
 
             [

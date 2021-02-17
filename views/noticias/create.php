@@ -6,9 +6,8 @@ use yii\helpers\Html;
 /* @var $model app\models\Noticias */
 
 $this->title = Yii::t('app', 'Create Noticias');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Noticias'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
 ?>
+
 <div class="noticias-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
