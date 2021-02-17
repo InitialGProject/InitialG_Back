@@ -14,13 +14,14 @@ $dataProvider->pagination = array('pageSize' => 2);
 
 <div class="entradas-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel])
     if (Yii::$app->user->isGuest) {        
         echo("No tienes acceso a este sitio");
     } else { 
+        
         if (Yii::$app->user->identity->TipoUser == 'Admin'){?>
-       
+           <h1><?= Html::encode($this->title) ?></h1>
+
        <p>
     <?php echo $this->render('_search', ['model' => $searchModel]); ?>
 
