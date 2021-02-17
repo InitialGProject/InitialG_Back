@@ -18,9 +18,8 @@ use yii\helpers\Html;
 
     <?php
     if (Yii::$app->user->isGuest) {
-    } else { ?>
-    <?=
-      Html::a(
+    } else if (Yii::$app->user->identity->TipoUser == 'Gamer' || $model->creador == Yii::$app->user->identity->TipoUser || Yii::$app->user->identity->TipoUser == 'Empresa' || Yii::$app->user->identity->TipoUser == 'Admin') {
+      echo Html::a(
         'Editar',
         [
           'entradas/update', 'id' => $model->id,

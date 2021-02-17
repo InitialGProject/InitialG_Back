@@ -17,25 +17,16 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?php
+        // Botón Actualizar
         if (Yii::$app->user->isGuest) {
-        } else { ?>
-        <?= Html::a(Yii::t('app', 'Actualizar'), [
-                'update', 'id' => $model->id,
-                'usuarios_nombre' => $model->usuario->nombre,
-                'fecha_hora' => $model->creado
-            ], ['class' => 'btn btn-primary']);
+        } else if (Yii::$app->user->identity->TipoUser == 'Gamer' || $model->creador == Yii::$app->user->identity->TipoUser || Yii::$app->user->identity->TipoUser == 'Empresa' || Yii::$app->user->identity->TipoUser == 'Admin') {
+            echo Html::a(Yii::t('app', 'Actualizar'), ['update', 'id' => $model->id,], ['class' => 'btn btn-primary']);
         } ?>
 
         <?php
         if (Yii::$app->user->isGuest) {
-        } else { ?>
-        <?= Html::a(Yii::t('app', 'Borrar'), ['delete', 'id' => $model->id], [
-                'class' => 'btn btn-danger',
-                'data' => [
-                    'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
-                    'method' => 'post',
-                ],
-            ]);
+        } else if (Yii::$app->user->identity->TipoUser == 'Gamer' || $model->creador == Yii::$app->user->identity->TipoUser || Yii::$app->user->identity->TipoUser == 'Empresa' || Yii::$app->user->identity->TipoUser == 'Admin') {
+            echo Html::a(Yii::t('app', 'Borrar'), ['delete', 'id' => $model->id], ['class' => 'btn btn-danger']);
         } ?>
     </p>
 
