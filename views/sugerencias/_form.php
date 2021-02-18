@@ -13,7 +13,7 @@ use app\componentes\THtml;
 <div class="sugerencias-form">
 
     <?php $form = ActiveForm::begin(); ?>
-    
+
     <?= THtml::autocomplete($model, 'autor_id', ['/usuarios/lookup'], 'autor'); ?>
 
     <?= $form->field($model, 'comentario')->widget(CKEditor::className(), [

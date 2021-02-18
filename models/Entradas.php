@@ -39,7 +39,7 @@ class Entradas extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['usuario_id', 'juego_id', 'titulo', 'contenido', 'categorias_id'], 'required'],
+            [['usuario_id', 'juego_id', 'titulo', 'creado', 'contenido', 'categorias_id'], 'required'],
             [['usuario_id', 'juego_id', 'categorias_id'], 'integer'],
             [['creado'], 'safe'],
             [['contenido'], 'string'],
@@ -156,8 +156,13 @@ class Entradas extends \yii\db\ActiveRecord
         return $this->categorias->categoria;
     }
 
+    public function getfechaPublicacion()
+    {
+        return \Yii::$app->formatter->asDateTime($this->creado);
+    }
+
     public function fields()
     {
-        return array_merge(parent::fields(), ['Estado', 'creador', 'Categoria', 'JuegoRelacionado']);
+        return array_merge(parent::fields(), ['Estado', 'creador', 'Categoria', 'JuegoRelacionado', 'fechaPublicacion']);
     }
 }

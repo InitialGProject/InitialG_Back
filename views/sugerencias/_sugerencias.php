@@ -1,26 +1,36 @@
 <?php
 
 use yii\helpers\Html;
+use yii\widgets\DetailView;
 
+/* @var $this yii\web\View */
+/* @var $model app\models\Sugerencias */
+
+\yii\web\YiiAsset::register($this);
 ?>
 
-<div class=row style='background:#ddd;margin:5px;padding:5px;'>
+<div class="sugerencias-view">
 
-    <b><?= $model->autor->nombre ?></b>
+    <?= DetailView::widget([
+        'model' => $model,
+        'attributes' => [
+            'creador',
+            'comentario:ntext',
+        ],
+    ]) ?>
+</div>
 
-    <?= $model->comentario ?><br><br>
-
-    <div style='color:blue;font-size:0.8em'>
-
-        <?= Html::a(
-            'Ver',
-            [
-                'sugerencias/view', 'id' => $model->id,
-                'usuarios_nombre' => $model->autor->nombre
-            ],
-            ['class' => 'btn btn-primary']
-        ) ?>
-
-    </div>
-
+<div>
+    <p>
+        <?php
+        if (Yii::$app->user->identity->TipoUser == 'Admin') {
+            echo Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
+                'class' => 'btn btn-danger',
+                'data' => [
+                    'confirm' => Yii::t('app', '¿Seguro que quieres eliminar las sugerencias seleccionadas?'),
+                    'method' => 'post',
+                ],
+            ]);
+        } ?>
+    </p>
 </div>

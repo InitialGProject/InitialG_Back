@@ -1,16 +1,12 @@
 <?php
 
-// Modelos relacionados
 use app\models\Categorias;
-use app\models\Juegos;
-
-// Helpers de YII
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
-
-// Widgets y Extensiones
 use yii\widgets\ActiveForm;
 use kartik\datecontrol\DateControl;
+use app\componentes\THtml;
+use app\models\Juegos;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Entradas */
@@ -43,17 +39,7 @@ use kartik\datecontrol\DateControl;
 
     <?= $form->field($model, 'contenido')->textarea(['rows' => 6]) ?>
 
-    <?php
-    if (Yii::$app->user->identity->TipoUser == 'Admin') {
-        echo $form->field($model, 'estado')->dropdownList(
-            [
-                'A' => 'A',
-                'D' => 'D'
-            ],
-            ['prompt' => 'Seleccione un Estado ( A = Aceptado - D = Denegado )']
-        );
-    }
-    ?>
+    <?= THtml::autocomplete($model, 'usuario_id', ['/usuarios/lookup'], 'usuario'); ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Actualizar'), ['class' => 'btn btn-success']) ?>

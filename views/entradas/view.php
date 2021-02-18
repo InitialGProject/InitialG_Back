@@ -34,7 +34,7 @@ $this->title = $model->titulo;
         'attributes' => [
             'titulo',
             'contenido:ntext',
-            'creado',
+            'fechaPublicacion',
             'JuegoRelacionado',
             'Categoria',
             'creador',
