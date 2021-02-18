@@ -25,7 +25,13 @@ $this->title = $model->titulo;
         <?php
         if (Yii::$app->user->isGuest) {
         } else if (Yii::$app->user->identity->TipoUser == 'Gamer' || $model->creador == Yii::$app->user->identity->TipoUser || Yii::$app->user->identity->TipoUser == 'Empresa' || Yii::$app->user->identity->TipoUser == 'Admin') {
-            echo Html::a(Yii::t('app', 'Borrar'), ['delete', 'id' => $model->id], ['class' => 'btn btn-danger']);
+            echo Html::a(Yii::t('app', 'Borrar'), ['delete', 'id' => $model->id], [
+                'class' => 'btn btn-danger',
+                'data' => [
+                    'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
+                    'method' => 'post',
+                ]
+            ]);
         } ?>
     </p>
 
