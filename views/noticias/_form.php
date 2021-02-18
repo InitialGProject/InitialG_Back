@@ -23,7 +23,7 @@ use dosamigos\ckeditor\CKEditor;
 
     <?= $form->field($model, 'texto')->widget(CKEditor::className(), [
         'options' => ['rows' => 6],
-        'preset' => 'basic'
+        'preset' => 'full'
     ]) ?>
 
     <?= $form->field($model, 'imagen')->textarea(['rows' => 1]) ?>

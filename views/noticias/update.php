@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $model app\models\Noticias */
 
 $this->title = Yii::t('app', 'Update Noticias: {name}', [
-    'name' => $model->id,
+    'name' => $model->titulo,
 ]);
 ?>
 
@@ -14,8 +14,15 @@ $this->title = Yii::t('app', 'Update Noticias: {name}', [
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+    <?php // Editar
+        if (Yii::$app->user->isGuest || 
+            Yii::$app->user->identity->TipoUser == 'Basic' ||
+            Yii::$app->user->identity->TipoUser == 'Gamer'
+        ) {
+            echo ("No tienes acceso a este sitio");
+        } else {
+            echo $this->render('_form', ['model' => $model ]);
+        } 
+    ?>
 
 </div>

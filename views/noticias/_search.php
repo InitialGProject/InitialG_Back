@@ -23,11 +23,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'titulo') ?>
 
-    <?= $form->field($model, 'descripcion') ?>
+    <?= $form->field($model, 'autor') ?>
+
+    <?php //$form->field($model, 'descripcion') ?>
 
     <?php // echo $form->field($model, 'texto') ?>
 
-    <?= $form->field($model, 'imagen') ?>
+    <?php //$form->field($model, 'imagen') ?>
 
     <!-- CHtml::image(Yii::app()->request->baseUrl.'/banner/'.$model->image,"image",array("width"=>200)); -->
 
