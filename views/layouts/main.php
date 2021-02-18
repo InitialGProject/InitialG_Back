@@ -45,7 +45,7 @@ AppAsset::register($this);
                 (['label' => 'Juegos', 'url' => ['/juegos/index']]),
                 (['label' => 'Torneos', 'url' => ['/torneos/index']]),
                 (['label' => 'Foro', 'url' => ['/entradas/index']]),
-                Yii::$app->user->isGuest ? ('<li></li>') : (['label' => 'Sugerencias', 'url' => ['/sugerencias/create']]),
+                Yii::$app->user->isGuest ? ('<li></li>') : (['label' => 'Sugerencias', 'url' => ['/sugerencias/index']]),
                 Yii::$app->user->isGuest ? (['label' => 'Login', 'url' => ['/site/login']]) : ('<li>'
                     . Html::beginForm(['/site/logout'], 'post')
                     . Html::submitButton(
@@ -71,7 +71,7 @@ AppAsset::register($this);
 
     <footer class="footer">
         <div class="container">
-            <p class="pull-left">&copy; Copyright InitialG <?= date('Y')?> - All rights reserved</p>
+            <p class="pull-left">&copy; Copyright InitialG <?= date('Y') ?> - All rights reserved</p>
 
             <p class="pull-right"><?= Yii::powered() ?></p>
         </div>

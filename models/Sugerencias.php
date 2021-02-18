@@ -11,12 +11,7 @@ use Yii;
  * @property int $autor_id
  * @property string $comentario
  *
- * @property Entradas[] $entradas
- * @property Juegos[] $juegos
  * @property Usuarios $autor
- * @property Torneos[] $torneos
- * @property Usuarios[] $usuarios
- * @property Videos[] $videos
  */
 class Sugerencias extends \yii\db\ActiveRecord
 {
@@ -48,7 +43,7 @@ class Sugerencias extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'autor_id' => Yii::t('app', 'Autor ID'),
+            'autor_id' => Yii::t('app', 'Creador'),
             'comentario' => Yii::t('app', 'Comentario'),
         ];
     }
@@ -61,5 +56,15 @@ class Sugerencias extends \yii\db\ActiveRecord
     public function getAutor()
     {
         return $this->hasOne(Usuarios::className(), ['id' => 'autor_id']);
+    }
+
+    public function getCreador()
+    {
+        return $this->autor->nombre;
+    }
+
+    public function fields()
+    {
+        return array_merge(parent::fields(), ['creador']);
     }
 }

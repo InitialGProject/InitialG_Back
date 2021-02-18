@@ -109,6 +109,18 @@ class UsuariosController extends Controller
         return $this->redirect(['index']);
     }
 
+    public function actionLookup($term)
+    {
+        $results = [];
+        foreach (Usuarios::find()->andwhere("(nombre like :q )", [':q' => '%' . $term . '%'])->asArray()->all() as $model) {
+            $results[] = [
+                'id' => $model['id'],
+                'label' => $model['nombre'],
+            ];
+            return \yii\helpers\Json::encode($results);
+        }
+    }
+
     /**
      * Finds the Usuarios model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
