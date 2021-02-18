@@ -13,18 +13,27 @@ $this->title = Yii::t('app', 'Sugerencias');
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a(Yii::t('app', 'Crear nueva Sugerencia'), ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    <?php
+    if (Yii::$app->user->isGuest) {
+        echo ("No tienes acceso a este sitio");
+    } else {
+        if (Yii::$app->user->identity->TipoUser == 'Admin') {
+    ?>
 
-    <?= ListView::widget([
-        'dataProvider' => $dataProvider,
-        'itemOptions' => ['class' => 'item'],
-        'summary' => '',
-        'itemView' => function ($model, $key, $index, $widget) {
-            return Html::a(Html::encode($model->id), ['view', 'id' => $model->id]);
-        },
-    ]) ?>
+            <p>
+                <?= ListView::widget([
+                    'dataProvider' => $dataProvider,
+                    'itemOptions' => ['class' => 'item'],
+                    'summary' => '',
+                    'itemView' => function ($model, $key, $index, $widget) {
+                        // return Html::a(Html::encode($model->id), ['view', 'id' => $model->id]);
+                        return $this->render('_sugerencias', ['model' => $model]);
+                    },
+                ]) ?>
+            </p>
 
-
+    <?php } else {
+            echo Html::a(Yii::t('app', 'Hacer Sugerencia'), ['create'], ['class' => 'btn btn-success']);
+        }
+    } ?>
 </div>
