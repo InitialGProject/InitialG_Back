@@ -49,7 +49,7 @@ use yii\helpers\Html;
         . "<p>" . 'Publicado por <b>' . $comentario->usuario->nombre . '</b> en el <b>' . $comentario->creado . '</b><p style="color:red">' . $comentario->contenido . "</p></p></div>";
     }
 
-    if (Yii::$app->user->isGuest) {
+    if (Yii::$app->user->isGuest || $model->estado == 'F') {
     } else { ?>
     <?=
       Html::a(

@@ -24,7 +24,7 @@ $this->title = $model->titulo;
 
         <?php
         // Botón Eliminar
-        if (Yii::$app->user->isGuest) {
+        if (Yii::$app->user->isGuest || $model->estado == 'C') {
         } else if (Yii::$app->user->identity->TipoUser == 'Admin') {
             echo Html::a(Yii::t('app', 'Borrar'), ['delete', 'id' => $model->id], [
                 'class' => 'btn btn-danger',
