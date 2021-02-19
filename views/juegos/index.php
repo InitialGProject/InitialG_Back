@@ -28,10 +28,7 @@ $this->title = Yii::t('app', 'Juegos');
                     'filterModel' => $searchModel,
                     'summary' => '',
                     'columns' => [
-                        //['class' => 'yii\grid\SerialColumn'],
-                        'titulo:ntext',
-                        'descipcion:ntext',
-                        'imagen:ntext',
+
                         [
                             'attribute' => 'categorias_id',
                             'label' => 'Categorias',
@@ -40,6 +37,11 @@ $this->title = Yii::t('app', 'Juegos');
                                 return $data->categoria->categoria;
                             }
                         ],
+                        //['class' => 'yii\grid\SerialColumn'],
+                        'titulo:ntext',
+                        'descipcion:ntext',
+                        'imagen:ntext',
+
                         ['class' => 'yii\grid\ActionColumn'],
                     ],
                 ]); ?>
@@ -50,10 +52,4 @@ $this->title = Yii::t('app', 'Juegos');
             echo ("No tienes acceso a este sitio");
         }
     } ?>
-
-
-
-
-
-
 </div>

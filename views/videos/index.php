@@ -14,43 +14,43 @@ $this->title = Yii::t('app', 'Videos');
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php
-    if (Yii::$app->user->isGuest) {        
-        echo("No tienes acceso a este sitio");
-    } else { 
-        if (Yii::$app->user->identity->TipoUser == 'Admin'){?>
-       
-       <p>
-        <?= Html::a(Yii::t('app', 'Create Videos'), ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    if (Yii::$app->user->isGuest) {
+        echo ("No tienes acceso a este sitio");
+    } else {
+        if (Yii::$app->user->identity->TipoUser == 'Admin') { ?>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+            <p>
+                <?= Html::a(Yii::t('app', 'Create Videos'), ['create'], ['class' => 'btn btn-success']) ?>
+            </p>
 
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'summary' => '',
-        'columns' => [
+            <?php // echo $this->render('_search', ['model' => $searchModel]); 
+            ?>
 
-            [
-                'attribute'=>'categorias_id',
-                'label'=>'Categorias',
-                'filter'=>app\models\Categorias::lookup(),
-                'value'=>function($data) {
-                    return $data->categoria->categoria;
-                    }
-            ],
-            'video:ntext',
-            'descripcion:ntext',
-            'titulo',
+            <?= GridView::widget([
+                'dataProvider' => $dataProvider,
+                'filterModel' => $searchModel,
+                'summary' => '',
+                'columns' => [
 
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
-    <?php } else{
-        echo("No tienes acceso a este sitio");
-    }
+                    [
+                        'attribute' => 'categorias_id',
+                        'label' => 'Categorias',
+                        'filter' => app\models\Categorias::lookup(),
+                        'value' => function ($data) {
+                            return $data->categoria->categoria;
+                        }
+                    ],
+                    'video:ntext',
+                    'descripcion:ntext',
+                    'titulo',
 
-} ?>
+                    ['class' => 'yii\grid\ActionColumn'],
+                ],
+            ]); ?>
+    <?php } else {
+            echo ("No tienes acceso a este sitio");
+        }
+    } ?>
 
 
 </div>
