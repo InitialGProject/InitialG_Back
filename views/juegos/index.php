@@ -12,7 +12,6 @@ $this->title = Yii::t('app', 'Juegos');
 
 <div class="juegos-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <?php 
      if (Yii::$app->user->isGuest) {
@@ -21,7 +20,7 @@ $this->title = Yii::t('app', 'Juegos');
         if (Yii::$app->user->identity->TipoUser == 'Admin') { ?>
 
             <p>
-                <?= Html::a(Yii::t('app', 'Create Juegos'), ['create'], ['class' => 'btn btn-success']) ?>
+                <?= Html::a(Yii::t('app', 'Crear Juego'), ['create'], ['class' => 'btn btn-success']) ?>
                 
                 <?= GridView::widget([
                     'dataProvider' => $dataProvider,

@@ -25,15 +25,15 @@ use yii\helpers\ArrayHelper;
 
     
     <?=  $form->field($model, 'tipo')->dropdownList(
-            ['prompt' => 'Seleccionar'],
-            ['AC' => 'AC', 'RE' => 'RE']
+            ['AC' => 'AC', 'RE' => 'RE'],
+            ['prompt' => 'Seleccionar']
         ); 
     ?>
 
     <?= $form->field($model, 'ruta')->textarea(['rows' => 1]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Guardar'), ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
