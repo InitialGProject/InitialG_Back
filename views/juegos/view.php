@@ -6,20 +6,18 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Juegos */
 
-$this->title = $model->id;
+$this->title = $model->titulo;
 \yii\web\YiiAsset::register($this);
 ?>
 
 <div class="juegos-view">
-
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
         <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
+                'confirm' => Yii::t('app', 'Seguro de querer borrarlo?'),
                 'method' => 'post',
             ],
         ]) ?>
@@ -28,15 +26,27 @@ $this->title = $model->id;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
+            //'id',
             'titulo:ntext',
             'descipcion:ntext',
-            'imagen:ntext',
-            'categoria_id',
+            [
+                'label' => 'Imagen',
+                'format' => ['image',['width'=>'300', 'height'=>'200']], 
+                'value'=>function($data){
+                    return($data->imagen);
+                }
+            ],            
+            [
+                'attribute' => 'categoria_id',
+                'label' => 'Categoria',
+                'value' => function ($data) {
+                    return $data->categoria->categoria;
+                }
+            ],
             'tipo',
-            'ruta:ntext',
+            //'ruta:ntext',
             'creador:ntext',
-            'sugerencia_id',
+            //'sugerencia_id',
         ],
     ]) ?>
 

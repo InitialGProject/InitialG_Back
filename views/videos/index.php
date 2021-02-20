@@ -31,9 +31,8 @@ $this->title = Yii::t('app', 'Videos');
                 'filterModel' => $searchModel,
                 'summary' => '',
                 'columns' => [
-
                     [
-                        'attribute' => 'categorias_id',
+                        'attribute' => 'categoria_id',
                         'label' => 'Categorias',
                         'filter' => app\models\Categorias::lookup(),
                         'value' => function ($data) {
@@ -47,10 +46,9 @@ $this->title = Yii::t('app', 'Videos');
                     ['class' => 'yii\grid\ActionColumn'],
                 ],
             ]); ?>
+            </p>
     <?php } else {
             echo ("No tienes acceso a este sitio");
         }
     } ?>
-
-
 </div>
