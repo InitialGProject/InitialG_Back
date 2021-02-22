@@ -31,10 +31,9 @@ $this->title = $model->titulo;
             'descipcion:ntext',
             [
                 'label' => 'Imagen',
-                'format' => ['http://alum3.iesfsl.org/assets/img/juegos/'.'image',['width'=>'300', 'height'=>'200']], 
+                'format' => ['image',['width'=>'300', 'height'=>'200']], 
                 'value'=>function($data){
-                    $this->prueba=$data->imagen;
-                    return('http://alum3.iesfsl.org/assets/img/juegos/'.$this->prueba);
+                    return('http://alum3.iesfsl.org/assets/img/juegos/'.$data->imagen);
                 }
             ],            
             [

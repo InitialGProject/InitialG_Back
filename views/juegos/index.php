@@ -43,7 +43,7 @@ $this->title = Yii::t('app', 'Juegos');
                             'label' => 'Imagen',
                             'format' => ['image',['width'=>'100', 'height'=>'100']], 
                             'value'=>function($data){
-                                return($data->imagen);
+                                return('http://alum3.iesfsl.org/assets/img/juegos/'.$data->imagen);
                             }
                         ],
 
