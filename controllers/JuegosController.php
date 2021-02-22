@@ -42,6 +42,7 @@ class JuegosController extends Controller
     }
 //////////////////////////////////////////////////////////////////////////////
 
+//***********************************************/
 public function actionLookup($term) {
     $results = [];
     foreach (Juegos::find()->andwhere("(nombre like :q )", [':q' => '%' . $term . '%'])->asArray()->all() as $model) {
@@ -51,7 +52,7 @@ public function actionLookup($term) {
          ];
     return \yii\helpers\Json::encode($results);
  }}
- //********************************************** */
+ //***********************************************/
 
     /**
      * {@inheritdoc}
@@ -109,7 +110,7 @@ public function actionLookup($term) {
 
             $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
             if ($model->upload() && $model->save()) {
-                 $model->imageFile->saveAs('uploads/' .$model->imagen);
+                 $model->imageFile->saveAs('uploads/juegos/' .$model->imagen);
 
                 // if($model->save()){
                 // el archivo se subió exitosamente
@@ -139,7 +140,7 @@ public function actionLookup($term) {
 
             $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
             if ($model->upload() && $model->save()) {
-                 $model->imageFile->saveAs('uploads/' .$model->imagen);
+                 $model->imageFile->saveAs('uploads/juegos/' .$model->imagen);
 
                 // if($model->save()){
                 // el archivo se subió exitosamente

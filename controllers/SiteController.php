@@ -10,7 +10,7 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\TorneosSearch;
-
+use \yii\helpers\Url;
 class SiteController extends Controller
 {
     /**
@@ -65,10 +65,15 @@ class SiteController extends Controller
         $searchModel = new TorneosSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('/torneos/index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+        //Si el usuario es guest inicio sera login, sino a torneos
+        if ( Yii::$app->user->isGuest )
+            return Yii::$app->getResponse()->redirect(Url::to(['site/login'],302));
+        else{
+            return $this->render('/torneos/index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        }
     }
 
     /**
