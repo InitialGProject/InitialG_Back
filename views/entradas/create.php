@@ -10,8 +10,6 @@ $this->title = Yii::t('app', 'Crear Entrada');
 
 <div class="entradas-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <?= $this->render('_crear', [
         'model' => $model,
     ]) ?>

@@ -20,8 +20,8 @@ use yii\helpers\Html;
 
             <ul class="nav navbar-nav">
 
-                
-                
+
+
                 <!-- User Account: style can be found in dropdown.less -->
 
                 <li class="dropdown user user-menu">
@@ -50,7 +50,7 @@ use yii\helpers\Html;
                                     echo "Desconocido";
                                 }
                                 ?>
-                                <small>Member since Nov. 2012</small>
+                                <small>Member since Nov. 2020</small>
                             </p>
                         </li>
                         <!-- Menu Footer-->
@@ -63,17 +63,24 @@ use yii\helpers\Html;
                                 ) ?>
                             </div>
                             <div class="pull-right">
-                                <?= Html::a(
-                                    'Cerrar Sesion',
-                                    ['/site/logout'],
-                                    ['data-method' => 'post', 'class' => 'btn btn-default btn-flat']
-                                ) ?>
+                                <?php
+                                if (Yii::$app->user->isGuest) {
+                                    echo Html::a(
+                                        'Iniciar Sesion',
+                                        ['/site/login'],
+                                        ['data-method' => 'post', 'class' => 'btn btn-default btn-flat']
+                                    );
+                                } else {
+                                    echo Html::a(
+                                        'Cerrar Sesion',
+                                        ['/site/logout'],
+                                        ['data-method' => 'post', 'class' => 'btn btn-default btn-flat']
+                                    );
+                                } ?>
                             </div>
                         </li>
                     </ul>
                 </li>
-
-                
             </ul>
         </div>
     </nav>

@@ -14,8 +14,6 @@ $this->title = Yii::t('app', 'Noticias');
 
 <div class="noticias-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
         <?php
         // Botón Crear

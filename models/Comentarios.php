@@ -53,7 +53,7 @@ class Comentarios extends \yii\db\ActiveRecord
             'entradas_id' => Yii::t('app', 'Entradas ID'),
             'usuario_id' => Yii::t('app', 'Usuario ID'),
             'creado' => Yii::t('app', 'Creado'),
-            'contenido' => Yii::t('app', 'Contenido'),
+            'contenido' => Yii::t('app', 'Comentario Realizado'),
             'estado' => Yii::t('app', 'Estado'),
         ];
     }
@@ -76,5 +76,38 @@ class Comentarios extends \yii\db\ActiveRecord
     public function getUsuario()
     {
         return $this->hasOne(Usuarios::className(), ['id' => 'usuario_id']);
+    }
+
+    public function getEstado()
+    {
+        $estado = $this->estado;
+
+        if ($estado == 'A') {
+            $estado = 'Aceptado';
+        } else {
+            $estado = 'Denegado';
+        }
+
+        return $estado;
+    }
+
+    public function getEntradaRelacionada()
+    {
+        return $this->entradas->titulo;
+    }
+
+    public function getAutor()
+    {
+        return $this->usuario->nombre;
+    }
+
+    public function getfechaPublicacion()
+    {
+        return \Yii::$app->formatter->asDateTime($this->creado);
+    }
+
+    public function fields()
+    {
+        return array_merge(parent::fields(), ['Estado', 'EntradaRelacionada', 'Autor', 'fechaPublicacion']);
     }
 }

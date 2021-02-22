@@ -14,8 +14,6 @@ $this->title = Yii::t('app', 'Torneos');
 
 <div class="torneos-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
         <?php
         // Botón Crear

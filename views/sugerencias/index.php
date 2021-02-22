@@ -11,8 +11,6 @@ $this->title = Yii::t('app', 'Sugerencias');
 
 <div class="sugerencias-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <?php
     if (Yii::$app->user->isGuest) {
         echo ("No tienes acceso a este sitio");

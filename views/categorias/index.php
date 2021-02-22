@@ -11,8 +11,6 @@ $this->title = Yii::t('app', 'Categorias');
 
 <div class="categorias-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
         <?= Html::a(Yii::t('app', 'Create Categorias'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>

@@ -13,9 +13,7 @@ $this->title = Yii::t('app', 'Entradas');
 ?>
 
 <div class="entradas-index">
-    
-    <h1><?= Html::encode($this->title) ?></h1>
-    
+        
     <?php // echo $this->render('_search', ['model' => $searchModel])
     if (Yii::$app->user->isGuest) {        
         echo("No tienes acceso a este sitio");
