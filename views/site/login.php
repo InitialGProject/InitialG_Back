@@ -55,13 +55,12 @@ $fieldOptions2 = [
         <?php ActiveForm::end(); ?>
 
         <!-- Inicio con redes sociales -->
-        <!-- <div class="social-auth-links text-center">
-            <p>- OR -</p>
-            <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in
-                using Facebook</a>
-            <a href="#" class="btn btn-block btn-social btn-google-plus btn-flat"><i class="fa fa-google-plus"></i> Sign
-                in using Google+</a>
-        </div> -->
+        <div class="social-auth-links text-center">
+            <p>-Volver a InitialG-</p>
+            <a href="http://alum3.iesfsl.org/" class="btn btn-block btn-facebook btn-flat"> Regresar</a>
+            <!-- <a href="#" class="btn btn-block btn-social btn-google-plus btn-flat"><i class="fa fa-google-plus"></i> Sign
+                in using Google+</a> -->
+        </div>
         <!-- /.social-auth-links -->
 
         <!-- password y registro -->

@@ -17,7 +17,8 @@ $this->title = Yii::t('app', 'Juegos');
      if (Yii::$app->user->isGuest) {
         echo ("No tienes acceso a este sitio");
     } else {
-        if (Yii::$app->user->identity->TipoUser == 'Admin') { ?>
+        if (Yii::$app->user->identity->TipoUser == 'Admin') { 
+            $dataProvider->pagination=array('pageSize'=>5);?>
 
             <p>
                 <?= Html::a(Yii::t('app', 'Crear Juego'), ['create'], ['class' => 'btn btn-success']) ?>
@@ -38,7 +39,7 @@ $this->title = Yii::t('app', 'Juegos');
                         ],
                         'titulo:ntext',
                         'descipcion:ntext',
-                        // 'imagen:ntext',
+                        'tipo:ntext',
                         [
                             'label' => 'Imagen',
                             'format' => ['image',['width'=>'100', 'height'=>'100']], 
