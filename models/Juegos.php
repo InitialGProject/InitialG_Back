@@ -4,6 +4,11 @@ namespace app\models;
 
 use Yii;
 
+////
+use yii\base\Model;
+use yii\web\UploadedFile;
+
+
 /**
  * This is the model class for table "juegos".
  *
@@ -21,6 +26,24 @@ use Yii;
 class Juegos extends \yii\db\ActiveRecord
 {
     /**
+     * @var UploadedFile
+     */
+    public $imageFile;
+
+    
+    public function upload()
+    {
+        if ($this->validate()) {
+            $this->imagen=$this->imageFile->baseName . '.' . $this->imageFile->extension;
+            // $this->imageFile->saveAs('uploads/' .$this->imagen);
+            
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function tableName()
@@ -34,13 +57,30 @@ class Juegos extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['titulo', 'descipcion', 'imagen', 'ruta'], 'string'],
-            [['categoria_id', 'ruta'], 'required'],
+            [['titulo', 'descipcion', 'imagen', 'ruta', 'creador'], 'string'],
+            [['categoria_id', 'ruta', 'creador'], 'required'],
             [['categoria_id'], 'integer'],
             [['tipo'], 'string', 'max' => 2],
             [['categoria_id'], 'exist', 'skipOnError' => true, 'targetClass' => Categorias::className(), 'targetAttribute' => ['categoria_id' => 'id']],
+            
+            //subir foto
+            [['imageFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
+
         ];
     }
+
+
+    //subir imagen///////////////////////////////////////////////////////////
+    // public function upload()
+    // {
+    //     if ($this->validate()) {
+    //         $this->imageFile->saveAs('uploads/' . $this->imageFile->baseName . '.' . $this->imageFile->extension);
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
+    ////////////////////////////////////////////////////////////////////////////////
 
     /**
      * {@inheritdoc}
@@ -55,6 +95,7 @@ class Juegos extends \yii\db\ActiveRecord
             'categoria_id' => Yii::t('app', 'Categoria'),
             'tipo' => Yii::t('app', 'Tipo'),
             'ruta' => Yii::t('app', 'Ruta'),
+            'creador' => Yii::t('app', 'Creador'), 
         ];
     }
 

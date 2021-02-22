@@ -9,11 +9,50 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
+//Subir imagen------------------------------------------    
+use app\models\UploadForm;
+use yii\web\UploadedFile;
+
+
 /**
  * JuegosController implements the CRUD actions for Juegos model.
  */
 class JuegosController extends Controller
 {
+
+//Subir imagen//////////////////////////////////////////////////////////////
+
+/**
+     * @author Alejandro
+     * Subida de ficheros imagen
+     */
+    public function actionUpload()
+    {
+        $model = new UploadForm();
+
+        if (Yii::$app->request->isPost) {
+            $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+            if ($model->upload()) {
+                // el archivo se subió exitosamente
+                return;
+            }
+        }
+
+        return $this->render('upload', ['model' => $model]);
+    }
+//////////////////////////////////////////////////////////////////////////////
+
+public function actionLookup($term) {
+    $results = [];
+    foreach (Juegos::find()->andwhere("(nombre like :q )", [':q' => '%' . $term . '%'])->asArray()->all() as $model) {
+         $results[] = [
+            'id' => $model['id'],
+            'label' => $model['nombre'],
+         ];
+    return \yii\helpers\Json::encode($results);
+ }}
+ //********************************************** */
+
     /**
      * {@inheritdoc}
      */
@@ -86,9 +125,20 @@ class JuegosController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+
+            $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+            if ($model->upload() && $model->save()) {
+                 $model->imageFile->saveAs('uploads/' .$model->imagen);
+
+                // if($model->save()){
+                // el archivo se subió exitosamente
+                
+                return $this->redirect(['view', 'id' => $model->id]);
+            // }
+            }
         }
+
 
         return $this->render('update', [
             'model' => $model,
@@ -124,4 +174,5 @@ class JuegosController extends Controller
 
         throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
     }
+
 }

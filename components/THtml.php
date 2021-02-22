@@ -1,13 +1,12 @@
 <?php
 
-namespace app\componentes;
-
+namespace app\components;
+use Yii;
 use yii\helpers\Html;
 use kartik\typeahead\Typeahead;
 use yii\helpers\Url;
 
-class THtml
-{
+class THtml{
     public static function autocomplete($model, $atributo, $lookupaction, $relation, $options = [])
     {
         if (!isset($options['id']))

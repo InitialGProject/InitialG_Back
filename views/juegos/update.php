@@ -6,13 +6,11 @@ use yii\helpers\Html;
 /* @var $model app\models\Juegos */
 
 $this->title = Yii::t('app', 'Update Juegos: {name}', [
-    'name' => $model->id,
+    'name' => $model->titulo,
 ]);
 ?>
 
 <div class="juegos-update">
-
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', [
         'model' => $model,
