@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "noticias".
@@ -21,6 +22,25 @@ use Yii;
  */
 class Noticias extends \yii\db\ActiveRecord
 {
+
+    /**
+     * @var UploadedFile
+     */
+    public $imageFile;
+
+
+    public function upload()
+    {
+        if ($this->validate()) {
+            $this->imagen = $this->imageFile->baseName . '.' . $this->imageFile->extension;
+            // $this->imageFile->saveAs('uploads/' .$this->imagen);
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -41,6 +61,10 @@ class Noticias extends \yii\db\ActiveRecord
             [['fecha'], 'safe'],
             [['autor_id'], 'exist', 'skipOnError' => true, 'targetClass' => Usuarios::className(), 'targetAttribute' => ['autor_id' => 'id']],
             [['entradas_id'], 'exist', 'skipOnError' => true, 'targetClass' => Entradas::className(), 'targetAttribute' => ['entradas_id' => 'id']],
+
+            //subir foto
+            [['imageFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
+
         ];
     }
 

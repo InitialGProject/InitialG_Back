@@ -12,7 +12,11 @@ use dosamigos\ckeditor\CKEditor;
 
 <div class="noticias-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
+
+    <?= $form->field($model, 'autor_id')->textarea(['rows' => 1]) ?>
+
+    <?= $form->field($model, 'entradas_id')->textarea(['rows' => 1]) ?>
 
     <?= $form->field($model, 'titulo')->textarea(['rows' => 1]) ?>
 
@@ -30,7 +34,7 @@ use dosamigos\ckeditor\CKEditor;
     ]) ?>
 
     <!-- subida imagen------------------------------------------------------------------>
-    <?= $form->field($model, 'imagen')->fileInput() ?>
+    <?= $form->field($model, 'imageFile')->fileInput() ?>
     <!---------------------------------------------------------------------------------->
 
     <div class="form-group">

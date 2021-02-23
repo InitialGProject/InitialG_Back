@@ -12,7 +12,7 @@ use dosamigos\ckeditor\CKEditor;
 
 <div class="noticias-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+<?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
     <?= $form->field($model, 'titulo')->textarea(['rows' => 1]) ?>
 

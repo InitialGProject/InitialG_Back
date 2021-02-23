@@ -8,12 +8,34 @@ use app\models\NoticiasSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+//Subir imagen------------------------------------------    
+use app\models\UploadForm;
+use yii\web\UploadedFile;
 
 /**
  * NoticiasController implements the CRUD actions for Noticias model.
  */
 class NoticiasController extends Controller
 {
+
+    //Subir imagen//////////////////////////////////////////////////////////////
+
+    public function actionUpload()
+    {
+        $model = new UploadForm();
+
+        if (Yii::$app->request->isPost) {
+            $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+            if ($model->upload()) {
+                // el archivo se subió exitosamente
+                return;
+            }
+        }
+
+        return $this->render('upload', ['model' => $model]);
+    }
+    //////////////////////////////////////////////////////////////////////////////
+
     /**
      * {@inheritdoc}
      */
@@ -66,14 +88,26 @@ class NoticiasController extends Controller
     {
         $model = new Noticias();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+
+            $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+            if ($model->upload() && $model->save()) {
+                $model->imageFile->saveAs('uploads/noticias/' . $model->imagen);
+
+                // if($model->save()){
+                // el archivo se subió exitosamente
+
+                return $this->redirect(['view', 'id' => $model->id]);
+                // }
+            }
         }
 
         return $this->render('create', [
             'model' => $model,
         ]);
     }
+
+
 
     /**
      * Updates an existing Noticias model.
