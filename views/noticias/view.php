@@ -19,13 +19,12 @@ $this->title = $model->titulo;
                 <img src="<?= Yii::$app->request->baseUrl . $model->imagen ?>" class=" img-responsive" style="max-width: 40rem; width: 100%">
             </div>
             <div class="col-lg-6">
-                <h1><?= Html::encode($this->title) ?></h1>
                 <p>
-                    <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-                    <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
+                    <?= Html::a(Yii::t('app', 'Actualizar'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+                    <?= Html::a(Yii::t('app', 'Borrar'), ['delete', 'id' => $model->id], [
                         'class' => 'btn btn-danger',
                         'data' => [
-                            'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
+                            'confirm' => Yii::t('app', '¿Seguro que quieres eliminar esta noticia?'),
                             'method' => 'post',
                         ],
                     ]) ?>
@@ -36,7 +35,7 @@ $this->title = $model->titulo;
                 'model' => $model,
                 'attributes' => [
                     'nombreautor',
-                    'fecha',
+                    'fechaPublicacion',
                     'descripcion:ntext',
                     'texto:ntext',
                     [
@@ -62,7 +61,7 @@ $this->title = $model->titulo;
                     <div class="col-lg-6" style="vertical-align: middle;">
                         <br><br>
                         <p><strong>Autor de la noticia:</strong> <?= Html::encode($model->nombreautor) ?></p>
-                        <p><strong>Fecha de publicación:</strong> <?= Html::encode($model->fecha) ?></p>
+                        <p><strong>Fecha de publicación:</strong> <?= Html::encode($model->fechaPublicacion) ?></p>
                         <p><?= Html::encode($model->descripcion) ?></p>
                     </div>
                 </div>

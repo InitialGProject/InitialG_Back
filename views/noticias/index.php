@@ -32,14 +32,14 @@ $this->title = Yii::t('app', 'Noticias');
     <?php echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= ListView::widget([
-        'dataProvider' => $dataProvider,
-        'itemOptions' => ['class' => 'item'],
-        'summary' => '',
-        'itemView' => function ($model, $key, $index, $widget) {
-            // return Html::a(Html::encode($model->titulo), ['view', 'titulo' => $model->titulo]);
-            return $this->render('_noticia', ['model' => $model]);
-        },
-    ]) ?>
+                'dataProvider' => $dataProvider,
+                'itemOptions' => ['class' => 'item'],
+                'summary' => '',
+                'itemView' => function ($model, $key, $index, $widget) {
+                    // return Html::a(Html::encode($model->titulo), ['view', 'titulo' => $model->titulo]);
+                    return $this->render('_noticia', ['model' => $model]);
+                },
+            ]) ?>
 
 <?php } ?>
 </div>

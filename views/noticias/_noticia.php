@@ -6,7 +6,7 @@ use yii\helpers\Html;
 
 <div class=row style='background:#ddd;margin:5px;padding:5px;'>
 
-  <b><?= $model->autor->nombre ?> - <?= $model->fecha ?><br><br></b>
+  <b><?= $model->autor->nombre ?> - <?= $model->fechaPublicacion ?><br><br></b>
 
   <?= $model->titulo ?><br><br>
   Categoría: <small><?= $model->entradas->categorias->categoria ?> </small>
@@ -22,7 +22,7 @@ use yii\helpers\Html;
         [
           'noticias/update', 'id' => $model->id,
           'usuario_nombre' => $model->autor->nombre,
-          'fecha_hora' => $model->fecha
+          'fecha_hora' => $model->fechaPublicacion
         ],
         ['class' => 'btn btn-primary']
       );
@@ -33,7 +33,7 @@ use yii\helpers\Html;
       [
         'noticias/view', 'id' => $model->id,
         'usuarios_nombre' => $model->autor->nombre,
-        'fecha_hora' => $model->fecha
+        'fecha_hora' => $model->fechaPublicacion
       ],
       ['class' => 'btn btn-primary']
     ) ?>
@@ -42,13 +42,7 @@ use yii\helpers\Html;
 
     echo '<br><br>';
 
-    // foreach ($model->noticias as $noticia) {
-    //   echo "<div class='row' style= margin:5px; padding:20px;>"
-    //     . "<p>" . $noticia->fecha . ' ' . $noticia->contenido . "</p></div>";
-    // }
     ?>
 
-
   </div>
-
 </div>

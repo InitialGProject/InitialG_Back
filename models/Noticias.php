@@ -51,13 +51,13 @@ class Noticias extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'autor_id' => Yii::t('app', 'Autor ID'),
+            'autor_id' => Yii::t('app', 'Nombre del autor'),
             'entradas_id' => Yii::t('app', 'Entradas ID'),
             'titulo' => Yii::t('app', 'Titulo'),
             'descripcion' => Yii::t('app', 'Descripcion'),
             'texto' => Yii::t('app', 'Texto'),
             'imagen' => Yii::t('app', 'Imagen'),
-            'fecha' => Yii::t('app', 'Fecha'),
+            'fecha' => Yii::t('app', 'Fecha de Publicacion'),
             'nombreautor' => Yii::t('app', 'Nombre del autor'),
         ];
     }
@@ -106,8 +106,13 @@ class Noticias extends \yii\db\ActiveRecord
         return $mostrado;
     }
 
+    public function getfechaPublicacion()
+    {
+        return \Yii::$app->formatter->asDateTime($this->fecha);
+    }
+
     public function fields()
     {
-        return array_merge(parent::fields(), ['Estado', 'nombreautor']);
+        return array_merge(parent::fields(), ['Estado', 'nombreautor', 'fechaPublicacion']);
     }
 }

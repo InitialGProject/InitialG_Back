@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use app\componentes\THtml;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\NoticiasSearch */
@@ -15,29 +16,13 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <!-- 
-    $form->field($model, 'id')
-    $form->field($model, 'autor_id')
-    $form->field($model, 'entradas_id') 
-    -->
-
     <?= $form->field($model, 'titulo') ?>
 
-    <?= $form->field($model, 'autor') ?>
-
-    <?php //$form->field($model, 'descripcion') ?>
-
-    <?php // echo $form->field($model, 'texto') ?>
-
-    <?php //$form->field($model, 'imagen') ?>
-
-    <!-- CHtml::image(Yii::app()->request->baseUrl.'/banner/'.$model->image,"image",array("width"=>200)); -->
-
-    <?php // echo $form->field($model, 'fecha') ?>
+    <?= THtml::autocomplete($model, 'autor_id', ['/usuarios/lookup'], 'autor_id'); ?>
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton(Yii::t('app', 'Reset'), ['class' => 'btn btn-outline-secondary']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Buscar'), ['class' => 'btn btn-primary']) ?>
+        <?= Html::resetButton(Yii::t('app', 'Cancelar'), ['class' => 'btn btn-outline-secondary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
