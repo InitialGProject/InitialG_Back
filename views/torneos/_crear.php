@@ -3,6 +3,7 @@
 use app\componentes\THtml;
 use app\models\Categorias;
 use app\models\Entradas;
+use kartik\datecontrol\DateControl;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
@@ -18,9 +19,15 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'titulo')->textInput(['maxlenght' => true]) ?>
 
-    <?= $form->field($model, 'descripcion')->textInput() ?>
-
-    <?= $form->field($model, 'fechaInicio')->textInput() ?>
+    <?php
+    echo $form->field($model, 'fechaInicio')->widget(DateControl::classname(), [
+        'type' => DateControl::FORMAT_DATETIME
+    ]);
+    
+    echo $form->field($model, 'fechaFin')->widget(DateControl::classname(), [
+        'type' => DateControl::FORMAT_DATETIME
+    ]);
+    ?>
 
     <?= $form->field($model, 'fechaFin')->textInput() ?>
 

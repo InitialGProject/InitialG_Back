@@ -1,6 +1,8 @@
 <?php
 
-use yii\helpers\Html;
+/**
+ * @author Juan Sanz
+ */
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Torneos */
@@ -12,8 +14,6 @@ if (Yii::$app->user->identity->TipoUser == 'Gamer' || Yii::$app->user->identity-
 ?>
 
     <div class="torneos-update">
-
-        <h1><?= Html::encode($this->title) ?></h1>
 
     <?php
     echo $this->render('_form', [
