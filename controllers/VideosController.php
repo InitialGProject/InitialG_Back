@@ -10,8 +10,12 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
+ * 
+ * @author Marta Pretel
  * VideosController implements the CRUD actions for Videos model.
+ * 
  */
+
 class VideosController extends Controller
 {
     /**

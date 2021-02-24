@@ -1,6 +1,8 @@
 <?php
 
-use yii\helpers\Html;
+/**
+ * @author Alejandro Lopez
+*/
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Juegos */
@@ -10,7 +12,7 @@ $this->title = Yii::t('app', 'Crear Juego');
 
 <div class="juegos-create">
 
-    <?= $this->render('_form', [
+    <?= $this->render('_crear', [
         'model' => $model,
     ]) ?>
 

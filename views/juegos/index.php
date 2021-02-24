@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @author Alejandro Lopez
+*/
+
+// Helpers y widgets de Yii
 use yii\helpers\Html;
 use yii\grid\GridView;
 
@@ -13,16 +18,16 @@ $this->title = Yii::t('app', 'Juegos');
 <div class="juegos-index">
 
 
-    <?php 
-     if (Yii::$app->user->isGuest) {
+    <?php
+    if (Yii::$app->user->isGuest) {
         echo ("No tienes acceso a este sitio");
     } else {
-        if (Yii::$app->user->identity->TipoUser == 'Admin') { 
-            $dataProvider->pagination=array('pageSize'=>5);?>
+        if (Yii::$app->user->identity->TipoUser == 'Admin') {
+            $dataProvider->pagination = array('pageSize' => 5); ?>
 
             <p>
                 <?= Html::a(Yii::t('app', 'Crear Juego'), ['create'], ['class' => 'btn btn-success']) ?>
-                
+
                 <?= GridView::widget([
                     'dataProvider' => $dataProvider,
                     'filterModel' => $searchModel,
@@ -42,9 +47,9 @@ $this->title = Yii::t('app', 'Juegos');
                         'tipo:ntext',
                         [
                             'label' => 'Imagen',
-                            'format' => ['image',['width'=>'100', 'height'=>'100']], 
-                            'value'=>function($data){
-                                return('http://alum3.iesfsl.org/assets/img/juegos/'.$data->imagen);
+                            'format' => ['image', ['width' => '100', 'height' => '100']],
+                            'value' => function ($data) {
+                                return ('http://alum3.iesfsl.org/assets/img/juegos/' . $data->imagen);
                             }
                         ],
 

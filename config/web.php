@@ -52,6 +52,10 @@ $config = [
                 ],
             ],
         ],
+        'formatter' => [
+            'class' => 'yii\i18n\Formatter',
+            'nullDisplay' => 'Inexistente',
+        ],
         'db' => $db,
         /*
         'urlManager' => [

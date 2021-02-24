@@ -1,4 +1,9 @@
 <?php
+
+/**
+ * @author Alejandro Lopez
+*/
+
 namespace app\models;
 
 use yii\base\Model;
@@ -17,7 +22,7 @@ class UploadForm extends Model
             [['imageFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
         ];
     }
-    
+
     public function upload()
     {
         if ($this->validate()) {

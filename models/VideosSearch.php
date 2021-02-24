@@ -7,7 +7,10 @@ use yii\data\ActiveDataProvider;
 use app\models\Videos;
 
 /**
+ * 
+ * @author Marta Pretel
  * VideosSearch represents the model behind the search form of `app\models\Videos`.
+ * 
  */
 class VideosSearch extends Videos
 {

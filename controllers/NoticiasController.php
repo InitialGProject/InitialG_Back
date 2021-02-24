@@ -8,13 +8,18 @@ use app\models\NoticiasSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+
 //Subir imagen------------------------------------------    
 use app\models\UploadForm;
 use yii\web\UploadedFile;
 
 /**
+ * 
+ * @author Dan Nedelea
  * NoticiasController implements the CRUD actions for Noticias model.
+ * 
  */
+
 class NoticiasController extends Controller
 {
 
@@ -106,8 +111,6 @@ class NoticiasController extends Controller
             'model' => $model,
         ]);
     }
-
-
 
     /**
      * Updates an existing Noticias model.

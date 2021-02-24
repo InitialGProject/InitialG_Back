@@ -22,7 +22,10 @@ use yii\web\UploadedFile;
  *
  * @property Entradas[] $entradas
  * @property Categorias $categoria
+ * 
+ * @author Alejandro Lopez
  */
+
 class Juegos extends \yii\db\ActiveRecord
 {
     /**

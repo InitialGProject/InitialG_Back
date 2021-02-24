@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @author Alejandro Lopez
+ */
+
+// Helpers y widgets de Yii
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
@@ -13,14 +18,20 @@ $this->title = $model->titulo;
 <div class="juegos-view">
 
     <p>
-        <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => Yii::t('app', 'Seguro de querer borrarlo?'),
-                'method' => 'post',
-            ],
-        ]) ?>
+        <?php
+        if (Yii::$app->user->identity->TipoUser == 'Admin') {
+            echo Html::a(Yii::t('app', 'Actualizar'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']);
+        } ?>
+        <?php
+        if (Yii::$app->user->identity->TipoUser == 'Admin') {
+            echo Html::a(Yii::t('app', 'Borrar'), ['delete', 'id' => $model->id], [
+                'class' => 'btn btn-danger',
+                'data' => [
+                    'confirm' => Yii::t('app', 'Seguro de querer borrarlo?'),
+                    'method' => 'post',
+                ],
+            ]);
+        } ?>
     </p>
 
     <?= DetailView::widget([
@@ -31,11 +42,11 @@ $this->title = $model->titulo;
             'descipcion:ntext',
             [
                 'label' => 'Imagen',
-                'format' => ['image',['width'=>'300', 'height'=>'200']], 
-                'value'=>function($data){
-                    return('http://alum3.iesfsl.org/assets/img/juegos/'.$data->imagen);
+                'format' => ['image', ['width' => '300', 'height' => '200']],
+                'value' => function ($data) {
+                    return ('http://alum3.iesfsl.org/assets/img/juegos/' . $data->imagen);
                 }
-            ],            
+            ],
             [
                 'attribute' => 'categoria_id',
                 'label' => 'Categoria',

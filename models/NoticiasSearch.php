@@ -7,8 +7,12 @@ use yii\data\ActiveDataProvider;
 use app\models\Noticias;
 
 /**
+ * 
+ * @author Dan Nedelea
  * NoticiasSearch represents the model behind the search form of `app\models\Noticias`.
+ * 
  */
+
 class NoticiasSearch extends Noticias
 {
     /**

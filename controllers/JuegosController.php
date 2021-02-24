@@ -15,15 +15,18 @@ use yii\web\UploadedFile;
 
 
 /**
+ * 
+ * @author Alejandro Lopez
  * JuegosController implements the CRUD actions for Juegos model.
+ * 
  */
+
 class JuegosController extends Controller
 {
+    //Subir imagen//////////////////////////////////////////////////////////////
 
-//Subir imagen//////////////////////////////////////////////////////////////
-
-/**
-     * @author Alejandro
+    /**
+     * @author Alejandro Lopez
      * Subida de ficheros imagen
      */
     public function actionUpload()
@@ -40,19 +43,21 @@ class JuegosController extends Controller
 
         return $this->render('upload', ['model' => $model]);
     }
-//////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////
 
-//***********************************************/
-public function actionLookup($term) {
-    $results = [];
-    foreach (Juegos::find()->andwhere("(nombre like :q )", [':q' => '%' . $term . '%'])->asArray()->all() as $model) {
-         $results[] = [
-            'id' => $model['id'],
-            'label' => $model['nombre'],
-         ];
-    return \yii\helpers\Json::encode($results);
- }}
- //***********************************************/
+    //***********************************************/
+    public function actionLookup($term)
+    {
+        $results = [];
+        foreach (Juegos::find()->andwhere("(creador like :q )", [':q' => '%' . $term . '%'])->asArray()->all() as $model) {
+            $results[] = [
+                'id' => $model['id'],
+                'label' => $model['creador'],
+            ];
+            return \yii\helpers\Json::encode($results);
+        }
+    }
+    //***********************************************/
 
     /**
      * {@inheritdoc}
@@ -110,13 +115,13 @@ public function actionLookup($term) {
 
             $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
             if ($model->upload() && $model->save()) {
-                 $model->imageFile->saveAs('uploads/juegos/' .$model->imagen);
+                $model->imageFile->saveAs('uploads/juegos/' . $model->imagen);
 
                 // if($model->save()){
                 // el archivo se subió exitosamente
-                
+
                 return $this->redirect(['view', 'id' => $model->id]);
-            // }
+                // }
             }
         }
 
@@ -140,13 +145,13 @@ public function actionLookup($term) {
 
             $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
             if ($model->upload() && $model->save()) {
-                 $model->imageFile->saveAs('uploads/juegos/' .$model->imagen);
+                $model->imageFile->saveAs('uploads/juegos/' . $model->imagen);
 
                 // if($model->save()){
                 // el archivo se subió exitosamente
-                
+
                 return $this->redirect(['view', 'id' => $model->id]);
-            // }
+                // }
             }
         }
 
@@ -185,5 +190,4 @@ public function actionLookup($term) {
 
         throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
     }
-
 }

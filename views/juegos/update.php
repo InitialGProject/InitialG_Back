@@ -1,11 +1,13 @@
 <?php
 
-use yii\helpers\Html;
+/**
+ * @author Alejandro Lopez
+*/
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Juegos */
 
-$this->title = Yii::t('app', 'Update Juegos: {name}', [
+$this->title = Yii::t('app', 'Actualizar Juego: {name}', [
     'name' => $model->titulo,
 ]);
 ?>

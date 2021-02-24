@@ -19,6 +19,8 @@ use yii\web\UploadedFile;
  *
  * @property Usuarios $autor
  * @property Entradas $entradas
+ * 
+ * @author Dan Nedelea
  */
 
 class Noticias extends \yii\db\ActiveRecord

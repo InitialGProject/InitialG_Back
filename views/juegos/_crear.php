@@ -10,11 +10,10 @@ use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 
 ///completar
-// use app\componentes\THtml;
+use app\componentes\THtml;
 
 // Modelos Relacionados
 use app\models\Categorias;
-use app\models\Juegos;
 
 // Modelo de subir archivos (en este caso imágenes)
 use app\models\UploadForm;
@@ -35,7 +34,7 @@ use app\models\UploadForm;
     <!-- <?= $form->field($model, 'imagen')->textarea(['rows' => 1]) ?> -->
 
     <?php $options = ArrayHelper::map(Categorias::find()->asArray()->all(), 'id', 'categoria'); ?>
-    <?= $form->field($model, 'categoria_id')->dropDownList($options, ['prompt' => 'Seleccionar']); ?>
+    <?= $form->field($model, 'categoria_id')->dropDownList($options, ['prompt' => 'Seleccionar Categoria']); ?>
 
     <?= $form->field($model, 'tipo')->dropdownList(
         ['AC' => 'AC', 'RE' => 'RE'],
@@ -45,8 +44,11 @@ use app\models\UploadForm;
 
     <?= $form->field($model, 'ruta')->textarea(['rows' => 1]) ?>
 
-    <?php $options = ArrayHelper::map(Juegos::find()->asArray()->all(), 'id', 'creador'); ?>
-    <?= $form->field($model, 'creador')->dropDownList($options, ['prompt' => 'Seleccionar Creador']); ?>
+    <?= $form->field($model, 'creador')->textInput(['rows' => 6]) ?>
+
+    <!--Autocom------------------------------------------------------------------------->
+    <?= THtml::autocomplete($model, 'creador', ['/juegos/lookup'], 'id'); ?>
+    <!---------------------------------------------------------------------------------->
 
     <!-- subida imagen------------------------------------------------------------------>
     <?= $form->field($model, 'imageFile')->fileInput() ?>
