@@ -123,8 +123,18 @@ class NoticiasController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+
+            $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+            if ($model->upload() && $model->save()) {
+                $model->imageFile->saveAs('uploads/noticias/' . $model->imagen);
+
+                // if($model->save()){
+                // el archivo se subió exitosamente
+
+                return $this->redirect(['view', 'id' => $model->id]);
+                // }
+            }
         }
 
         return $this->render('update', [

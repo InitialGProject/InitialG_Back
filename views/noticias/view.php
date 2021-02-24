@@ -21,7 +21,7 @@ $this->title = $model->titulo;
 
         <div class="row">
             <div class="col-lg-6">
-                <img src="<?= Yii::$app->request->baseUrl . $model->imagen ?>" class=" img-responsive" style="max-width: 40rem; width: 100%">
+                <img src="<?= Yii::$app->request->baseUrl."/uploads/noticias/" . $model->imagen ?>" class=" img-responsive" style="max-width: 40rem; width: 100%">
             </div>
             <div class="col-lg-6">
                 <p>
@@ -58,9 +58,11 @@ $this->title = $model->titulo;
                     'descripcion:ntext',
                     'texto:ntext',
                     [
-                        'attribute' => 'Imagen de la noticia',
-                        'value' =>  Html::a(Html::img(Yii::$app->request->baseUrl . $model->imagen, ['alt' => 'imagen noticia', 'class' => 'thing', 'height' => '100px', 'width' => '100px'])),
-                        'format' => ['raw'],
+                        'label' => 'Imagen',
+                        'format' => ['image', ['width' => '300', 'height' => '200']],
+                        'value' => function ($data) {
+                            return ('http://alum3.iesfsl.org/assets/img/noticias/' . $data->imagen);
+                        }
                     ],
                     // 'imagen:ntext',
                 ],
