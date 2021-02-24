@@ -2,7 +2,7 @@
 
 /**
  * @author Juan Sanz
- */
+*/
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Torneos */

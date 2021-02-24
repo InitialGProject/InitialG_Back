@@ -2,7 +2,7 @@
 
 /**
  * @author Juan Sanz
-*/
+ */
 
 // Helpers y Widgets de Yii
 use yii\helpers\ArrayHelper;
@@ -16,6 +16,7 @@ use kartik\datecontrol\DateControl;
 use app\models\Categorias;
 use app\models\Entradas;
 use app\models\Participantestorneos;
+use app\models\Usuarios;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Torneos */
@@ -30,17 +31,29 @@ use app\models\Participantestorneos;
 
     <?= $form->field($model, 'descripcion')->textInput() ?>
 
-    <?php
-    echo $form->field($model, 'fechaInicio')->widget(DateControl::classname(), [
-        'type' => DateControl::FORMAT_DATETIME
-    ]);
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-12">
 
-    echo $form->field($model, 'fechaFin')->widget(DateControl::classname(), [
-        'type' => DateControl::FORMAT_DATETIME
-    ]);
-    ?>
+            <?php
+            echo $form->field($model, 'fechaInicio')->widget(DateControl::classname(), [
+                'type' => DateControl::FORMAT_DATETIME
+            ]); ?>
 
-    <?= $form->field($model, 'imagen')->textInput() ?>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+
+            <?php
+            echo $form->field($model, 'fechaFin')->widget(DateControl::classname(), [
+                'type' => DateControl::FORMAT_DATETIME
+            ]);
+            ?>
+
+        </div>
+    </div>
+
+    <!-- subida imagen------------------------------------------------------------------>
+    <?= $form->field($model, 'imageFile')->fileInput() ?>
+    <!---------------------------------------------------------------------------------->
 
     <?php
     //Utilizamos asArray para que sea más óptimo el acceso, al devolver una lista de arrays 
@@ -48,7 +61,8 @@ use app\models\Participantestorneos;
     echo $form->field($model, 'categorias_id')->dropDownList($options, ['prompt' => 'Seleccione una Categoria']);
     ?>
 
-    <?= $form->field($model, 'Creador')->textInput() ?>
+    <?php $options = ArrayHelper::map(Usuarios::find()->asArray()->all(), 'id', 'nombre'); ?>
+    <?= $form->field($model, 'usuario_id')->dropDownList($options, ['prompt' => 'Seleccionar Creador']); ?>
 
     <?php
     //Utilizamos asArray para que sea más óptimo el acceso, al devolver una lista de arrays 

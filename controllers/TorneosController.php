@@ -9,11 +9,38 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
+//Subir imagen------------------------------------------    
+use app\models\UploadForm;
+use yii\web\UploadedFile;
+
 /**
+ * 
+ * @author Juan Sanz
  * TorneosController implements the CRUD actions for Torneos model.
+ * 
  */
+
 class TorneosController extends Controller
 {
+    /**
+     * @author Alejandro Lopez
+     * Subida de ficheros imagen
+     */
+    public function actionUpload()
+    {
+        $model = new UploadForm();
+
+        if (Yii::$app->request->isPost) {
+            $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+            if ($model->upload()) {
+                // el archivo se subió exitosamente
+                return;
+            }
+        }
+
+        return $this->render('upload', ['model' => $model]);
+    }
+
     /**
      * {@inheritdoc}
      */

@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @author Juan Sanz
+*/
+
+// Helpers y Widgets de Yii
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
@@ -11,9 +16,6 @@ $this->title = $model->titulo;
 ?>
 
 <div class="torneos-view">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
         <?php
         // Botón Actualizar
@@ -41,8 +43,8 @@ $this->title = $model->titulo;
         'attributes' => [
             'titulo',
             'descripcion:ntext',
-            'fechaInicio',
-            'fechaFin',
+            'fechaInicioTorneo',
+            'fechaFinTorneo',
             [
                 'attribute' => 'imagen del Torneo',
                 'value' =>  Html::a(Html::img(Yii::$app->request->baseUrl . $model->imagen, ['alt' => 'imagen del torneo', 'class' => 'thing', 'height' => '100px', 'width' => '100px'])),
