@@ -26,7 +26,10 @@ use yii\helpers\ArrayHelper;
  * @property Participantestorneos[] $participantestorneos
  * @property Torneos[] $torneos
  * @property Videos[] $videos
+ * 
+ * @author Alejandro Lopez - Juan Sanz
  */
+
 class Usuarios extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
     //Añadimos implements...
@@ -209,13 +212,21 @@ class Usuarios extends \yii\db\ActiveRecord implements \yii\web\IdentityInterfac
         return array_merge(parent::fields(), ['TipoUser']);
     }
 
-    public static function lookupEstado($condition=''){
+    public static function lookupEstado($condition = '')
+    {
         return ArrayHelper::map(
-            self::find()->where($condition)->all(),'estado','estado');
+            self::find()->where($condition)->all(),
+            'estado',
+            'estado'
+        );
     }
 
-    public static function lookupSuscripcion($condition=''){
+    public static function lookupSuscripcion($condition = '')
+    {
         return ArrayHelper::map(
-            self::find()->where($condition)->all(),'suscripcion','suscripcion');
+            self::find()->where($condition)->all(),
+            'suscripcion',
+            'suscripcion'
+        );
     }
 }

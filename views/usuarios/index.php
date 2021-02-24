@@ -18,16 +18,16 @@ $this->title = Yii::t('app', 'Usuarios');
         if (Yii::$app->user->identity->TipoUser == 'Admin') { ?>
 
             <p>
-                <?=Html::beginForm(['usuarios/actualizar'],'post');?>
+                <?= Html::beginForm(['usuarios/actualizar'], 'post'); ?>
             </p>
-                <?= 
-                    Html::a(Yii::t('app', 'Crear Usuario'), ['create'], ['class' => 'btn btn-success']), 
-                    Html::submitButton('Enviar', ['class' => 'btn btn-info',]),
-                    Html::dropDownList('accion','',[''=>'Marcar selecc. como: ','A'=>'Aceptadas','D'=>'Denegado'],['class'=>'dropdown',]);
+            <?=
+            Html::a(Yii::t('app', 'Crear Usuario'), ['create'], ['class' => 'btn btn-success']),
+            Html::submitButton('Enviar', ['class' => 'btn btn-info',]),
+            Html::dropDownList('accion', '', ['' => 'Marcar selecc. como: ', 'A' => 'Aceptadas', 'D' => 'Denegado', 'P' => 'Pendientes'], ['class' => 'dropdown',]);
 
-                ?>                
+            ?>
 
-            <?php 
+            <?php
             echo  GridView::widget([
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
@@ -55,18 +55,18 @@ $this->title = Yii::t('app', 'Usuarios');
                         },
                     ],
                     [
-                        'class' => CheckboxColumn::className(),'name'=>'idselec',
-			            'checkboxOptions' => function ($model, $key, $index, $column) {
-						    return ['value' => $model->id];
-					    }
+                        'class' => CheckboxColumn::className(), 'name' => 'idselec',
+                        'checkboxOptions' => function ($model, $key, $index, $column) {
+                            return ['value' => $model->id];
+                        }
                     ],
                     //'avatar:ntext',
 
                     ['class' => 'yii\grid\ActionColumn'],
                 ],
             ]); ?>
-            
-            <?= Html::endForm();?>
+
+            <?= Html::endForm(); ?>
             </p>
 
     <?php

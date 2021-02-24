@@ -100,17 +100,22 @@ class VideosController extends Controller
     }
 
     /**
-     * Deletes an existing Videos model.
+     * Deletes an existing Sugerencias model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+    public function actionBorrar()
     {
-        $this->findModel($id)->delete();
+        $id = Yii::$app->request->post('video');
+        $idselec = (array)Yii::$app->request->post('idselec');
 
-        return $this->redirect(['index']);
+        foreach (Videos::findAll($idselec) as $videos) {
+            $videos->categoria_id = $id;
+            $this->findModel($videos)->delete();
+        }
+        return $this->redirect(['videos/index']);
     }
 
     /**
