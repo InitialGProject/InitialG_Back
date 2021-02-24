@@ -47,7 +47,7 @@ use app\models\Entradas;
     <?= $form->field($model, 'imageFile')->fileInput() ?>
     <!---------------------------------------------------------------------------------->
 
-    <?= THtml::autocomplete($model, 'autor_id', ['/usuarios/lookup'], 'autor_id'); ?>
+    <?= THtml::autocomplete($model, 'autor_id', ['/usuarios/lookup'], 'autor'); ?>
 
     <?php
     //Utilizamos asArray para que sea más óptimo el acceso, al devolver una lista de arrays

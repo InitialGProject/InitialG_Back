@@ -163,6 +163,20 @@ class Usuarios extends \yii\db\ActiveRecord implements \yii\web\IdentityInterfac
         return $this->hasMany(Videos::className(), ['usuarios_id' => 'id']);
     }
 
+    public function getEstado()
+    {
+        $estado = $this->estado;
+        if ($estado == "A") {
+            $estado = "Aceptado";
+        } elseif ($estado == "P") {
+            $estado = "Pendiente";
+        } else {
+            $estado = "Denegado";
+        }
+
+        return $estado;
+    }
+
     public function getTipoUser()
     {
         switch ($this->suscripcion) {

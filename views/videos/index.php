@@ -1,7 +1,15 @@
 <?php
 
+/**
+ * @author Marta Pretel
+*/
+
+// Helpers y vistas de Yii
 use yii\helpers\Html;
 use yii\grid\GridView;
+
+// CheckBox de Acción Múltiple
+use kartik\grid\CheckboxColumn;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\VideosSearch */
@@ -19,30 +27,33 @@ $this->title = Yii::t('app', 'Videos');
         if (Yii::$app->user->identity->TipoUser == 'Admin') { ?>
 
             <p>
-                <?= Html::a(Yii::t('app', 'Create Videos'), ['create'], ['class' => 'btn btn-success']) ?>
+                <?= Html::a(Yii::t('app', 'Crear Videos'), ['create'], ['class' => 'btn btn-success']) ?>
             </p>
-
-            <?php // echo $this->render('_search', ['model' => $searchModel]); 
-            ?>
 
             <?= GridView::widget([
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
                 'summary' => '',
                 'columns' => [
+                    'titulo',
+                    'video:ntext',
+                    'descripcion:ntext',
                     [
                         'attribute' => 'categoria_id',
                         'label' => 'Categorias',
                         'filter' => app\models\Categorias::lookup(),
                         'value' => function ($data) {
                             return $data->categoria->categoria;
-                        }
+                        },
                     ],
-                    'video:ntext',
-                    'descripcion:ntext',
-                    'titulo',
 
                     ['class' => 'yii\grid\ActionColumn'],
+                    // [
+                    //     'class' => CheckboxColumn::className(), 'name' => 'idselec',
+                    //     'checkboxOptions' => function ($model, $key, $index, $column) {
+                    //         return ['value' => $model->id];
+                    //     }
+                    // ],
                 ],
             ]); ?>
             </p>

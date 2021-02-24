@@ -1,18 +1,18 @@
 <?php
 
-use yii\helpers\Html;
+/**
+ * @author Marta Pretel
+*/
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Videos */
 
-$this->title = Yii::t('app', 'Create Videos');
+$this->title = Yii::t('app', 'Subir Video');
 ?>
 
 <div class="videos-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <?= $this->render('_form', [
+    <?= $this->render('_crear', [
         'model' => $model,
     ]) ?>
 

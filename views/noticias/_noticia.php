@@ -14,7 +14,7 @@ use yii\helpers\Html;
   Publicado en: <?= $model->fechaPublicacion ?><br><br>
   <?= $model->descripcion ?><br><br>
   Categoría: <small><?= $model->entradas->categorias->categoria ?> </small><br><br>
-  Autor: <?= $model->autor->nombre ?><br><br>
+  Autor: <?= $model->nombreautor ?><br><br>
 
   <div style='color:blue;font-size:0.8em'>
 

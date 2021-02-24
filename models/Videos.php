@@ -16,6 +16,8 @@ use Yii;
  *
  * @property Usuarios $usuarios
  * @property Categorias $categoria
+ * 
+ * @author Marta Pretel
  */
 class Videos extends \yii\db\ActiveRecord
 {
@@ -33,7 +35,7 @@ class Videos extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['categoria_id', 'video', 'descripcion', 'titulo'], 'required'],
+            [['usuarios_id', 'categoria_id', 'video', 'descripcion', 'titulo'], 'required'],
             [['categoria_id', 'usuarios_id'], 'integer'],
             [['video', 'descripcion'], 'string'],
             [['titulo'], 'string', 'max' => 50],
@@ -49,11 +51,13 @@ class Videos extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'categoria_id' => Yii::t('app', 'Categoria ID'),
+            'categoria_id' => Yii::t('app', 'Categorias'),
             'video' => Yii::t('app', 'Video'),
-            'usuarios_id' => Yii::t('app', 'Usuarios ID'),
+            'usuarios_id' => Yii::t('app', 'Nombre del Autor'),
             'descripcion' => Yii::t('app', 'Descripcion'),
             'titulo' => Yii::t('app', 'Titulo'),
+            'CategoriaNombre' => Yii::t('app', 'Categoria'),
+            'Creador' => Yii::t('app', 'Creador'),
         ];
     }
 
@@ -75,5 +79,26 @@ class Videos extends \yii\db\ActiveRecord
     public function getCategoria()
     {
         return $this->hasOne(Categorias::className(), ['id' => 'categoria_id']);
+    }
+
+    public function getCreador()
+    {
+        $mostrado = $this->usuarios->nombre;
+        if ($this->usuarios->getEstado() == "Aceptado") {
+            $mostrado;
+        } else {
+            $mostrado = "Undefined";
+        }
+        return $mostrado;
+    }
+
+    public function getCategoriaNombre()
+    {
+        return $this->categoria->categoria;
+    }
+
+    public function fields()
+    {
+        return array_merge(parent::fields(), ['Creador', 'CategoriaNombre']);
     }
 }

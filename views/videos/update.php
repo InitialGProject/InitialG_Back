@@ -1,18 +1,18 @@
 <?php
 
-use yii\helpers\Html;
+/**
+ * @author Marta Pretel
+*/
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Videos */
 
-$this->title = Yii::t('app', 'Update Videos: {name}', [
-    'name' => $model->id,
+$this->title = Yii::t('app', 'Actualizar Video: {name}', [
+    'name' => $model->titulo,
 ]);
 ?>
 
 <div class="videos-update">
-
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', [
         'model' => $model,

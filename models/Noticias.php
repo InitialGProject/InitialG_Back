@@ -123,7 +123,7 @@ class Noticias extends \yii\db\ActiveRecord
     public function getNombreAutor()
     {
         $mostrado = $this->autor->nombre;
-        if ($this->getEstado() == 'Aceptado') {
+        if ($this->getEstado() == 'Aceptado' && $this->autor->getEstado() == "Aceptado") {
             $mostrado;
         } else {
             $mostrado = "Undefined";

@@ -10,11 +10,10 @@ use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 
 // AutoComplete
-// use app\componentes\THtml;
+use app\componentes\THtml;
 
 // Modelos Relacionados
 use app\models\Categorias;
-use app\models\Usuarios;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Videos */
@@ -37,14 +36,10 @@ use app\models\Usuarios;
     echo $form->field($model, 'categoria_id')->dropDownList($options, ['prompt' => 'Seleccione una Categoria']);
     ?>
 
-    <?php
-    //Utilizamos asArray para que sea más óptimo el acceso, al devolver una lista de arrays
-    $options = ArrayHelper::map(Usuarios::find()->asArray()->all(), 'id', 'nombre');
-    echo $form->field($model, 'usuarios_id')->dropDownList($options, ['prompt' => 'Seleccione un Usuario']);
-    ?>
+    <?= THtml::autocomplete($model, 'usuarios_id', ['/usuarios/lookup'], 'usuarios'); ?>
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Actualizar'), ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Crear'), ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
