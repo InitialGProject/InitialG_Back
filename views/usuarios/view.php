@@ -6,13 +6,11 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Usuarios */
 
-$this->title = $model->id;
+$this->title = $model->nombre;
 \yii\web\YiiAsset::register($this);
 ?>
 
 <div class="usuarios-view">
-
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
         <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
@@ -33,7 +31,6 @@ $this->title = $model->id;
             'correo:ntext',
             'edad',
             'password',
-            'tipo',
             'genero',
             'estado',
             'suscripcion',

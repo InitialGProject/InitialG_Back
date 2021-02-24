@@ -50,14 +50,13 @@ use yii\helpers\Html;
                                     echo "Desconocido";
                                 }
                                 ?>
-                                <small>Member since Nov. 2020</small>
                             </p>
                         </li>
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
                                 <?= Html::a(
-                                    'Perfil',
+                                    'Administrar Users',
                                     ['/usuarios/index'],
                                     ['data-method' => 'post', 'class' => 'btn btn-default btn-flat']
                                 ) ?>

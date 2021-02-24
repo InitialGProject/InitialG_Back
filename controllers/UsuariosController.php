@@ -8,12 +8,32 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\UsuariosSearch;
+
 
 /**
  * UsuariosController implements the CRUD actions for Usuarios model.
  */
-class UsuariosController extends Controller
-{
+class UsuariosController extends Controller{
+
+
+    
+    public function actionActualizar(){
+        $estado=Yii::$app->request->post('accion');
+        $idselec=(array)Yii::$app->request->post('idselec');
+ 
+ 
+	foreach(Usuarios::findAll($idselec) as $entrada){
+		$entrada->estado=$estado;
+		if(!$entrada->save()) {
+			//Tratar el error, añadiendo mensajes a una lista, o lo que se desee
+		} 		
+	}
+	$this->redirect(['usuarios/index']);
+}
+
+
+
     /**
      * {@inheritdoc}
      */
@@ -34,15 +54,18 @@ class UsuariosController extends Controller
      * @return mixed
      */
     public function actionIndex()
-    {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Usuarios::find(),
-        ]);
-
-        return $this->render('index', [
-            'dataProvider' => $dataProvider,
-        ]);
-    }
+		   {
+		       $dataProvider = new ActiveDataProvider([
+		           'query' => Usuarios::find(),
+		       ]);
+		       $searchModel = new UsuariosSearch();
+		       $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+		
+		       return $this->render('index', [
+		           'searchModel' => $searchModel, 
+		           'dataProvider' => $dataProvider,
+		       ]);
+		   }
 
     /**
      * Displays a single Usuarios model.

@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+//listar
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "usuarios".
@@ -75,11 +77,11 @@ class Usuarios extends \yii\db\ActiveRecord implements \yii\web\IdentityInterfac
     public function rules()
     {
         return [
-            [['nombre', 'correo', 'edad', 'password', 'tipo', 'avatar'], 'required'],
+            [['nombre', 'correo', 'edad', 'password', 'avatar'], 'required'],
             [['correo', 'avatar'], 'string'],
-            [['edad', 'tipo', 'suscripcion'], 'integer'],
+            [['edad', 'suscripcion'], 'integer'],
             [['nombre'], 'string', 'max' => 50],
-            [['password'], 'string'],
+            [['password', 'token'], 'string'],
             [['genero', 'estado'], 'string', 'max' => 1],
         ];
     }
@@ -95,11 +97,12 @@ class Usuarios extends \yii\db\ActiveRecord implements \yii\web\IdentityInterfac
             'correo' => Yii::t('app', 'Correo'),
             'edad' => Yii::t('app', 'Edad'),
             'password' => Yii::t('app', 'Password'),
-            'tipo' => Yii::t('app', 'Tipo'),
             'genero' => Yii::t('app', 'Genero'),
             'estado' => Yii::t('app', 'Estado'),
             'suscripcion' => Yii::t('app', 'Suscripcion'),
             'avatar' => Yii::t('app', 'Avatar'),
+            'token' => Yii::t('app', 'Token'),
+
         ];
     }
 
@@ -204,5 +207,15 @@ class Usuarios extends \yii\db\ActiveRecord implements \yii\web\IdentityInterfac
     public function fields()
     {
         return array_merge(parent::fields(), ['TipoUser']);
+    }
+
+    public static function lookupEstado($condition=''){
+        return ArrayHelper::map(
+            self::find()->where($condition)->all(),'estado','estado');
+    }
+
+    public static function lookupSuscripcion($condition=''){
+        return ArrayHelper::map(
+            self::find()->where($condition)->all(),'suscripcion','suscripcion');
     }
 }
