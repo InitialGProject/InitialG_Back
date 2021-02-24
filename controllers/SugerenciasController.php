@@ -44,6 +44,25 @@ class SugerenciasController extends Controller
         ]);
     }
 
+    /** Borra un conjunto de sugerencias
+     * 
+     * @param char $estado POST
+     * @param array $idselec POST
+     */
+    public function actionAceptar()
+    {
+        $estado = Yii::$app->request->post('comentario');
+        $idselec = (array)Yii::$app->request->post('idselec');
+
+        foreach (Sugerencias::findAll($idselec) as $entrada) {
+            $entrada->id = $estado;
+            if (!$entrada->save()) {
+                //Tratar el error, añadiendo mensajes a una lista, o lo que se desee
+            }
+        }
+        $this->redirect(['sugerencias/index']);
+    }
+
     /**
      * Displays a single Sugerencias model.
      * @param integer $id
@@ -102,11 +121,21 @@ class SugerenciasController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+    public function actionBorrar()
     {
-        $this->findModel($id)->delete();
+        $id = Yii::$app->request->post('comentario');
+        $idselec = (array)Yii::$app->request->post('idselec');
 
-        return $this->redirect(['index']);
+        foreach (Sugerencias::findAll($idselec) as $entrada) {
+            $entrada->autor_id = $id;
+            if (!$entrada->save()) {
+                $this->findModel($entrada)->delete();
+                //Tratar el error, añadiendo mensajes a una lista, o lo que se desee
+            }
+        }
+        return $this->redirect(['sugerencias/index']);
+
+        //return $this->redirect(['index']);
     }
 
     /**

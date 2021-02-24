@@ -52,7 +52,7 @@
                             ['label' => 'Comentarios', 'icon' => 'share', 'url' => ['/comentarios/index']]
                         ],
                     ],
-                    ['label' => 'Sugerencias', 'url' => ['/sugerencias/create'], 'hidden' => Yii::$app->user->isGuest],
+                    ['label' => 'Sugerencias', 'url' => ['/sugerencias/index'], 'hidden' => Yii::$app->user->isGuest],
                     ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
                     // [
                     //     'label' => 'Some tools',
