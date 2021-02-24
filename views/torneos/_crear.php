@@ -1,11 +1,23 @@
 <?php
 
-use app\componentes\THtml;
-use app\models\Categorias;
-use app\models\Entradas;
+/**
+ * @author Juan Sanz
+*/
+
+// Helpers y Widgets de Yii
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+
+// AutoCompletar
+use app\componentes\THtml;
+
+// Extensiones
+use kartik\datecontrol\DateControl;
+
+// Modelos Relacionados
+use app\models\Categorias;
+use app\models\Entradas;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Torneos */
@@ -18,9 +30,20 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'titulo')->textInput(['maxlenght' => true]) ?>
 
-    <?= $form->field($model, 'descripcion')->textInput() ?>
-
-    <?= $form->field($model, 'fechaInicio')->textInput() ?>
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+            <?php
+            echo $form->field($model, 'fechaInicio')->widget(DateControl::classname(), [
+                'type' => DateControl::FORMAT_DATETIME
+            ]); ?>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+            <?php
+            echo $form->field($model, 'fechaFin')->widget(DateControl::classname(), [
+                'type' => DateControl::FORMAT_DATETIME
+            ]); ?>
+        </div>
+    </div>
 
     <?= $form->field($model, 'fechaFin')->textInput() ?>
 

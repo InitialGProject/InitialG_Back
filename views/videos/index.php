@@ -2,14 +2,14 @@
 
 /**
  * @author Marta Pretel
-*/
+ */
 
 // Helpers y vistas de Yii
 use yii\helpers\Html;
 use yii\grid\GridView;
 
 // CheckBox de Acción Múltiple
-use kartik\grid\CheckboxColumn;
+use yii\grid\CheckboxColumn as GridCheckboxColumn;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\VideosSearch */
@@ -30,6 +30,8 @@ $this->title = Yii::t('app', 'Videos');
                 <?= Html::a(Yii::t('app', 'Crear Videos'), ['create'], ['class' => 'btn btn-success']) ?>
             </p>
 
+            <?= Html::beginForm(['videos/borrar'], 'post'); ?>
+            
             <?= GridView::widget([
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
@@ -47,15 +49,19 @@ $this->title = Yii::t('app', 'Videos');
                         },
                     ],
 
+                    [
+                        'class' => GridCheckboxColumn::className(), 'name' => 'idselec',
+                        'checkboxOptions' => function ($model, $key, $index, $column) {
+                            return ['value' => $model->id];
+                        }
+                    ],
+
                     ['class' => 'yii\grid\ActionColumn'],
-                    // [
-                    //     'class' => CheckboxColumn::className(), 'name' => 'idselec',
-                    //     'checkboxOptions' => function ($model, $key, $index, $column) {
-                    //         return ['value' => $model->id];
-                    //     }
-                    // ],
                 ],
             ]); ?>
+
+            <?= Html::submitButton('Borrar Seleccionado', ['class' => 'btn btn-danger',]); ?>
+            <?= Html::endForm(); ?>
             </p>
     <?php } else {
             echo ("No tienes acceso a este sitio");

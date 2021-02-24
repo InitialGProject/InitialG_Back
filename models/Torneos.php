@@ -28,6 +28,24 @@ use Yii;
 class Torneos extends \yii\db\ActiveRecord
 {
     /**
+     * @var UploadedFile
+     */
+    public $imageFile;
+
+
+    public function upload()
+    {
+        if ($this->validate()) {
+            $this->imagen = $this->imageFile->baseName . '.' . $this->imageFile->extension;
+            // $this->imageFile->saveAs('uploads/' .$this->imagen);
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function tableName()
@@ -50,6 +68,9 @@ class Torneos extends \yii\db\ActiveRecord
             [['entrada_id'], 'exist', 'skipOnError' => true, 'targetClass' => Entradas::className(), 'targetAttribute' => ['entrada_id' => 'id']],
             [['usuario_id'], 'exist', 'skipOnError' => true, 'targetClass' => Usuarios::className(), 'targetAttribute' => ['usuario_id' => 'id']],
             [['participantes_id'], 'exist', 'skipOnError' => true, 'targetClass' => Participantestorneos::className(), 'targetAttribute' => ['participantes_id' => 'id']],
+
+            //subir foto
+            [['imageFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
         ];
     }
 
@@ -149,8 +170,18 @@ class Torneos extends \yii\db\ActiveRecord
         return $this->categorias->categoria;
     }
 
+    public function getfechaInicioTorneo()
+    {
+        return \Yii::$app->formatter->asDateTime($this->fechaInicio);
+    }
+
+    public function getfechaFinTorneo()
+    {
+        return \Yii::$app->formatter->asDateTime($this->fechaFin);
+    }
+
     public function fields()
     {
-        return array_merge(parent::fields(), ['Estado', 'Numparticipantes', 'creador', 'Categoria']);
+        return array_merge(parent::fields(), ['Estado', 'Numparticipantes', 'creador', 'Categoria', 'fechaInicio', 'fechaFin']);
     }
 }
