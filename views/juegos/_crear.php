@@ -18,6 +18,8 @@ use app\models\Categorias;
 // Modelo de subir archivos (en este caso imágenes)
 use app\models\UploadForm;
 
+//text editor
+use dosamigos\ckeditor\CKEditor;
 /* @var $this yii\web\View */
 /* @var $model app\models\Juegos */
 /* @var $form yii\widgets\ActiveForm */
@@ -28,8 +30,13 @@ use app\models\UploadForm;
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
     <?= $form->field($model, 'titulo')->textarea(['rows' => 1]) ?>
-
-    <?= $form->field($model, 'descipcion')->textarea(['rows' => 2]) ?>
+    
+    <!--CKeditor------------------------------------------------------------------------->
+    <?= $form->field($model, 'descipcion')->widget(CKEditor::className(), [
+        'options' => ['rows' => 6],
+        'preset' => 'basic'
+    ]) ?>
+    <!---------------------------------------------------------------------------------->
 
     <!-- <?= $form->field($model, 'imagen')->textarea(['rows' => 1]) ?> -->
 
@@ -43,8 +50,6 @@ use app\models\UploadForm;
     ?>
 
     <?= $form->field($model, 'ruta')->textarea(['rows' => 1]) ?>
-
-    <?= $form->field($model, 'creador')->textInput(['rows' => 6]) ?>
 
     <!--Autocom------------------------------------------------------------------------->
     <?= THtml::autocomplete($model, 'creador', ['/juegos/lookup'], 'id'); ?>

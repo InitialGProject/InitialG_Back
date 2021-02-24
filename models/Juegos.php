@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
 ////
 use yii\base\Model;
@@ -61,7 +62,7 @@ class Juegos extends \yii\db\ActiveRecord
     {
         return [
             [['titulo', 'descipcion', 'imagen', 'ruta', 'creador'], 'string'],
-            [['categoria_id', 'ruta', 'creador'], 'required'],
+            [['titulo', 'descipcion', 'categoria_id', 'tipo', 'ruta'], 'required'],
             [['categoria_id'], 'integer'],
             [['tipo'], 'string', 'max' => 2],
             [['categoria_id'], 'exist', 'skipOnError' => true, 'targetClass' => Categorias::className(), 'targetAttribute' => ['categoria_id' => 'id']],
@@ -122,4 +123,8 @@ class Juegos extends \yii\db\ActiveRecord
         return $this->hasOne(Categorias::className(), ['id' => 'categoria_id']);
     }
 
+    public static function lookup($condition=''){
+        return ArrayHelper::map(
+            self::find()->where($condition)->all(),'tipo','tipo');
+    }
 }

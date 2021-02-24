@@ -58,7 +58,7 @@ class Noticias extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['autor_id', 'entradas_id', 'titulo', 'descripcion', 'texto', 'imagen'], 'required'],
+            [['autor_id', 'entradas_id', 'titulo', 'descripcion', 'texto', 'imageFile'], 'required'],
             [['autor_id', 'entradas_id'], 'integer'],
             [['titulo', 'descripcion', 'texto', 'imagen'], 'string'],
             [['fecha'], 'safe'],

@@ -44,7 +44,15 @@ $this->title = Yii::t('app', 'Juegos');
                         ],
                         'titulo:ntext',
                         'descipcion:ntext',
-                        'tipo:ntext',
+                        [
+                            'attribute' => 'tipo',
+                            'label' => 'Tipo',
+                            'filter' => app\models\Juegos::lookup(),
+                            'value' => function ($data) {
+                                return $data->tipo;
+                            }
+                        ],
+                        // 'tipo:ntext',
                         [
                             'label' => 'Imagen',
                             'format' => ['image', ['width' => '100', 'height' => '100']],
