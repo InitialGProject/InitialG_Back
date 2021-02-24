@@ -21,7 +21,10 @@ use Yii;
  * @property Categorias $categorias
  * @property Entradas $entrada
  * @property Usuarios $usuario
+ * 
+ * @author Juan Sanz
  */
+
 class Torneos extends \yii\db\ActiveRecord
 {
     /**

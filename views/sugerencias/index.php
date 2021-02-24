@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ListView;
+use yii\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -18,20 +18,21 @@ $this->title = Yii::t('app', 'Sugerencias');
         if (Yii::$app->user->identity->TipoUser == 'Admin') {
     ?>
 
-            <p>
-                <?= ListView::widget([
-                    'dataProvider' => $dataProvider,
-                    'itemOptions' => ['class' => 'item'],
-                    'summary' => '',
-                    'itemView' => function ($model, $key, $index, $widget) {
-                        // return Html::a(Html::encode($model->id), ['view', 'id' => $model->id]);
-                        return $this->render('_sugerencias', ['model' => $model]);
-                    },
-                ]) ?>
-            </p>
+            <?= GridView::widget([
+                'dataProvider' => $dataProvider,
+                'columns' => [
+                    ['class' => 'yii\grid\SerialColumn'],
+                    
+                    'creador',
+                    'comentario:ntext',
+
+                    ['class' => 'yii\grid\ActionColumn'],
+                ],
+            ]); ?>
 
     <?php } else {
             echo Html::a(Yii::t('app', 'Hacer Sugerencia'), ['create'], ['class' => 'btn btn-success']);
         }
     } ?>
+
 </div>
