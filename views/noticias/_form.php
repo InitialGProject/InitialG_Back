@@ -13,11 +13,9 @@ use yii\widgets\ActiveForm;
 use kartik\datecontrol\DateControl;
 use dosamigos\ckeditor\CKEditor;
 
-// AutoComplete
-use app\componentes\THtml;
-
 // Modelos Relacionados
 use app\models\Entradas;
+use app\models\Usuarios;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Noticias */
@@ -28,7 +26,11 @@ use app\models\Entradas;
 
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
-    <?= THtml::autocomplete($model, 'autor_id', ['/usuarios/lookup'], 'autor_id'); ?>
+    <?php
+    //Utilizamos asArray para que sea más óptimo el acceso, al devolver una lista de arrays
+    $options = ArrayHelper::map(Usuarios::find()->asArray()->all(), 'id', 'nombre');
+    echo $form->field($model, 'autor_id')->dropDownList($options, ['prompt' => 'Seleccione Usuario']);
+    ?>
 
     <?php
     //Utilizamos asArray para que sea más óptimo el acceso, al devolver una lista de arrays
