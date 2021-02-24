@@ -1,6 +1,13 @@
 <?php
 
+/**
+ * @author Juan Sanz
+*/
+
+// Helpers de Yii
 use yii\helpers\Html;
+
+// Checkbox y vista en Grid
 use yii\grid\CheckboxColumn as GridCheckboxColumn;
 use yii\grid\GridView;
 
@@ -17,7 +24,6 @@ $this->title = Yii::t('app', 'Sugerencias');
         echo ("No tienes acceso a este sitio");
     } elseif (Yii::$app->user->identity->TipoUser == 'Admin') {
         echo Html::beginForm(['sugerencias/borrar'], 'post');
-        echo Html::dropDownList('comentario', '', ['' => 'Marcar selecc. como: ', 'A' => 'Dan', 'R' => 'Juan'], ['class' => 'dropdown',]);
         echo GridView::widget([
             'dataProvider' => $dataProvider,
             'summary' => '',
@@ -32,11 +38,9 @@ $this->title = Yii::t('app', 'Sugerencias');
                         return ['value' => $model->id];
                     }
                 ],
-                ['class' => 'yii\grid\ActionColumn'],
             ],
         ]);
-        echo Html::submitButton('Enviar', ['class' => 'btn btn-danger',]);
-
+        echo Html::submitButton('Borrar Seleccionado', ['class' => 'btn btn-danger',]);
 
         echo Html::endForm();
     } else {

@@ -1,8 +1,17 @@
 <?php
 
+/**
+ * @author Juan Sanz
+ */
+
+// Helpers y widgets de Yii
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+
+// Extensiones
 use dosamigos\ckeditor\CKEditor;
+
+// AutoComplete
 use app\componentes\THtml;
 
 /* @var $this yii\web\View */

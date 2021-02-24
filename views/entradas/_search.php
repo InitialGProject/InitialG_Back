@@ -17,20 +17,21 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'titulo') ?>
-
-    <?php
-    //Utilizamos asArray para que sea más óptimo el acceso, al devolver una lista de arrays 
-    $options = ArrayHelper::map(Categorias::find()->asArray()->all(), 'id', 'categoria');
-    echo $form->field($model, 'categorias_id')->dropDownList($options, ['prompt' => 'Seleccione una Categoria']);
-    ?>
-
-    <?php // echo $form->field($model, 'usuarios_id') 
-    ?>
+    <div class="row">
+        <div class="col-lg-9 col-md-9 col-sm-9 col-12">
+            <?= $form->field($model, 'titulo') ?>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-12">
+            <?php
+            //Utilizamos asArray para que sea más óptimo el acceso, al devolver una lista de arrays 
+            $options = ArrayHelper::map(Categorias::find()->asArray()->all(), 'id', 'categoria');
+            echo $form->field($model, 'categorias_id')->dropDownList($options, ['prompt' => 'Seleccione una Categoria']);
+            ?>
+        </div>
+    </div>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Buscar'), ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton(Yii::t('app', 'Cancelar'), ['class' => 'btn btn-outline-secondary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

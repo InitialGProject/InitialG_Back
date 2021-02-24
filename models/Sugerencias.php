@@ -12,7 +12,9 @@ use Yii;
  * @property string $comentario
  *
  * @property Usuarios $autor
+ * @author Juan Sanz
  */
+
 class Sugerencias extends \yii\db\ActiveRecord
 {
     /**

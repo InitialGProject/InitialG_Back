@@ -17,24 +17,30 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'titulo') ?>
+    <div class="row">
+        <div class="col-lg-9 col-md-9 col-sm-9 col-12">
+            <?= $form->field($model, 'titulo') ?>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-12">
+            <?php
+            //Utilizamos asArray para que sea más óptimo el acceso, al devolver una lista de arrays 
+            $options = ArrayHelper::map(Categorias::find()->asArray()->all(), 'id', 'categoria');
+            echo $form->field($model, 'categorias_id')->dropDownList($options, ['prompt' => 'Seleccione una Categoria']);
+            ?>
+        </div>
+    </div>
 
-    <?php
-    //Utilizamos asArray para que sea más óptimo el acceso, al devolver una lista de arrays 
-    $options = ArrayHelper::map(Categorias::find()->asArray()->all(), 'id', 'categoria');
-    echo $form->field($model, 'categorias_id')->dropDownList($options, ['prompt' => 'Seleccione una Categoria']);
-    ?>
-
-    <?= $form->field($model, 'fechaInicio') ?>
-
-    <?= $form->field($model, 'fechaFin') ?>
-
-    <?php // echo $form->field($model, 'entrada_id') 
-    ?>
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+            <?= $form->field($model, 'fechaInicio') ?>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+            <?= $form->field($model, 'fechaFin') ?>
+        </div>
+    </div>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Buscar'), ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton(Yii::t('app', 'Cancelar'), ['class' => 'btn btn-outline-secondary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

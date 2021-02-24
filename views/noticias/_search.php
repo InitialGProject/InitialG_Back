@@ -23,13 +23,20 @@ use app\componentes\THtml;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'titulo') ?>
+    <div class="row">
+        <div class="col-lg-5 col-md-5 col-sm-5 col-12">
+            <?= $form->field($model, 'titulo') ?>
+        </div>
 
-    <?= THtml::autocomplete($model, 'autor_id', ['/usuarios/lookup'], 'autor_id'); ?>
+        <div class="col-lg-5 col-md-5 col-sm-5 col-12">
+            <?= THtml::autocomplete($model, 'autor_id', ['/usuarios/lookup'], 'autor_id'); ?>
+        </div>
 
-    <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Buscar'), ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton(Yii::t('app', 'Cancelar'), ['class' => 'btn btn-outline-secondary']) ?>
+        <div class="col-lg-2 col-md-2 col-sm-2 col-12" style="margin-top: 2.5rem">
+            <div class="form-group" style="bottom: 0">
+                <?= Html::submitButton(Yii::t('app', 'Buscar'), ['class' => 'btn btn-primary']) ?>
+            </div>
+        </div>
     </div>
 
     <?php ActiveForm::end(); ?>
