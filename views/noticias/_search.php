@@ -1,7 +1,14 @@
 <?php
 
+/**
+ * @author Dan Nedelea
+*/
+
+// Helpers y widgets de Yii
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+
+// AutoComplete
 use app\componentes\THtml;
 
 /* @var $this yii\web\View */

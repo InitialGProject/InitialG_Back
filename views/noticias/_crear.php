@@ -1,9 +1,23 @@
 <?php
 
+/**
+ * @author Dan Nedelea
+*/
+
+// Helpers y widgets de Yii
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
+
+// Extensiones añadidas (Control de Fecha - Editor de Texto)
 use kartik\datecontrol\DateControl;
 use dosamigos\ckeditor\CKEditor;
+
+// AutoComplete
+use app\componentes\THtml;
+
+// Modelos Relacionados
+use app\models\Entradas;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Noticias */
@@ -30,8 +44,16 @@ use dosamigos\ckeditor\CKEditor;
     ]) ?>
 
     <!-- subida imagen------------------------------------------------------------------>
-    <?= $form->field($model, 'imagen')->fileInput() ?>
+    <?= $form->field($model, 'imageFile')->fileInput() ?>
     <!---------------------------------------------------------------------------------->
+
+    <?= THtml::autocomplete($model, 'autor_id', ['/usuarios/lookup'], 'autor_id'); ?>
+
+    <?php
+    //Utilizamos asArray para que sea más óptimo el acceso, al devolver una lista de arrays
+    $options = ArrayHelper::map(Entradas::find()->asArray()->all(), 'id', 'titulo');
+    echo $form->field($model, 'entradas_id')->dropDownList($options, ['prompt' => 'Seleccione una Entrada del Foro']);
+    ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Crear'), ['class' => 'btn btn-success']) ?>

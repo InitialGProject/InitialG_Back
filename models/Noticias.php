@@ -20,6 +20,7 @@ use yii\web\UploadedFile;
  * @property Usuarios $autor
  * @property Entradas $entradas
  */
+
 class Noticias extends \yii\db\ActiveRecord
 {
 
@@ -76,7 +77,7 @@ class Noticias extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'autor_id' => Yii::t('app', 'Nombre del autor'),
-            'entradas_id' => Yii::t('app', 'Entradas ID'),
+            'entradas_id' => Yii::t('app', 'Entrada del Foro Relacionada'),
             'titulo' => Yii::t('app', 'Titulo'),
             'descripcion' => Yii::t('app', 'Descripcion'),
             'texto' => Yii::t('app', 'Texto'),

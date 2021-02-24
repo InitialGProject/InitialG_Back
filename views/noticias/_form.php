@@ -1,9 +1,23 @@
 <?php
 
+/**
+ * @author Dan Nedelea
+*/
+
+// Helpers y widgets de Yii
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
+
+// Extensiones añadidas (Control de Fecha - Editor de Texto)
 use kartik\datecontrol\DateControl;
 use dosamigos\ckeditor\CKEditor;
+
+// AutoComplete
+use app\componentes\THtml;
+
+// Modelos Relacionados
+use app\models\Entradas;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Noticias */
@@ -14,9 +28,13 @@ use dosamigos\ckeditor\CKEditor;
 
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
-    <?= $form->field($model, 'autor_id')->textarea(['rows' => 1]) ?>
+    <?= THtml::autocomplete($model, 'autor_id', ['/usuarios/lookup'], 'autor_id'); ?>
 
-    <?= $form->field($model, 'entradas_id')->textarea(['rows' => 1]) ?>
+    <?php
+    //Utilizamos asArray para que sea más óptimo el acceso, al devolver una lista de arrays
+    $options = ArrayHelper::map(Entradas::find()->asArray()->all(), 'id', 'titulo');
+    echo $form->field($model, 'entradas_id')->dropDownList($options, ['prompt' => 'Seleccione una Entrada del Foro']);
+    ?>
 
     <?= $form->field($model, 'titulo')->textarea(['rows' => 1]) ?>
 

@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @author Dan Nedelea
+*/
+
+// Helpers y widgets de Yii
 use yii\helpers\Html;
 use yii\widgets\ListView;
 

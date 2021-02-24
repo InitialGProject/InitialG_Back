@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @author Dan Nedelea
+*/
+
 /* @var $this yii\web\View */
 /* @var $model app\models\Noticias */
 
