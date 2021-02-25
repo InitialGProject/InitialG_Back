@@ -24,7 +24,7 @@ $this->title = Yii::t('app', 'Usuarios');
             <?=
             Html::a(Yii::t('app', 'Crear Usuario'), ['create'], ['class' => 'btn btn-success']),
             Html::submitButton('Enviar', ['class' => 'btn btn-info',]),
-            Html::dropDownList('accion', '', ['' => 'Marcar selecc. como: ', 'A' => 'Aceptadas', 'D' => 'Denegado', 'P' => 'Pendientes'], ['class' => 'dropdown',]);
+            Html::dropDownList('accion', '', ['' => 'Marcar selecc. como: ', 'A' => 'Aceptadas', 'D' => 'Denegado'], ['class' => 'dropdown',]);
 
             ?>
 
