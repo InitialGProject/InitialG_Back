@@ -209,7 +209,7 @@ class Usuarios extends \yii\db\ActiveRecord implements \yii\web\IdentityInterfac
 
     public function fields()
     {
-        return array_merge(parent::fields(), ['TipoUser']);
+        return array_merge(parent::fields(), ['Estado', 'TipoUser']);
     }
 
     public static function lookupEstado($condition = '')

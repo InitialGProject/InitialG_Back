@@ -54,13 +54,6 @@ use yii\helpers\Html;
                         </li>
                         <!-- Menu Footer-->
                         <li class="user-footer">
-                            <div class="pull-left">
-                                <?= Html::a(
-                                    'Administrar Users',
-                                    ['/usuarios/index'],
-                                    ['data-method' => 'post', 'class' => 'btn btn-default btn-flat']
-                                ) ?>
-                            </div>
                             <div class="pull-right">
                                 <?php
                                 if (Yii::$app->user->isGuest) {

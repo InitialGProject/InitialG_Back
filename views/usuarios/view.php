@@ -30,9 +30,8 @@ $this->title = $model->nombre;
             'nombre',
             'correo:ntext',
             'edad',
-            'password',
             'genero',
-            'estado',
+            'Estado',
             'suscripcion',
             'avatar:ntext',
             'TipoUser'

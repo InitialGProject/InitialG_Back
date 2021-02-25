@@ -37,14 +37,14 @@ $this->title = Yii::t('app', 'Usuarios');
                     'nombre',
                     'correo:ntext',
                     //'edad',
-                    'password',
+                    // 'password',
                     //'genero',
                     [
                         'attribute' => 'estado',
                         'label' => 'Estado',
                         'filter' => app\models\Usuarios::lookupEstado(),
                         'value' => function ($data) {
-                            return $data->estado;
+                            return $data->Estado;
                         }
                     ],
                     [

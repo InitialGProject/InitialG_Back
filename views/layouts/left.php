@@ -53,6 +53,7 @@
                         ],
                     ],
                     ['label' => 'Sugerencias', 'url' => ['/sugerencias/index'], 'hidden' => Yii::$app->user->isGuest],
+                    ['label' => 'Administrar Usuarios', 'url' => ['/usuarios/index'], 'hidden' => Yii::$app->user->isGuest],
                     ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
                     // [
                     //     'label' => 'Some tools',
