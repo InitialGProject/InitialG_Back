@@ -2,9 +2,9 @@
 
 /**
  * @author Juan Sanz
-*/
+ */
 
-// Helpers y Widgets de Yii
+// Helpers y Widgets
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
@@ -15,6 +15,7 @@ use kartik\datecontrol\DateControl;
 
 // Modelos Relacionados
 use app\models\Usuarios;
+use app\models\Entradas;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Comentarios */
@@ -24,6 +25,9 @@ use app\models\Usuarios;
 <div class="comentarios-form">
 
     <?php $form = ActiveForm::begin(); ?>
+
+    <?php $options = ArrayHelper::map(Entradas::find()->asArray()->all(), 'id', 'titulo'); ?>
+    <?= $form->field($model, 'entradas_id')->dropDownList($options, ['prompt' => 'Seleccionar Entrada']); ?>
 
     <?php $options = ArrayHelper::map(Usuarios::find()->asArray()->all(), 'id', 'nombre'); ?>
     <?= $form->field($model, 'usuario_id')->dropDownList($options, ['prompt' => 'Seleccionar Creador']); ?>
@@ -37,10 +41,8 @@ use app\models\Usuarios;
         'preset' => 'full'
     ]) ?>
 
-    <?= $form->field($model, 'estado')->textInput(['maxlength' => true]) ?>
-
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Actualizar'), ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Crear'), ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

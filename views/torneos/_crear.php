@@ -45,9 +45,9 @@ use app\models\Entradas;
         </div>
     </div>
 
-    <?= $form->field($model, 'fechaFin')->textInput() ?>
-
-    <?= $form->field($model, 'imagen')->textInput() ?>
+    <!-- subida imagen------------------------------------------------------------------>
+    <?= $form->field($model, 'imageFile')->fileInput() ?>
+    <!---------------------------------------------------------------------------------->
 
     <?php
     //Utilizamos asArray para que sea más óptimo el acceso, al devolver una lista de arrays 

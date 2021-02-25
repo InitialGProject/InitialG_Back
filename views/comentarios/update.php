@@ -1,18 +1,18 @@
 <?php
 
-use yii\helpers\Html;
+/**
+ * @author Juan Sanz
+*/
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Comentarios */
 
-$this->title = Yii::t('app', 'Update Comentarios: {name}', [
-    'name' => $model->id,
+$this->title = Yii::t('app', 'Actualizar Comentario: {name}', [
+    'name' => $model->contenido,
 ]);
 ?>
 
 <div class="comentarios-update">
-
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', [
         'model' => $model,

@@ -1,7 +1,20 @@
 <?php
 
+/**
+ * @author Juan Sanz
+ */
+
+// Helpers y Widgets de Yii
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+
+// Extensiones
+use kartik\datecontrol\DateControl;
+
+// AutoCompletar
+use app\componentes\THtml;
+use app\models\Entradas;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\ComentariosSearch */
@@ -15,21 +28,19 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'id') ?>
+    <?php $options = ArrayHelper::map(Entradas::find()->asArray()->all(), 'id', 'titulo'); ?>
+    <?= $form->field($model, 'entradas_id')->dropDownList($options, ['prompt' => 'Seleccionar Entrada']); ?>
 
-    <?= $form->field($model, 'entradas_id') ?>
+    <?= THtml::autocomplete($model, 'usuario_id', ['/usuarios/lookup'], 'usuario_id'); ?>
 
-    <?= $form->field($model, 'usuario_id') ?>
-
-    <?= $form->field($model, 'creado') ?>
+    <?= $form->field($model, 'creado')->widget(DateControl::classname(), [
+        'type' => DateControl::FORMAT_DATETIME
+    ]); ?>
 
     <?= $form->field($model, 'contenido') ?>
 
-    <?php // echo $form->field($model, 'estado') ?>
-
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton(Yii::t('app', 'Reset'), ['class' => 'btn btn-outline-secondary']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Buscar'), ['class' => 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

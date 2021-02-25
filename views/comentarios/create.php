@@ -1,18 +1,18 @@
 <?php
 
-use yii\helpers\Html;
+/**
+ * @author Juan Sanz
+*/
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Comentarios */
 
-$this->title = Yii::t('app', 'Create Comentarios');
+$this->title = Yii::t('app', 'Hacer Comentario');
 ?>
 
 <div class="comentarios-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <?= $this->render('_form', [
+    <?= $this->render('_crear', [
         'model' => $model,
     ]) ?>
 

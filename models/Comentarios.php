@@ -16,7 +16,10 @@ use Yii;
  *
  * @property Entradas $entradas
  * @property Usuarios $usuario
+ * 
+ * @author Juan Sanz
  */
+
 class Comentarios extends \yii\db\ActiveRecord
 {
     /**
@@ -50,8 +53,8 @@ class Comentarios extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'entradas_id' => Yii::t('app', 'Entradas ID'),
-            'usuario_id' => Yii::t('app', 'Usuario ID'),
+            'entradas_id' => Yii::t('app', 'Entrada Relacionada'),
+            'usuario_id' => Yii::t('app', 'Nombre del Autor'),
             'creado' => Yii::t('app', 'Creado'),
             'contenido' => Yii::t('app', 'Comentario Realizado'),
             'estado' => Yii::t('app', 'Estado'),
