@@ -15,7 +15,8 @@ $this->title = Yii::t('app', 'Usuarios');
     if (Yii::$app->user->isGuest) {
         echo ("No tienes acceso a este sitio");
     } else {
-        if (Yii::$app->user->identity->TipoUser == 'Admin') { ?>
+        if (Yii::$app->user->identity->TipoUser == 'Admin') { 
+            $dataProvider->pagination = array('pageSize' => 10); ?>
 
             <p>
                 <?= Html::beginForm(['usuarios/actualizar'], 'post'); ?>
@@ -23,7 +24,7 @@ $this->title = Yii::t('app', 'Usuarios');
             <?=
             Html::a(Yii::t('app', 'Crear Usuario'), ['create'], ['class' => 'btn btn-success']),
             Html::submitButton('Enviar', ['class' => 'btn btn-info',]),
-            Html::dropDownList('accion', '', ['' => 'Marcar selecc. como: ', 'A' => 'Aceptadas', 'D' => 'Denegado', 'P' => 'Pendientes'], ['class' => 'dropdown',]);
+            Html::dropDownList('accion', '', ['' => 'Marcar selecc. como: ', 'A' => 'Aceptadas', 'D' => 'Denegado'], ['class' => 'dropdown',]);
 
             ?>
 
