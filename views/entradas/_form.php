@@ -1,9 +1,13 @@
 <?php
 
+/**
+ * @author Juan Sanz
+ */
+
 // Modelos relacionados
 use app\models\Categorias;
 use app\models\Juegos;
-
+use dosamigos\ckeditor\CKEditor;
 // Helpers de YII
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
@@ -41,7 +45,10 @@ use kartik\datecontrol\DateControl;
     echo $form->field($model, 'categorias_id')->dropDownList($options, ['prompt' => 'Seleccione una Categoria']);
     ?>
 
-    <?= $form->field($model, 'contenido')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'contenido')->widget(CKEditor::className(), [
+        'options' => ['rows' => 6],
+        'preset' => 'full'
+    ]) ?>
 
     <?php
     if (Yii::$app->user->identity->TipoUser == 'Admin') {

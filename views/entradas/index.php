@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * @author Juan Sanz
+*/
+
+// Helpers y Widgets de Yii
+use yii\helpers\Html;
 use yii\widgets\ListView;
 
 $dataProvider->pagination = array('pageSize' => 2);
@@ -13,6 +19,8 @@ $this->title = Yii::t('app', 'Entradas');
 
 <div class="entradas-index">
     <p>
+        <?= Html::a(Yii::t('app', 'Crear Entradas'), ['create'], ['class' => 'btn btn-success']) ?>
+
         <?php echo $this->render('_search', ['model' => $searchModel]); ?>
 
         <?= ListView::widget([

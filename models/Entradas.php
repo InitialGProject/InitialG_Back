@@ -22,7 +22,10 @@ use Yii;
  * @property Juegos $juego
  * @property Noticias[] $noticias
  * @property Torneos[] $torneos
+ * 
+ * @author Juan Sanz
  */
+
 class Entradas extends \yii\db\ActiveRecord
 {
     /**
@@ -58,7 +61,7 @@ class Entradas extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'usuario_id' => Yii::t('app', 'Usuario ID'),
+            'usuario_id' => Yii::t('app', 'Creador'),
             'juego_id' => Yii::t('app', 'Juego Relacionado'),
             'titulo' => Yii::t('app', 'Titulo'),
             'creado' => Yii::t('app', 'Fecha y Hora de Publicacion'),

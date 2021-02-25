@@ -7,6 +7,7 @@ use yii\widgets\ActiveForm;
 use kartik\datecontrol\DateControl;
 use app\componentes\THtml;
 use app\models\Juegos;
+use dosamigos\ckeditor\CKEditor;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Entradas */
@@ -37,12 +38,15 @@ use app\models\Juegos;
     echo $form->field($model, 'categorias_id')->dropDownList($options, ['prompt' => 'Seleccione una Categoria']);
     ?>
 
-    <?= $form->field($model, 'contenido')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'contenido')->widget(CKEditor::className(), [
+        'options' => ['rows' => 6],
+        'preset' => 'full'
+    ]) ?>
 
     <?= THtml::autocomplete($model, 'usuario_id', ['/usuarios/lookup'], 'usuario'); ?>
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Actualizar'), ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Crear'), ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
