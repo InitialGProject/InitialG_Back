@@ -52,6 +52,21 @@ $this->title = Yii::t('app', 'Usuarios');
                         'label' => 'Suscripcion',
                         'filter' => app\models\Usuarios::lookupSuscripcion(),
                         'value' => function ($data) {
+                            switch($data->suscripcion){
+                                case 1:
+                                    return "Registrado";
+                                    break;
+                                case 2:
+                                    return "Gamer";
+                                    break;
+                                case 3:
+                                    return "Empresa";
+                                    break;
+                                case 5:
+                                    return "Administrador";
+                                    break;
+
+                            }
                             return $data->suscripcion;
                         },
                     ],
