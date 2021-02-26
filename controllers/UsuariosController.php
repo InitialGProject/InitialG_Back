@@ -12,7 +12,7 @@ use app\models\UsuariosSearch;
 
 /**
  * 
- * @author Alejandro Lopez - Juan Sanz
+ * @author Alejandro Lopez
  * UsuariosController implements the CRUD actions for Usuarios model.
  * 
  */
@@ -29,7 +29,7 @@ class UsuariosController extends Controller
         foreach (Usuarios::findAll($idselec) as $entrada) {
             $entrada->estado = $estado;
             if (!$entrada->save()) {
-                //Tratar el error, añadiendo mensajes a una lista, o lo que se desee
+                //error de subida
             }
         }
         $this->redirect(['usuarios/index']);
