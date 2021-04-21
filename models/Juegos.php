@@ -103,6 +103,14 @@ class Juegos extends \yii\db\ActiveRecord
         ];
     }
 
+    public static function tipo($data){
+        if($data=='AC'){
+            return "Actual";
+        }else{
+            return "Retro";
+        }
+    }
+
     /**
      * Gets query for [[Entradas]].
      *

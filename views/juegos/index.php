@@ -47,9 +47,9 @@ $this->title = Yii::t('app', 'Juegos');
                         [
                             'attribute' => 'tipo',
                             'label' => 'Tipo',
-                            'filter' => app\models\Juegos::lookup(),
+                            'filter'=>['AC'=>'Actual','RE'=>'Retro'],
                             'value' => function ($data) {
-                                return $data->tipo;
+                                return app\models\Juegos::tipo( $data->tipo);
                             }
                         ],
                         // 'tipo:ntext',
@@ -57,7 +57,10 @@ $this->title = Yii::t('app', 'Juegos');
                             'label' => 'Imagen',
                             'format' => ['image', ['width' => '100', 'height' => '100']],
                             'value' => function ($data) {
-                                return ('http://alum3.iesfsl.org/assets/img/juegos/' . $data->imagen);
+                                //Para Servidor 
+                                //return ('http://alum3.iesfsl.org/assets/img/juegos/' . $data->imagen);
+                                //Para local
+                                return ('uploads/juegos/' . $data->imagen);
                             }
                         ],
 

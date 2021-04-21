@@ -42,7 +42,7 @@ $this->title = Yii::t('app', 'Usuarios');
                     [
                         'attribute' => 'estado',
                         'label' => 'Estado',
-                        'filter' => app\models\Usuarios::lookupEstado(),
+                        'filter'=>['A'=>'Aceptado','D'=>'Denegado','P'=>'Pendiente'],
                         'value' => function ($data) {
                             return $data->Estado;
                         }
@@ -50,7 +50,7 @@ $this->title = Yii::t('app', 'Usuarios');
                     [
                         'attribute' => 'suscripcion',
                         'label' => 'Suscripcion',
-                        'filter' => app\models\Usuarios::lookupSuscripcion(),
+                        'filter'=>[1=>'Registrado',2=>'Gamer',3=>'Empresa', 5=>'Administrador'],
                         'value' => function ($data) {
                             switch($data->suscripcion){
                                 case 1:

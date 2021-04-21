@@ -51,7 +51,7 @@ class JuegosController extends Controller
         $results = [];
         foreach (Juegos::find()->andwhere("(creador like :q )", [':q' => '%' . $term . '%'])->asArray()->all() as $model) {
             $results[] = [
-                'id' => $model['id'],
+                'id' => $model['creador'],
                 'label' => $model['creador'],
             ];
             return \yii\helpers\Json::encode($results);

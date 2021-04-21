@@ -51,8 +51,8 @@ use dosamigos\ckeditor\CKEditor;
 
     <?= $form->field($model, 'ruta')->textarea(['rows' => 1]) ?>
 
-    <!--Autocom------------------------------------------------------------------------->
-    <?= THtml::autocomplete($model, 'creador', ['/juegos/lookup'], 'id'); ?>
+    <!-- auto complete------------------------------------------------------------------>
+    <?= THtml::autocomplete($model, 'creador', ['/juegos/lookup'], 'creador'); ?>
     <!---------------------------------------------------------------------------------->
 
     <!-- subida imagen------------------------------------------------------------------>

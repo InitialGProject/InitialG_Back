@@ -5,6 +5,8 @@
 */
 
 // Helpers y widgets de Yii
+
+use app\componentes\THtml;
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
@@ -45,8 +47,9 @@ use app\models\UploadForm;
 
     <?= $form->field($model, 'ruta')->textarea(['rows' => 1]) ?>
 
-    <?php $options = ArrayHelper::map(Juegos::find()->asArray()->all(), 'id', 'creador'); ?>
-    <?= $form->field($model, 'creador')->dropDownList($options, ['prompt' => 'Seleccionar Creador']); ?>
+    <!-- auto complete------------------------------------------------------------------>
+    <?= THtml::autocomplete($model, 'creador', ['/juegos/lookup'], 'creador'); ?>
+    <!---------------------------------------------------------------------------------->
 
     <!-- subida imagen------------------------------------------------------------------>
     <?= $form->field($model, 'imageFile')->fileInput() ?>

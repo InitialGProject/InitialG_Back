@@ -44,8 +44,11 @@ $this->title = $model->titulo;
                 'label' => 'Imagen',
                 'format' => ['image', ['width' => '300', 'height' => '200']],
                 'value' => function ($data) {
-                    return ('http://alum3.iesfsl.org/assets/img/juegos/' . $data->imagen);
-                }
+                  //Para Servidor 
+                  //return ('http://alum3.iesfsl.org/assets/img/juegos/' . $data->imagen);
+                  //Para local
+                  return ('uploads/juegos/' . $data->imagen);
+              }
             ],
             [
                 'attribute' => 'categoria_id',
@@ -54,7 +57,13 @@ $this->title = $model->titulo;
                     return $data->categoria->categoria;
                 }
             ],
-            'tipo',
+            [
+                'attribute' => 'tipo',
+                'label' => 'Tipo',
+                'value' => function ($data) {
+                    return app\models\Juegos::tipo( $data->tipo);
+                }
+            ],            
             //'ruta:ntext',
             'creador:ntext',
             //'sugerencia_id',
