@@ -3,6 +3,10 @@
 namespace app\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
+
+//
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "productos".
@@ -23,6 +27,25 @@ use Yii;
  */
 class Productos extends \yii\db\ActiveRecord
 {
+    //SUBIR IMAGENES
+    /**
+     * @var UploadedFile
+     */
+    public $imageFile;
+
+    public function upload()
+    {
+        if ($this->validate()) {
+            $this->imagen=$this->imageFile->baseName . '.' . $this->imageFile->extension;
+            // $this->imageFile->saveAs('uploads/' .$this->imagen);
+            
+            return true;
+        } else {
+            return false;
+        }
+    }
+    //FIN SUBIR IMAGENES
+    
     /**
      * {@inheritdoc}
      */
@@ -37,11 +60,16 @@ class Productos extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['cat_id', 'nombre', 'precio', 'imagen', 'descripcion'], 'required'],
+            [['cat_id', 'nombre', 'precio', 'descripcion'], 'required'],
             [['cat_id', 'IVA', 'stock', 'disponible', 'estado'], 'integer'],
             [['nombre', 'imagen', 'descripcion'], 'string'],
+            [['disponible'], 'default', 'value' => '0'],
+            [['estado'], 'default', 'value' => '1'],
             [['precio'], 'number'],
             [['cat_id'], 'exist', 'skipOnError' => true, 'targetClass' => ProductosCategoria::className(), 'targetAttribute' => ['cat_id' => 'id']],
+        
+            //subir foto
+            [['imageFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
         ];
     }
 

@@ -9,11 +9,38 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
+//Subir imagen------------------------------------------    
+use app\models\UploadForm;
+use yii\web\UploadedFile;
+
 /**
  * ProductosController implements the CRUD actions for Productos model.
  */
 class ProductosController extends Controller
 {
+
+//Subir imagen//////////////////////////////////////////////////////////////
+
+    /**
+     * @author Alejandro Lopez
+     * Subida de ficheros imagen
+     */
+    public function actionUpload()
+    {
+        $model = new UploadForm();
+
+        if (Yii::$app->request->isPost) {
+            $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+            if ($model->upload()) {
+                // el archivo se subió exitosamente
+                return;
+            }
+        }
+
+        return $this->render('upload', ['model' => $model]);
+    }
+    //////////////////////////////////////////////////////////////////////////////
+
     /**
      * {@inheritdoc}
      */
@@ -66,8 +93,14 @@ class ProductosController extends Controller
     {
         $model = new Productos();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+
+            $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+            if ($model->upload() && $model->save()) {
+                $model->imageFile->saveAs('uploads/tienda/' . $model->imagen);
+
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         }
 
         return $this->render('create', [
@@ -85,11 +118,19 @@ class ProductosController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        if ($model->load(Yii::$app->request->post())) {
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+            if ($model->upload() && $model->save()) {
+                $model->imageFile->saveAs('uploads/tienda/' . $model->imagen);
+
+                // if($model->save()){
+                // el archivo se subió exitosamente
+
+                return $this->redirect(['view', 'id' => $model->id]);
+                // }
+            }
         }
-
         return $this->render('update', [
             'model' => $model,
         ]);

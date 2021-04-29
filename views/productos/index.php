@@ -36,15 +36,16 @@ if (Yii::$app->user->isGuest) {
                         'filter' => app\models\ProductosCategoria::lookup(),
                         'value' => function ($data) {
                             return $data->cat->nombre;
-                            //return var_dump ($data);
-
                         }
                     ],
                     'nombre:ntext',
-                    'precio',
-                    'IVA',
-                    //'imagen:ntext',
-                    //'descripcion:ntext',
+                    [
+                        'attribute' => 'precio',
+                        'label' => 'Precio',
+                        'value' => function ($data) {
+                            return $data->precio." €";
+                        }
+                    ],                    
                     //'stock',
                     [
                         'attribute' => 'disponible',
@@ -60,6 +61,13 @@ if (Yii::$app->user->isGuest) {
                         'filter'=>['0'=>'Normal','1'=>'Nuevo','2'=>'Oferta'],
                         'value' => function ($data) {
                             return app\models\Productos::Estado( $data->estado);
+                        }
+                    ],
+                    [
+                        'label' => '',
+                        'format' => ['image', ['width' => '50', 'height' => '50']],
+                        'value' => function ($data) {
+                            return ('http://alum3.iesfsl.org/assets/img/tienda/' . $data->imagen);
                         }
                     ],
 
