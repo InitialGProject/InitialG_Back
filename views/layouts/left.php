@@ -41,6 +41,10 @@
                     ['label' => 'Contenidos', 'options' => ['class' => 'header']],
                     ['label' => 'Noticias', 'icon' => 'file-code-o', 'url' => ['/noticias/index']],
                     ['label' => 'Videos', 'icon' => 'dashboard', 'url' => ['/videos/index']],
+                    
+                    //Tienda
+                    ['label' => 'Productos Tienda', 'icon' => 'shopping-cart', 'url' => ['/productos/index']],
+
                     ['label' => 'Juegos', 'icon' => 'dashboard', 'url' => ['/juegos/index']],
                     ['label' => 'Torneos', 'icon' => 'dashboard', 'url' => ['/torneos/index']],
                     [
