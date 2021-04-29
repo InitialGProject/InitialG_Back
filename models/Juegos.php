@@ -65,7 +65,7 @@ class Juegos extends \yii\db\ActiveRecord
             [['titulo', 'descipcion', 'categoria_id', 'tipo', 'ruta'], 'required'],
             [['categoria_id'], 'integer'],
             [['tipo'], 'string', 'max' => 2],
-            [['categoria_id'], 'exist', 'skipOnError' => true, 'targetClass' => Categorias::className(), 'targetAttribute' => ['categoria_id' => 'id']],
+            [['categoria_id'], 'exist', 'skipOnError' => true, 'targetClass' => Categorias::class, 'targetAttribute' => ['categoria_id' => 'id']],
             
             //subir foto
             [['imageFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
@@ -118,7 +118,7 @@ class Juegos extends \yii\db\ActiveRecord
      */
     public function getEntradas()
     {
-        return $this->hasMany(Entradas::className(), ['juego_id' => 'id']);
+        return $this->hasMany(Entradas::class, ['juego_id' => 'id']);
     }
 
     /**
@@ -128,7 +128,7 @@ class Juegos extends \yii\db\ActiveRecord
      */
     public function getCategoria()
     {
-        return $this->hasOne(Categorias::className(), ['id' => 'categoria_id']);
+        return $this->hasOne(Categorias::class, ['id' => 'categoria_id']);
     }
 
     public static function lookup($condition=''){

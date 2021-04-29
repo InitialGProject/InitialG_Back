@@ -66,7 +66,7 @@ class Productos extends \yii\db\ActiveRecord
             [['disponible'], 'default', 'value' => '0'],
             [['estado'], 'default', 'value' => '1'],
             [['precio'], 'number'],
-            [['cat_id'], 'exist', 'skipOnError' => true, 'targetClass' => ProductosCategoria::className(), 'targetAttribute' => ['cat_id' => 'id']],
+            [['cat_id'], 'exist', 'skipOnError' => true, 'targetClass' => ProductosCategoria::class, 'targetAttribute' => ['cat_id' => 'id']],
         
             //subir foto
             [['imageFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
@@ -99,7 +99,7 @@ class Productos extends \yii\db\ActiveRecord
      */
     public function getCat()
     {
-        return $this->hasOne(ProductosCategoria::className(), ['id' => 'cat_id']);
+        return $this->hasOne(ProductosCategoria::class, ['id' => 'cat_id']);
     }
 
     /**
@@ -109,7 +109,7 @@ class Productos extends \yii\db\ActiveRecord
      */
     public function getProductosFacturas()
     {
-        return $this->hasMany(ProductosFactura::className(), ['id_producto' => 'id']);
+        return $this->hasMany(ProductosFactura::class, ['id_producto' => 'id']);
     }
 
     public static function Activo($data){

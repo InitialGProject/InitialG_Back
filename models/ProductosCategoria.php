@@ -52,7 +52,7 @@ class ProductosCategoria extends \yii\db\ActiveRecord
      */
     public function getProductos()
     {
-        return $this->hasMany(Productos::className(), ['cat_id' => 'id']);
+        return $this->hasMany(Productos::class, ['cat_id' => 'id']);
     }
 
     public static function lookup($condition=''){
