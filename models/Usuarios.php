@@ -186,16 +186,16 @@ class Usuarios extends \yii\db\ActiveRecord implements \yii\web\IdentityInterfac
     public function getTipoUser()
     {
         switch ($this->suscripcion) {
-            case '1':
+            case '0':
                 return "Registrado";
                 break;
-            case '2':
+            case '1':
                 return  "Basico";
                 break;
-            case '3':
+            case '2':
                 return  "Gamer";
                 break;
-            case '4':
+            case '3':
                 return "Empresa";
                 break;
             case '5':

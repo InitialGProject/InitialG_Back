@@ -27,7 +27,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'estado')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'suscripcion')->textInput() ?>
+    <?= $form->field($model, 'suscripcion')->dropdownList(
+        ['0' => 'Registrado','1' => 'Basico', '2' => 'Gamer', '3' => 'Empresa', '5' => 'Admin'],
+        ['prompt' => 'Seleccionar']
+    );
+    ?>
+    
+    <!-- <?= $form->field($model, 'suscripcion')->textInput() ?> -->
 
     <?= $form->field($model, 'avatar')->textarea(['rows' => 1]) ?>
 

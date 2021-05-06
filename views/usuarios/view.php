@@ -32,7 +32,7 @@ $this->title = $model->nombre;
             'edad',
             'genero',
             'Estado',
-            'suscripcion',
+            //'suscripcion',
             'avatar:ntext',
             'TipoUser'
         ],
