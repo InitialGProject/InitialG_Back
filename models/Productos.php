@@ -36,7 +36,9 @@ class Productos extends \yii\db\ActiveRecord
     public function upload()
     {
         if ($this->validate()) {
-            $this->imagen=$this->imageFile->baseName . '.' . $this->imageFile->extension;
+            if($this->imageFile){
+                $this->imagen=$this->imageFile->baseName . '.' . $this->imageFile->extension;
+            }
             // $this->imageFile->saveAs('uploads/' .$this->imagen);
             
             return true;
@@ -69,7 +71,7 @@ class Productos extends \yii\db\ActiveRecord
             [['cat_id'], 'exist', 'skipOnError' => true, 'targetClass' => ProductosCategoria::class, 'targetAttribute' => ['cat_id' => 'id']],
         
             //subir foto
-            [['imageFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
+            [['imageFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg'],
         ];
     }
 

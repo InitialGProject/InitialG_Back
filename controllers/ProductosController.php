@@ -122,7 +122,8 @@ class ProductosController extends Controller
 
             $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
             if ($model->upload() && $model->save()) {
-                $model->imageFile->saveAs('uploads/tienda/' . $model->imagen);
+                if($model->imageFile!=null)
+                    $model->imageFile->saveAs('uploads/tienda/' . $model->imagen);
 
                 // if($model->save()){
                 // el archivo se subió exitosamente
