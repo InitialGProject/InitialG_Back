@@ -127,7 +127,8 @@ class NoticiasController extends Controller
 
             $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
             if ($model->upload() && $model->save()) {
-                $model->imageFile->saveAs('uploads/noticias/' . $model->imagen);
+                if($model->imageFile!=null)
+                    $model->imageFile->saveAs('uploads/noticias/' . $model->imagen);
 
                 // if($model->save()){
                 // el archivo se subió exitosamente

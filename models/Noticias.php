@@ -35,9 +35,9 @@ class Noticias extends \yii\db\ActiveRecord
     public function upload()
     {
         if ($this->validate()) {
-            $this->imagen = $this->imageFile->baseName . '.' . $this->imageFile->extension;
-            // $this->imageFile->saveAs('uploads/' .$this->imagen);
-
+            if($this->imageFile)
+                $this->imagen = $this->imageFile->baseName . '.' . $this->imageFile->extension;
+                // $this->imageFile->saveAs('uploads/' .$this->imagen);
             return true;
         } else {
             return false;
@@ -58,7 +58,7 @@ class Noticias extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['autor_id', 'entradas_id', 'titulo', 'descripcion', 'texto', 'imageFile'], 'required'],
+            [['autor_id', 'entradas_id', 'titulo', 'descripcion', 'texto'], 'required'],
             [['autor_id', 'entradas_id'], 'integer'],
             [['titulo', 'descripcion', 'texto', 'imagen'], 'string'],
             [['fecha'], 'safe'],
@@ -66,7 +66,7 @@ class Noticias extends \yii\db\ActiveRecord
             [['entradas_id'], 'exist', 'skipOnError' => true, 'targetClass' => Entradas::className(), 'targetAttribute' => ['entradas_id' => 'id']],
 
             //subir foto
-            [['imageFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
+            [['imageFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg'],
 
         ];
     }

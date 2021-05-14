@@ -21,7 +21,7 @@ $this->title = $model->titulo;
 
         <div class="row">
             <div class="col-lg-6">
-                <img src="<?= Yii::$app->request->baseUrl."/uploads/noticias/" . $model->imagen ?>" class=" img-responsive" style="max-width: 40rem; width: 100%">
+                <img src="<?= Yii::$app->request->baseUrl."http://alum3.iesfsl.org/assets/img/noticias/" . $model->imagen ?>" class=" img-responsive" style="max-width: 40rem; width: 100%">
             </div>
             <div class="col-lg-6">
                 <p>
