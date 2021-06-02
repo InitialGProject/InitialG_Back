@@ -229,4 +229,13 @@ class Usuarios extends \yii\db\ActiveRecord implements \yii\web\IdentityInterfac
             'suscripcion'
         );
     }
+
+    public static function lookup($condition = '')
+    {
+        return ArrayHelper::map(
+            self::find()->where($condition)->all(),
+            'id',
+            'nombre',
+        );
+    }
 }

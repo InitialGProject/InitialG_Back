@@ -41,9 +41,21 @@
                     ['label' => 'Contenidos', 'options' => ['class' => 'header']],
                     ['label' => 'Noticias', 'icon' => 'file-code-o', 'url' => ['/noticias/index']],
                     ['label' => 'Videos', 'icon' => 'dashboard', 'url' => ['/videos/index']],
-                    
+
                     //Tienda
                     ['label' => 'Productos Tienda', 'icon' => 'shopping-cart', 'url' => ['/productos/index']],
+                    // Chat
+                    [
+                        'label' => 'InitialGChat',
+                        'icon' => 'comment',
+                        'url' => '#',
+                        'items' => [
+                            ['label' => 'Chat', 'icon' => 'share', 'url' => ['/chat/index']],
+                            ['label' => 'Mensajes', 'icon' => 'share', 'url' => ['/mensaje/index']],
+                            ['label' => 'Chats abiertos', 'icon' => 'share', 'url' => ['/chatuser/index']],
+                            ['label' => 'Amigos', 'icon' => 'share', 'url' => ['/useruser/index']]
+                        ],
+                    ],
 
                     ['label' => 'Juegos', 'icon' => 'dashboard', 'url' => ['/juegos/index']],
                     ['label' => 'Torneos', 'icon' => 'dashboard', 'url' => ['/torneos/index']],
