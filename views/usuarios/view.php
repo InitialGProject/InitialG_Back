@@ -26,15 +26,39 @@ $this->title = $model->nombre;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
             'nombre',
             'correo:ntext',
             'edad',
             'genero',
-            'Estado',
-            //'suscripcion',
-            'avatar:ntext',
-            'TipoUser'
+            [
+                'attribute' => 'estado',
+                'label' => 'Estado',
+                'value' => function ($data) {
+                    return $data->Estado;
+                }
+            ],
+            [
+                'attribute' => 'suscripcion',
+                'label' => 'Suscripcion',
+                'value' => function ($data) {
+                    switch($data->suscripcion){
+                        case 1:
+                            return "Registrado";
+                            break;
+                        case 2:
+                            return "Gamer";
+                            break;
+                        case 3:
+                            return "Empresa";
+                            break;
+                        case 5:
+                            return "Administrador";
+                            break;
+
+                    }
+                    return $data->suscripcion;
+                },
+            ],            'avatar:ntext',
         ],
     ]) ?>
 
