@@ -44,6 +44,7 @@
 
                     //Tienda
                     ['label' => 'Productos Tienda', 'icon' => 'shopping-cart', 'url' => ['/productos/index']],
+                    ['label' => 'Facturas', 'icon' => 'shopping-cart', 'url' => ['/productosfactura/index']],
                     // Chat
                     [
                         'label' => 'InitialGChat',
