@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+use yii\grid\CheckboxColumn;
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ProductosSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -17,9 +19,16 @@ if (Yii::$app->user->isGuest) {
     } else { 
         if (Yii::$app->user->identity->TipoUser == 'Admin') {
         $dataProvider->pagination = array('pageSize' => 10); ?>
-
             <p>
-                <?= Html::a(Yii::t('app', 'Crear Producto'), ['create'], ['class' => 'btn btn-success']) ?>
+                <?= Html::beginForm(['productos/actualizar'], 'post'); ?>
+            </p>
+            <p>
+                <?= 
+                Html::a(Yii::t('app', 'Crear Producto'), ['create'], ['class' => 'btn btn-success']),
+                Html::submitButton('Editar Seleccionados', ['class' => 'btn btn-info',]),
+                Html::dropDownList('accion', '', ['' => 'Cambiar Disponibilidad ', '0' => 'No Disponible', '1' => 'Disponible'], ['class' => 'dropdown',]),
+                Html::dropDownList('accion2', '', ['' => 'Cambiar Estado ', '0' => 'Normal', '1' => 'Nuevo', '2' => 'Oferta'], ['class' => 'dropdown',]);
+                ?>
             </p>
 
             <?php Pjax::begin(); ?>
@@ -70,10 +79,19 @@ if (Yii::$app->user->isGuest) {
                             return ('http://alum3.iesfsl.org/assets/img/tienda/' . $data->imagen);
                         }
                     ],
+                    [
+                        'class' => CheckboxColumn::class, 'name' => 'idselec',
+                        'checkboxOptions' => function ($model, $key, $index, $column) {
+                            return ['value' => $model->id];
+                        }
+                    ],
 
                     ['class' => 'yii\grid\ActionColumn'],
                 ],
             ]); ?>
+
+            <?= Html::endForm(); ?>
+            </p>
 
             <?php Pjax::end(); ?>
             <?php } else {

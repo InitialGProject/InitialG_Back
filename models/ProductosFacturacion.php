@@ -34,7 +34,8 @@ class ProductosFacturacion extends \yii\db\ActiveRecord
     {
         return [
             [['id_usuario', 'fecha_compra'], 'required'],
-            [['id_usuario', 'enviado', 'total'], 'integer'],
+            [['id_usuario', 'enviado'], 'integer'],
+            [['total'], 'number'],
             [['fecha_compra', 'fecha_envio'], 'safe'],
             [['id_usuario'], 'exist', 'skipOnError' => true, 'targetClass' => Usuarios::className(), 'targetAttribute' => ['id_usuario' => 'id']],
         ];
@@ -73,5 +74,13 @@ class ProductosFacturacion extends \yii\db\ActiveRecord
     public function getUsuario()
     {
         return $this->hasOne(Usuarios::className(), ['id' => 'id_usuario']);
+    }
+
+    public static function Activo($data){
+        if($data=='0'){
+            return "No";
+        }else{
+            return "Si";
+        }
     }
 }

@@ -41,6 +41,26 @@ class ProductosController extends Controller
     }
     //////////////////////////////////////////////////////////////////////////////
 
+    //
+    public function actionActualizar()
+    {
+        $disponible = Yii::$app->request->post('accion');
+        $estado = Yii::$app->request->post('accion2');
+        $idselec = (array)Yii::$app->request->post('idselec');
+
+
+        foreach (Productos::findAll($idselec) as $entrada) {
+            if($disponible!="")$entrada->disponible = $disponible;
+            if($estado!="")$entrada->estado = $estado;
+
+            if (!$entrada->save()) {
+                //error de subida
+            }
+        }
+        $this->redirect(['productos/index']);
+    }
+    //
+
     /**
      * {@inheritdoc}
      */
