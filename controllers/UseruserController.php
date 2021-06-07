@@ -71,7 +71,7 @@ class UseruserController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             if ($model->user_id === $model->added_user || $model->user_id === $model->user_id) {
-                echo "Ya lo tenés agregado hdp";
+                echo "Ya esta agregado";
             } else {
                 return $this->redirect(['view', 'id' => $model->user_id]);
             }

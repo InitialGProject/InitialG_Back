@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\datecontrol\DateControl;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Mensaje */
@@ -18,8 +19,10 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'message')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'mdate')->textInput() ?>
-
+    <?= $form->field($model, 'mdate')->widget(DateControl::classname(), [
+        'type' => DateControl::FORMAT_DATETIME
+    ]);
+    ?>
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
     </div>

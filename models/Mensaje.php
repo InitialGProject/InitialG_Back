@@ -36,8 +36,6 @@ class Mensaje extends \yii\db\ActiveRecord
             [['chat_id', 'sender_id'], 'integer'],
             [['message'], 'string'],
             [['mdate'], 'safe'],
-            [['chat_id'], 'unique'],
-            [['sender_id'], 'unique'],
             [['chat_id'], 'exist', 'skipOnError' => true, 'targetClass' => Chat::className(), 'targetAttribute' => ['chat_id' => 'id']],
             [['sender_id'], 'exist', 'skipOnError' => true, 'targetClass' => Usuarios::className(), 'targetAttribute' => ['sender_id' => 'id']],
         ];
@@ -57,6 +55,7 @@ class Mensaje extends \yii\db\ActiveRecord
         ];
     }
 
+
     /**
      * Gets query for [[Chat]].
      *
@@ -75,5 +74,22 @@ class Mensaje extends \yii\db\ActiveRecord
     public function getSender()
     {
         return $this->hasOne(Usuarios::className(), ['id' => 'sender_id']);
+    }
+
+    public function getNombre()
+    {
+        $nombre = $this->sender->nombre;
+        return $nombre;
+    }
+
+    public function getAvatar()
+    {
+        $avatar = $this->sender->avatar;
+        return $avatar;
+    }
+
+    public function fields()
+    {
+        return array_merge(parent::fields(), ['nombre', 'avatar']);
     }
 }

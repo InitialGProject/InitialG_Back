@@ -55,6 +55,39 @@ $this->params['breadcrumbs'][] = $this->title;
                     //     }
                     // ],
                     [
+                        // 'attribute' => 'user_id',
+                        'label' => 'ID Usuario',
+                        // 'filter' => app\models\Usuarios::lookup(),
+                        'value' => function ($data) {
+                            return $data->user->id;
+                        }
+                    ],
+                    [
+                        // 'attribute' => 'added_user',
+                        // 'label' => 'Amigo',
+                        'format' => ['image', ['width' => '30', 'height' => '30']],
+                        'value' => function ($data) {
+                            return ('http://alum3.iesfsl.org/assets/img/perfiles/' . $data->user->avatar);
+                        }
+                    ],
+                    [
+                        'attribute' => 'user_id',
+                        'label' => 'Usuario',
+                        'filter' => app\models\Usuarios::lookup(),
+                        'value' => function ($data) {
+                            return $data->user->nombre;
+                        }
+                    ],
+
+                    [
+                        // 'attribute' => 'added_user',
+                        'label' => 'ID Amigo',
+                        // 'filter' => app\models\Usuarios::lookup(),
+                        'value' => function ($data) {
+                            return $data->addedUser->id;
+                        }
+                    ],
+                    [
                         // 'attribute' => 'added_user',
                         // 'label' => 'Amigo',
                         'format' => ['image', ['width' => '30', 'height' => '30']],
