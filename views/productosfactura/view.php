@@ -27,8 +27,8 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="productos-facturacion-view">
 
     <p>
-        <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
+        <?= Html::a(Yii::t('app', 'Actualizar pedido'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app', 'Borrar pedido'), ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
@@ -65,40 +65,46 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function ($data) {
                     return app\models\ProductosFacturacion::Activo( $data->enviado);
                 }
-            ],            'fecha_envio',
+            ],
+            'fecha_envio',
+            [
+                'attribute' => 'total_si',
+                'label' => 'Total:',
+                'value' => function ($data) {
+                    return $data->total_si."€";
+                }
+            ],
             [
                 'attribute' => 'total',
-                'label' => 'Total:',
+                'label' => 'Total con IVA:',
                 'value' => function ($data) {
                     return $data->total."€";
                 }
             ], 
+            [
+                'label' => 'Productos:',
+                'format' => 'html',
+                'value' => function () use ($filas){
+                    $mostrar="";
+                    foreach($filas as $fila){
+
+                        //Sacar nombre
+                        $query = new Query;
+                        $query->select('nombre')
+                            ->from('productos')
+                            ->where(['id' => $fila['id_producto']])
+                            ->limit(1)
+                            ;
+                        $command = $query->createCommand();
+                        // $command->sql returns the actual SQL
+                        $nombreproducto = $command->queryOne();
+                        
+                        $mostrar.="*".$nombreproducto['nombre']." x ".$fila['cantidad']."* \r\n <br>";
+                        }
+                        return  ($mostrar);
+                }
+            ], 
         ],
     ]) ?>
-<?php 
-// //testeo
-// echo "<pre>";
-// var_dump($filas); 
-// echo "</pre>";
-echo '
-<h2>Ha comprado:<br> </h2>
-';
-foreach($filas as $fila){
-
-//Sacar nombre
-$query = new Query;
-$query->select('nombre')
-    ->from('productos')
-    ->where(['id' => $fila['id_producto']])
-    ->limit(1)
-    ;
-$command = $query->createCommand();
-// $command->sql returns the actual SQL
-$nombreproducto = $command->queryOne();
-
-echo("->".$nombreproducto['nombre']." x ".$fila['cantidad']."<br>");
-}
-
-?>
 
 </div>

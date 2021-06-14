@@ -43,8 +43,17 @@
                     ['label' => 'Videos', 'icon' => 'dashboard', 'url' => ['/videos/index']],
 
                     //Tienda
-                    ['label' => 'Productos Tienda', 'icon' => 'shopping-cart', 'url' => ['/productos/index']],
-                    ['label' => 'Facturas', 'icon' => 'shopping-cart', 'url' => ['/productosfactura/index']],
+                    [
+                        'label' => 'InitialG Tienda',
+                        'icon' => 'shopping-cart',
+                        'url' => '#',
+                        'items' => [
+                            ['label' => 'Categorias Tienda', 'icon' => 'shopping-cart', 'url' => ['/productoscategoria/index']],
+                            ['label' => 'Productos Tienda', 'icon' => 'shopping-cart', 'url' => ['/productos/index']],
+                            ['label' => 'Facturas', 'icon' => 'shopping-cart', 'url' => ['/productosfactura/index']],
+                        ],
+                    ],
+                    
                     // Chat
                     [
                         'label' => 'InitialGChat',

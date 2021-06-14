@@ -55,7 +55,7 @@ if (Yii::$app->user->isGuest) {
                             return $data->precio." €";
                         }
                     ],                    
-                    //'stock',
+                    'stock',
                     [
                         'attribute' => 'disponible',
                         'label' => 'Disponible',
