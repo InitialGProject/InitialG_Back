@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\ProductosfacturaSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Productos Facturacion');
+$this->title = Yii::t('app', 'Facturacion');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="productos-facturacion-index">
@@ -42,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'provincia',
             //'total',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn', 'template' => '{view} {update} '],
         ],
     ]); ?>
 

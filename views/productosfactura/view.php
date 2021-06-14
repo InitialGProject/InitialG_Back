@@ -1,5 +1,6 @@
 <?php
 
+use Symfony\Component\Console\Input\Input;
 use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
@@ -28,13 +29,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a(Yii::t('app', 'Actualizar pedido'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('app', 'Borrar pedido'), ['delete', 'id' => $model->id], [
+        <!-- <?= Html::a(Yii::t('app', 'Borrar pedido'), ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
                 'method' => 'post',
             ],
-        ]) ?>
+        ]) ?> -->
     </p>
 
     <?= DetailView::widget([
@@ -69,14 +70,20 @@ $this->params['breadcrumbs'][] = $this->title;
             'fecha_envio',
             [
                 'attribute' => 'total_si',
-                'label' => 'Total:',
+                'label' => 'Precio Base:',
                 'value' => function ($data) {
                     return $data->total_si."€";
                 }
             ],
             [
+                'label' => 'IVA:',
+                'value' => function ($data) {
+                    return ($data->total-$data->total_si)."€";
+                }
+            ],
+            [
                 'attribute' => 'total',
-                'label' => 'Total con IVA:',
+                'label' => 'Precio Total:',
                 'value' => function ($data) {
                     return $data->total."€";
                 }
@@ -105,6 +112,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             ], 
         ],
-    ]) ?>
+        ]) 
+        
 
+    ?>
 </div>

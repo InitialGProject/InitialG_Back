@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $model app\models\ProductosFacturacion */
 
 $this->title = Yii::t('app', 'Create Productos Facturacion');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Productos Facturacions'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Facturacion'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="productos-facturacion-create">
