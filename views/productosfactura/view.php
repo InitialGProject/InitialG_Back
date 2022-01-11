@@ -9,7 +9,7 @@ use yii\db\Query;
 
 //Extraer las lineas de la factura
 $query = new Query;
-$query->select('id_producto, cantidad')
+$query->select('id_producto, cantidad, conIVA, sinIVA')
     ->from('productos_factura')
     ->where(['id_facturacion' => $model->id]);
 $command = $query->createCommand();
@@ -93,22 +93,82 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'html',
                 'value' => function () use ($filas){
                     $mostrar="";
-                    foreach($filas as $fila){
+                    // foreach($filas as $fila){
 
-                        //Sacar nombre
-                        $query = new Query;
-                        $query->select('nombre')
-                            ->from('productos')
-                            ->where(['id' => $fila['id_producto']])
-                            ->limit(1)
-                            ;
-                        $command = $query->createCommand();
-                        // $command->sql returns the actual SQL
-                        $nombreproducto = $command->queryOne();
-                        
-                        $mostrar.="*".$nombreproducto['nombre']." x ".$fila['cantidad']."* \r\n <br>";
+                        //     //Sacar nombre
+                        //     $query = new Query;
+                        //     $query->select('nombre')
+                        //         ->from('productos')
+                        //         ->where(['id' => $fila['id_producto']])
+                        //         ->limit(1)
+                        //         ;
+                        //     $command = $query->createCommand();
+                        //     // $command->sql returns the actual SQL
+                        //     $nombreproducto = $command->queryOne();
+                            
+                        //     $mostrar.="*".$nombreproducto['nombre']." x ".$fila['cantidad']."* \r\n <br>";
+                    // }
+
+                    $echo="
+                        <table>
+                            <tr>
+                                <td style='width: 150px'><b> Nombre Producto    </b></td>
+                                <td style='width: 100px'><b> Cantidad           </b></td>
+                                <td style='width: 140px'><b> Precio sin IVA     </b></td>
+                                <td style='width: 140px'><b> Precio con IVA     </b></td>
+                            </tr>";
+
+                        foreach($filas as $fila){
+
+                            //Sacar nombre
+                            $query = new Query;
+                            $query->select('nombre')
+                                ->from('productos')
+                                ->where(['id' => $fila['id_producto']])
+                                ->limit(1)
+                                ;
+                            $command = $query->createCommand();
+                            // $command->sql returns the actual SQL
+                            $nombreproducto = $command->queryOne();
+                            
+                            $echo.="
+                            <tr>
+                                <td>".$nombreproducto['nombre']."</td> 
+                                <td>".$fila['cantidad']."</td>
+                                <td>".$fila['sinIVA']."€</td>
+                                <td>".$fila['conIVA']."€</td>
+                            </tr>";
                         }
-                        return  ($mostrar);
+
+                        $echo.="
+                    </table>";
+                        return  ($echo);
+                    return  ($mostrar);
+                }
+            ], 
+            [
+                'label' => 'Factura:',
+                'format' => 'html',
+                'value' => function () use ($filas){
+                    $mostrar="";
+                    // foreach($filas as $fila){
+
+                        //     //Sacar nombre
+                        //     $query = new Query;
+                        //     $query->select('nombre')
+                        //         ->from('productos')
+                        //         ->where(['id' => $fila['id_producto']])
+                        //         ->limit(1)
+                        //         ;
+                        //     $command = $query->createCommand();
+                        //     // $command->sql returns the actual SQL
+                        //     $nombreproducto = $command->queryOne();
+                            
+                        //     $mostrar.="*".$nombreproducto['nombre']." x ".$fila['cantidad']."* \r\n <br>";
+                    // }
+
+                    $echo="<a href='#'>GENERAR</a>";
+                    return  ($echo);
                 }
             ], 
         ],
