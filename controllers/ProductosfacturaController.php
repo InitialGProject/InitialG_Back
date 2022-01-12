@@ -8,12 +8,138 @@ use app\models\ProductosfacturaSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\db\Query;
+
 
 /**
  * ProductosfacturaController implements the CRUD actions for ProductosFacturacion model.
  */
 class ProductosfacturaController extends Controller
 {
+
+    public function actionPdf($id, $idus){
+        
+        $query = new Query;
+            $query->select('id_producto, cantidad, conIVA, sinIVA')
+            ->from('productos_factura')
+            ->where(['id_facturacion' => $id]);
+            $command = $query->createCommand();
+            // $command->sql returns the actual SQL
+        $filasFactura = $command->queryAll();
+      
+        $Particulos = 0;
+        $PSIVA = 0;
+        $PCIVA = 0;
+        $IVA = 0;
+
+        $echo="
+            <table>
+                <tr>
+                    <td style='width: 150px'><b> Nombre Producto    </b></td>
+                    <td style='width: 100px'><b> Cantidad           </b></td>
+                    <td style='width: 140px'><b> Precio sin IVA     </b></td>
+                    <td style='width: 140px'><b> IVA                </b></td>
+                    <td style='width: 140px'><b> Precio con IVA     </b></td>
+
+                </tr>";
+
+            foreach($filasFactura as $fila){
+
+                //Sacar nombre
+                $query = new Query;
+                $query->select('nombre')
+                    ->from('productos')
+                    ->where(['id' => $fila['id_producto']])
+                    ->limit(1)
+                    ;
+                $command = $query->createCommand();
+                // $command->sql returns the actual SQL
+                $nombreproducto = $command->queryOne();
+                
+                //Saco IVA
+                $query = new Query;
+                $query->select('IVA')
+                    ->from('productos')
+                    ->where(['id' => $fila['id_producto']])
+                    ->limit(1)
+                    ;
+                $command = $query->createCommand();
+                $IVAProducto = $command->queryOne();
+
+                //Sumamos
+                $Particulos+=$fila['cantidad'];
+                $PSIVA+=$fila['sinIVA'];
+                $PCIVA+=$fila['conIVA'];
+                $IVA+= $fila['conIVA']-$fila['sinIVA'];
+                $echo.="
+                <tr>
+                    <td>".$nombreproducto['nombre']."</td> 
+                    <td>".$fila['cantidad']."</td>
+                    <td>".$fila['sinIVA']."€ </td>
+                    <td>".$IVAProducto['IVA']."% </td>
+                    <td>".$fila['conIVA']."€ </td>
+                </tr>";
+            }
+
+            $echo.="
+            <tr>
+                <td></td> 
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td> 
+                <td>$Particulos Articulos</td>
+                <td>$PSIVA €    </td>
+                <td>$IVA €      </td> 
+                <td>$PCIVA €    </td>
+                
+            </tr>
+            </table>
+            <br><div><b>Total</b> $PCIVA €    </td></div>
+        ";
+
+        $query = new Query;
+        $query->select('fecha_compra, direccion, pais, cp, provincia, total_si, total, facturaPP, nombre_compra, email_compra, telefono_compra')
+        ->from('productos_facturacion')
+        ->where(['id' => $id]);
+        $command = $query->createCommand();
+        // $command->sql returns the actual SQL
+        $factura = $command->queryAll();
+
+      //doc.line(0, 80, 600, 80) // horizontal line
+        $mpdf = new \Mpdf\Mpdf(['tempDir' => '/var/www/html/']);
+
+        //Facturador
+        $mpdf->Image('http://alum3.iesfsl.org/assets/img/logo.png', 0, 0, 210, 297, 'png', '', true, true);
+        $mpdf->WriteHTML('<img src="http://alum3.iesfsl.org/assets/img/logo.png" width="140" />');
+        $mpdf->WriteHTML('<br>INITIAL G');
+        $mpdf->WriteHTML('NIF:123456789ASDF');
+        $mpdf->WriteHTML('C/Falsa de prueba 666');
+        $mpdf->WriteHTML('VALENCIA ES');
+        $mpdf->WriteHTML('FACTURA Nº '.$id.'//'.$factura[0]['facturaPP']);
+
+        //Usuario
+        $mpdf->WriteHTML("<br>Datos comprador");
+        $mpdf->WriteHTML('Fecha Compra: '.$factura[0]['fecha_compra']);
+        $mpdf->WriteHTML('Nombre: '.$factura[0]['nombre_compra']);
+        $mpdf->WriteHTML('Correo: '.$factura[0]['email_compra']);
+        $mpdf->WriteHTML('Telefono: '.$factura[0]['telefono_compra']);
+        $mpdf->WriteHTML('Direccion: '.$factura[0]['direccion']);
+        $mpdf->WriteHTML('CP: '.$factura[0]['cp']);
+        $mpdf->WriteHTML('Provincia: '.$factura[0]['provincia']);
+        $mpdf->WriteHTML('Pais: '.$factura[0]['pais']);
+
+        //Compra
+        $mpdf->WriteHTML('<br>');
+        $mpdf->WriteHTML('<br>');
+        $mpdf->WriteHTML($echo);
+
+        
+        $mpdf->Output();
+     }
+
     /**
      * {@inheritdoc}
      */

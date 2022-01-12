@@ -29,6 +29,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a(Yii::t('app', 'Actualizar pedido'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+
+        <?= Html::a('Generar PDF', ['productosfactura/pdf', 'id' =>$model->id, 'idus' =>$model->id_usuario], 
+                    [
+                        'class'=>'btn btn-danger',
+                        'data-confirm'=>'Quieres Generar la factura?',
+                        // $this->context->actionPdf()
+                    ]); 
+        ?>
+
         <!-- <?= Html::a(Yii::t('app', 'Borrar pedido'), ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
@@ -92,22 +101,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'Productos:',
                 'format' => 'html',
                 'value' => function () use ($filas){
-                    $mostrar="";
-                    // foreach($filas as $fila){
-
-                        //     //Sacar nombre
-                        //     $query = new Query;
-                        //     $query->select('nombre')
-                        //         ->from('productos')
-                        //         ->where(['id' => $fila['id_producto']])
-                        //         ->limit(1)
-                        //         ;
-                        //     $command = $query->createCommand();
-                        //     // $command->sql returns the actual SQL
-                        //     $nombreproducto = $command->queryOne();
-                            
-                        //     $mostrar.="*".$nombreproducto['nombre']." x ".$fila['cantidad']."* \r\n <br>";
-                    // }
 
                     $echo="
                         <table>
@@ -142,35 +135,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
                         $echo.="
                     </table>";
-                        return  ($echo);
-                    return  ($mostrar);
-                }
-            ], 
-            [
-                'label' => 'Factura:',
-                'format' => 'html',
-                'value' => function () use ($filas){
-                    $mostrar="";
-                    // foreach($filas as $fila){
-
-                        //     //Sacar nombre
-                        //     $query = new Query;
-                        //     $query->select('nombre')
-                        //         ->from('productos')
-                        //         ->where(['id' => $fila['id_producto']])
-                        //         ->limit(1)
-                        //         ;
-                        //     $command = $query->createCommand();
-                        //     // $command->sql returns the actual SQL
-                        //     $nombreproducto = $command->queryOne();
-                            
-                        //     $mostrar.="*".$nombreproducto['nombre']." x ".$fila['cantidad']."* \r\n <br>";
-                    // }
-
-                    $echo="<a href='#'>GENERAR</a>";
                     return  ($echo);
                 }
             ], 
+            
         ],
         ]) 
         

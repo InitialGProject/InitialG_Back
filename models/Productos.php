@@ -66,6 +66,7 @@ class Productos extends \yii\db\ActiveRecord
             [['cat_id', 'IVA', 'stock', 'disponible', 'estado'], 'integer'],
             [['nombre', 'imagen', 'descripcion'], 'string'],
             [['disponible'], 'default', 'value' => '0'],
+            [['IVA'], 'default', 'value' => '12'],
             [['estado'], 'default', 'value' => '1'],
             [['precio'], 'number'],
             [['cat_id'], 'exist', 'skipOnError' => true, 'targetClass' => ProductosCategoria::class, 'targetAttribute' => ['cat_id' => 'id']],
