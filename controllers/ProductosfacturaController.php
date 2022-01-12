@@ -110,6 +110,7 @@ class ProductosfacturaController extends Controller
 
       //doc.line(0, 80, 600, 80) // horizontal line
         $mpdf = new \Mpdf\Mpdf(['tempDir' => '/var/www/html/']);
+        //$mpdf->showImageErrors = true;
 
         //Facturador
         $mpdf->Image('http://alum3.iesfsl.org/assets/img/logo.png', 0, 0, 210, 297, 'png', '', true, true);
