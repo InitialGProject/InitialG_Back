@@ -117,7 +117,8 @@ class ProductosController extends Controller
 
             $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
             if ($model->upload() && $model->save()) {
-                $model->imageFile->saveAs('uploads/tienda/' . $model->imagen);
+                if($model->imagen) $model->imageFile->saveAs('uploads/tienda/' . $model->imagen);
+                else {}
 
                 return $this->redirect(['view', 'id' => $model->id]);
             }
