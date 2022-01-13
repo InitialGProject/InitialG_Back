@@ -126,7 +126,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             
                             $echo.="
                             <tr>
-                                <td>".$nombreproducto['nombre']."</td> 
+                                <td><a href='/bck/productos/view?id=".$fila['id_producto']."'>".$nombreproducto['nombre']."</a></td> 
                                 <td>".$fila['cantidad']."</td>
                                 <td>".$fila['sinIVA']."€</td>
                                 <td>".$fila['conIVA']."€</td>

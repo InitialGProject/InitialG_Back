@@ -35,49 +35,68 @@ class ProductosfacturaController extends Controller
         $echo="
             <table>
                 <tr>
-                    <td style='width: 150px'><b> Nombre Producto    </b></td>
-                    <td style='width: 100px'><b> Cantidad           </b></td>
-                    <td style='width: 140px'><b> Precio sin IVA     </b></td>
-                    <td style='width: 140px'><b> IVA                </b></td>
-                    <td style='width: 140px'><b> Precio con IVA     </b></td>
+                    <td style='width: 150px'><b> Nombre         </b></td>
+                    <td style='width: 100px'><b> Cantidad       </b></td>
+                    <td style='width: 100px'><b> Precio Base    </b></td>
+                    <td style='width: 140px'><b> IVA            </b></td>
+
+                    <td style='width: 140px'><b> Precio+IVA     </b></td>
+                    <td style='width: 140px'><b> Precio Total   </b></td>
+                    <td style='width: 140px'><b> IVA Añadido    </b></td>
 
                 </tr>";
-
+            $IVAAdded = 0;
+            $PIconIVA = 0;
             foreach($filasFactura as $fila){
 
                 //Sacar nombre
-                $query = new Query;
-                $query->select('nombre')
-                    ->from('productos')
-                    ->where(['id' => $fila['id_producto']])
-                    ->limit(1)
-                    ;
-                $command = $query->createCommand();
-                // $command->sql returns the actual SQL
+                    $query = new Query;
+                    $query->select('nombre')
+                        ->from('productos_factura')
+                        ->where(['id_producto' => $fila['id_producto']])
+                        ->limit(1)
+                        ;
+                    $command = $query->createCommand();
+                    // $command->sql returns the actual SQL
                 $nombreproducto = $command->queryOne();
                 
                 //Saco IVA
-                $query = new Query;
-                $query->select('IVA')
-                    ->from('productos')
-                    ->where(['id' => $fila['id_producto']])
-                    ->limit(1)
-                    ;
-                $command = $query->createCommand();
+                    $query = new Query;
+                    $query->select('IVA')
+                        ->from('productos_factura')
+                        ->where(['id_producto' => $fila['id_producto']])
+                        ->limit(1)
+                        ;
+                    $command = $query->createCommand();
                 $IVAProducto = $command->queryOne();
+
+                //Saco Precio Individual
+                    $query = new Query;
+                    $query->select('unidad')
+                        ->from('productos_factura')
+                        ->where(['id_producto' => $fila['id_producto']])
+                        ->limit(1)
+                        ;
+                    $command = $query->createCommand();
+                $PrecioIndi = $command->queryOne();
 
                 //Sumamos
                 $Particulos+=$fila['cantidad'];
                 $PSIVA+=$fila['sinIVA'];
                 $PCIVA+=$fila['conIVA'];
                 $IVA+= $fila['conIVA']-$fila['sinIVA'];
+                $IVAAdded = $fila['conIVA']-$fila['sinIVA'];
+
+                $PIconIVA =$PrecioIndi['unidad']+($PrecioIndi['unidad'] * $IVAProducto['IVA'])/100;
                 $echo.="
                 <tr>
                     <td>".$nombreproducto['nombre']."</td> 
                     <td>".$fila['cantidad']."</td>
-                    <td>".$fila['sinIVA']."€ </td>
+                    <td>".$PrecioIndi['unidad']." €"."</td>
                     <td>".$IVAProducto['IVA']."% </td>
-                    <td>".$fila['conIVA']."€ </td>
+                    <td>".$PIconIVA." €</td> 
+                    <td>".$fila['conIVA']." € </td>
+                    <td>".$IVAAdded." € </td>
                 </tr>";
             }
 
@@ -90,10 +109,12 @@ class ProductosfacturaController extends Controller
             </tr>
             <tr>
                 <td></td> 
-                <td>$Particulos Articulos</td>
-                <td>$PSIVA €    </td>
-                <td>$IVA €      </td> 
-                <td>$PCIVA €    </td>
+                <td>Total $Particulos Articulos</td>
+                <td></td> 
+                <td></td> 
+                <td>$PSIVA € Base   </td>
+                <td>$PCIVA € Total  </td>
+                <td>$IVA € IVA      </td> 
                 
             </tr>
             </table>
@@ -123,14 +144,14 @@ class ProductosfacturaController extends Controller
 
         //Usuario
         $mpdf->WriteHTML("<br>Datos comprador");
-        $mpdf->WriteHTML('Fecha Compra: '.$factura[0]['fecha_compra']);
-        $mpdf->WriteHTML('Nombre: '.$factura[0]['nombre_compra']);
-        $mpdf->WriteHTML('Correo: '.$factura[0]['email_compra']);
-        $mpdf->WriteHTML('Telefono: '.$factura[0]['telefono_compra']);
-        $mpdf->WriteHTML('Direccion: '.$factura[0]['direccion']);
+        $mpdf->WriteHTML('FECHA: '.$factura[0]['fecha_compra']);
+        $mpdf->WriteHTML('NOMBRE: '.$factura[0]['nombre_compra']);
+        $mpdf->WriteHTML('DIRECCION: '.utf8_decode( $factura[0]['direccion']));
         $mpdf->WriteHTML('CP: '.$factura[0]['cp']);
-        $mpdf->WriteHTML('Provincia: '.$factura[0]['provincia']);
-        $mpdf->WriteHTML('Pais: '.$factura[0]['pais']);
+        $mpdf->WriteHTML('PROVINCIA: '.$factura[0]['provincia']);
+        $mpdf->WriteHTML('PAIS: '.$factura[0]['pais']);
+        $mpdf->WriteHTML('EMAIL: '.$factura[0]['email_compra']);
+        $mpdf->WriteHTML('TLF: '.$factura[0]['telefono_compra']);
 
         //Compra
         $mpdf->WriteHTML('<br>');
